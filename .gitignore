@@ -1,0 +1,5 @@
+_archive/
+*.tmp
+*.bak
+Thumbs.db
+Desktop.ini
