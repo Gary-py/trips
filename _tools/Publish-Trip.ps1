@@ -81,7 +81,7 @@ function Test-TripAncestor {
 }
 
 function Get-TripDirtyPaths {
-    param([Parameter(Mandatory)][object[]]$StatusLines)
+    param([object[]]$StatusLines = @())
     $paths = @()
     foreach ($lineObject in $StatusLines) {
         $line = [string]$lineObject
