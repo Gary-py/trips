@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌺 冲绳自驾自由行 2026 | 8天7夜完整行程规划</title>
+    <!-- Trip Guide Version: V7 | Accommodation/car/live-weather/info-gems restoration -->
     
     <!-- Leaflet.js 动态地图 CSS & JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -334,6 +335,10 @@
         #map { height: 520px; width: 100%; border-radius: 12px; z-index: 1; }
         .day-label-marker { background: white; border: 2px solid; border-radius: 12px; padding: 2px 6px; font-size: 11px; font-weight: 800; box-shadow: 0 2px 6px rgba(0,0,0,0.2); white-space: nowrap; text-align: center; }
 
+
+        .weather-detail-btn { margin-top:7px; padding:4px 8px; border:1px solid #bae6fd; background:#f0f9ff; color:#0369a1; border-radius:6px; font-size:10.5px; font-weight:800; cursor:pointer; }
+        .weather-inline-detail { display:none; margin-top:8px; border-top:1px dashed #cbd5e1; padding-top:8px; font-size:11px; line-height:1.6; color:#475569; }
+        .weather-inline-detail.open { display:block; }
         @media (max-width: 640px) {
             .flight-cards { grid-template-columns: 1fr; margin-top: -20px; }
             .nav-tabs { justify-content: flex-start; }
@@ -953,7 +958,7 @@
         <!-- 4. 动态地图 Tab (新增复选框筛选与尖嘴行走方向控制) -->
         <div id="map-tab" class="tab-content">
             <div class="card">
-                <div class="card-title">🗺️ 冲绳公路导航路线图 (真实道路 / 沿途方向箭头指示 / 动态行程筛选)</div>
+                <div class="card-title">🗺️ 冲绳公路导航 + 航班历史航迹模拟 (真实道路 / 飞行方向 / 动态筛选)</div>
                 
                 <!-- 每日 Checkbox 筛选控制器 -->
                 <div class="map-filter-box">
@@ -967,7 +972,8 @@
                     <div class="map-checkbox-grid">
                         <label class="map-checkbox-item">
                             <input type="checkbox" id="chk-flight" checked onchange="updateMapVisibility()">
-                            <span style="color:#0284c7;">✈️ 往返机票航线 (HKG ↔ OKA)</span>
+                            <span style="color:#0284c7;">✈️ 往返航班历史航迹模拟 (HKG ↔ OKA)</span>
+                            <button type="button" onclick="event.preventDefault(); event.stopPropagation(); focusFlightRoute();" style="padding:2px 7px; border:1px solid #bae6fd; background:#f0f9ff; color:#0369a1; border-radius:5px; font-size:10.5px; font-weight:800; cursor:pointer;">查看完整航线</button>
                         </label>
                         <label class="map-checkbox-item">
                             <input type="checkbox" class="day-chk" data-day="D1" checked onchange="updateMapVisibility()">
@@ -1125,64 +1131,185 @@
             </div>
         </div>
 
-        <!-- 6. 🏨 住宿 Tab -->
+        <!-- 6. 🏨 住宿 Tab (V7: 地址/地图/早餐图标/每房每晚) -->
         <div id="hotels" class="tab-content">
             <div class="card">
                 <div class="card-title">🏨 三段住宿信息、预订号与房费明细</div>
+                
                 <div style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color);">
-                    <h4 style="color:#2563eb; margin-bottom: 6px;">1. 冲绳那霸柔婕阁酒店 (La'gent Hotel Okinawa Naha)</h4>
+                    <h4 style="color:#2563eb; margin-bottom: 6px;">1. 冲绳那霸柔婕阁酒店 (La'gent Hotel Okinawa Naha) 
+                        <a href="https://maps.google.com/?q=La'gent+Hotel+Okinawa+Naha" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?ll=26.2185,127.6820&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </h4>
                     <table class="kuse-table" style="margin-top: 6px;">
-                        <tr><th>入住与退房时间</th><td><b>10/18 (日) 21:00后入住 ➔ 10/20 (二) 10:00前退房</b> ｜ 共 2 晚 (2间房 / 22㎡双床房)</td></tr>
-                        <tr><th>订房平台与订单号</th><td><b>Trip.com</b> ｜ <b>不含早餐</b></td></tr>
+                        <tr><th>入住日期</th><td>10/18 (日) – 10/20 (二) ｜ 共 2 晚 (2间房 / 22㎡双床房)</td></tr>
+                        <tr><th>订房平台与订单号</th><td><b>Trip.com</b> ｜ 确认号：<b>N/A</b></td></tr>
+                        <tr><th>早餐包含</th><td><span style="display:inline-block;background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;padding:3px 8px;border-radius:999px;font-weight:800;">❌ 不含早餐</span> <b>Breakfast Excluded</b></td></tr>
                         <tr><th>免费取消与扣款</th><td><span style="color:#e11d48; font-weight:bold;">2026年10月8日 23:59 前免费取消 (10/8 扣款 HK$ 2,482.84)</span></td></tr>
+                        <tr><th>房费总价与单价</th><td>总计 <b>HK$ 2,482.84</b> ｜ 每房每晚约 <b>HK$ 620.71</b></td></tr>
+                        <tr><th>酒店优势/地址</th><td>距离国际通步行约 6 分钟，邻近 Times 美荣桥租车点 ｜ 2-2-9 Matsuyama, Naha</td></tr>
                     </table>
                 </div>
+
                 <div style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px dashed var(--border-color);">
-                    <h4 style="color:#2563eb; margin-bottom: 6px;">2. 恩纳嘉利吉度假酒店 (Okinawa Kariyushi Beach Resort Ocean Spa)</h4>
+                    <h4 style="color:#2563eb; margin-bottom: 6px;">2. 恩纳嘉利吉度假酒店 (Okinawa Kariyushi Beach Resort Ocean Spa) 
+                        <a href="https://maps.google.com/?q=Okinawa+Kariyushi+Beach+Resort+Ocean+Spa" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?ll=26.5265,127.9250&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </h4>
                     <table class="kuse-table" style="margin-top: 6px;">
-                        <tr><th>入住与退房时间</th><td><b>10/20 (二) 14:30后入住 ➔ 10/22 (四) 09:30前退房</b> ｜ 共 2 晚 (2间房)</td></tr>
-                        <tr><th>订房平台与订单号</th><td><b>Agoda</b> ｜ 确认号：<b>1758752957</b> ｜ <b>含早餐</b></td></tr>
+                        <tr><th>入住与退房时间</th><td><b>10/20 (二) 15:00后入住 ➔ 10/22 (四) 11:00前退房</b> ｜ 共 2 晚 (2间房)</td></tr>
+                        <tr><th>订房平台与订单号</th><td><b>Agoda</b> ｜ 确认号：<b>1758752957</b></td></tr>
+                        <tr><th>早餐包含</th><td><span style="display:inline-block;background:#dcfce7;color:#166534;border:1px solid #86efac;padding:3px 8px;border-radius:999px;font-weight:800;">✅ 包含早餐</span> <b>Breakfast Included</b></td></tr>
                         <tr><th>免费取消与扣款</th><td><span style="color:#e11d48; font-weight:bold;">2026年10月7日 23:59 前免费取消 (10/8 自动扣 USD 363.38)</span></td></tr>
+                        <tr><th>房费总价与单价</th><td>总计 <b>USD 363.38 (约 HK$ 2,834.34)</b> ｜ 每房每晚 <b>USD 90.85 (约 HK$ 708.59)</b></td></tr>
+                        <tr><th>酒店地址/电话</th><td>2591-1 Yashibaru Nakama, Onna, Kunigami, Okinawa 904-0401 ｜ +81 98-967-8731</td></tr>
                     </table>
                 </div>
+
                 <div>
-                    <h4 style="color:#2563eb; margin-bottom: 6px;">3. 冲绳那霸柔婕阁酒店 (La'gent Hotel Okinawa Naha)</h4>
+                    <h4 style="color:#2563eb; margin-bottom: 6px;">3. 冲绳那霸柔婕阁酒店 (La'gent Hotel Okinawa Naha) 
+                        <a href="https://maps.google.com/?q=La'gent+Hotel+Okinawa+Naha" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?ll=26.2185,127.6820&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </h4>
                     <table class="kuse-table" style="margin-top: 6px;">
-                        <tr><th>入住与退房时间</th><td><b>10/22 (四) 21:30后入住 ➔ 10/25 (日) 08:00前退房</b> ｜ 共 3 晚 (2间房 / 22㎡双床房)</td></tr>
-                        <tr><th>订房平台与订单号</th><td><b>Trip.com</b> ｜ 确认号：<b>1359046773798600</b> ｜ <b>不含早餐</b></td></tr>
+                        <tr><th>入住日期</th><td>10/22 (四) – 10/25 (日) ｜ 共 3 晚 (2间房 / 22㎡双床房)</td></tr>
+                        <tr><th>订房平台与订单号</th><td><b>Trip.com</b> ｜ 确认号：<b>1359046773798600</b></td></tr>
+                        <tr><th>早餐包含</th><td><span style="display:inline-block;background:#fee2e2;color:#991b1b;border:1px solid #fca5a5;padding:3px 8px;border-radius:999px;font-weight:800;">❌ 不含早餐</span> <b>Breakfast Excluded</b></td></tr>
                         <tr><th>免费取消与扣款</th><td><span style="color:#e11d48; font-weight:bold;">2026年10月14日 23:59 前免费取消 (10/13 扣款 HK$ 4,618.34)</span></td></tr>
+                        <tr><th>房费总价与单价</th><td>总计 <b>HK$ 4,618.34</b> ｜ 每房每晚约 <b>HK$ 769.72</b></td></tr>
+                        <tr><th>酒店地址/电话</th><td>2-2-9 Matsuyama, Naha, Okinawa 900-0032 ｜ +81 98-860-7700</td></tr>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- 7. 🚘 租车 Tab -->
+        <!-- 7. 🚘 租车 Tab (V7: 地址/支付/还车油站) -->
         <div id="car-rental" class="tab-content">
             <div class="card">
                 <div class="card-title">🚘 自驾租车详细资讯与预订配置</div>
                 <table class="kuse-table">
-                    <tr><th>租车确认号</th><td><span style="color:#059669; font-weight:bold;">202601763663</span> (Times Car Rental 美荣桥站前店)</td></tr>
-                    <tr><th>预订车型</th><td><b>Honda Freed 或 Toyota Sienta Hybrid (混能 6-7座)</b></td></tr>
-                    <tr><th>租车时间</th><td><b>10月19日 09:00 取车 ➔ 10月24日 18:00 还车 (共 6 天)</b></td></tr>
-                    <tr><th>租费总额</th><td>总计 <b>¥59,730 日元 (折合约 HK$ 3,063.08)</b></td></tr>
-                    <tr><th>还车规则</th><td>10/24 18:00 还车前请在市区加油站<b>加满 Regular 无铅汽油</b>并保留发票。</td></tr>
+                    <tr><th>租车确认号</th><td><span style="color:#059669; font-weight:bold;">202601763663</span></td></tr>
+                    <tr><th>租车公司名称</th><td><b>Times Car Rental (Times 租车)</b></td></tr>
+                    <tr><th>取还车营业所地址</th><td>
+                        <b>美荣桥站前店 (Miebashi Station)</b>
+                        <a href="https://maps.google.com/?q=Times+Car+Rental+Miebashi+Station" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=Times+Car+Rental+Miebashi&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </td></tr>
+                    <tr><th>预订车型</th><td><b>Honda Freed 或 Toyota Sienta Hybrid (或同级混能 6-7座 MPV)</b></td></tr>
+                    <tr><th>取车时间</th><td><b>10月19日 (一) 09:00 AM</b></td></tr>
+                    <tr><th>还车时间</th><td><b>10月24日 (六) 18:00 PM (共 6 天)</b></td></tr>
+                    <tr><th>租费总额与日均</th><td>总计 <b>¥59,730 日元 (折合约 HK$ 3,063.08)</b> ｜ 日均约 <b>¥9,955 日元 (HK$ 510.51)</b><br><span style="display:inline-block;margin-top:5px;background:#dcfce7;color:#166534;border:1px solid #86efac;padding:3px 8px;border-radius:999px;font-weight:800;">💳 取车时支付 / Pay at pickup</span></td></tr>
+                    <tr><th>ETC 电子卡配置</th><td><b>预搭载 ETC 机器卡槽</b>（建议现场租借 ETC 卡便利过闸）</td></tr>
+                    <tr><th>还车与加油规则</th><td>10/24 18:00 还车前请在市区 Times 附近加油站<b>加满 Regular 无铅汽油</b>，并<b>务必保留加油小票发票</b>交车行检查。</td></tr>
+                    <tr><th>⛽ 还车附近优选油站</th><td>
+                        <b>ENEOS 前岛店 (Maejima SS)</b> ｜ 〒900-0016 沖縄県那覇市前島3丁目22-8 ｜ TEL: 098-864-2110<br>
+                        距美荣桥一带很近，适合作为还车前最后加满 Regular 的便利选择。<b>油价每天会变化，以现场价为准。</b>
+                        <a href="https://www.google.com/maps/search/?api=1&query=ENEOS+Maejima+3-22-8+Naha+Okinawa" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=ENEOS%20Maejima%203-22-8%20Naha%20Okinawa&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </td></tr>
                 </table>
             </div>
         </div>
 
-        <!-- 8. 天气 Tab -->
+        <!-- 8. 天气 Tab (V7: 季节参考 + Open-Meteo 动态天气) -->
         <div id="weather" class="tab-content">
             <div class="card">
                 <div class="card-title">⚙️ 8天天气预报 (10/18 - 10/25)</div>
+                
                 <div class="kuse-weather-grid">
-                    <div class="kuse-weather-card"><div class="date-title">Oct 18 (日)</div><div class="icon">⛅</div><div class="temp">28°C / 24°C</div><div class="rain">降水: 10%</div></div>
-                    <div class="kuse-weather-card active-day"><div class="date-title">Oct 19 (一)</div><div class="icon">☀️</div><div class="temp">28°C / 23°C</div><div class="rain">降水: 0%</div></div>
-                    <div class="kuse-weather-card"><div class="date-title">Oct 20 (二)</div><div class="icon">⛅</div><div class="temp">27°C / 22°C</div><div class="rain">降水: 20%</div></div>
-                    <div class="kuse-weather-card"><div class="date-title">Oct 21 (三)</div><div class="icon">☀️</div><div class="temp">28°C / 23°C</div><div class="rain">降水: 10%</div></div>
-                    <div class="kuse-weather-card"><div class="date-title">Oct 22 (四)</div><div class="icon">🌤️</div><div class="temp">27°C / 22°C</div><div class="rain">降水: 15%</div></div>
-                    <div class="kuse-weather-card"><div class="date-title">Oct 23 (五)</div><div class="icon">☀️</div><div class="temp">27°C / 23°C</div><div class="rain">降水: 10%</div></div>
-                    <div class="kuse-weather-card"><div class="date-title">Oct 24 (六)</div><div class="icon">⛅</div><div class="temp">26°C / 22°C</div><div class="rain">降水: 20%</div></div>
-                    <div class="kuse-weather-card"><div class="date-title">Oct 25 (日)</div><div class="icon">⛅</div><div class="temp">26°C / 21°C</div><div class="rain">降水: 10%</div></div>
+                    <div class="kuse-weather-card">
+                        <div class="date-title">Oct 18 (日)</div>
+                        <div class="icon">⛅</div>
+                        <div class="status">多云</div>
+                        <div class="temp">28°C / 24°C</div>
+                        <div class="rain">降水: 10%</div>
+                        <div class="outfit-tag">轻便外套 + 短袖</div>
+                    </div>
+                    <div class="kuse-weather-card active-day">
+                        <div class="date-title">Oct 19 (一)</div>
+                        <div class="icon">☀️</div>
+                        <div class="status">晴朗</div>
+                        <div class="temp">28°C / 23°C</div>
+                        <div class="rain">降水: 0%</div>
+                        <div class="outfit-tag">防晒短袖即可</div>
+                    </div>
+                    <div class="kuse-weather-card">
+                        <div class="date-title">Oct 20 (二)</div>
+                        <div class="icon">⛅</div>
+                        <div class="status">多云</div>
+                        <div class="temp">27°C / 22°C</div>
+                        <div class="rain">降水: 20%</div>
+                        <div class="outfit-tag">溶洞内凉爽外套</div>
+                    </div>
+                    <div class="kuse-weather-card">
+                        <div class="date-title">Oct 21 (三)</div>
+                        <div class="icon">☀️</div>
+                        <div class="status">晴天</div>
+                        <div class="temp">28°C / 23°C</div>
+                        <div class="rain">降水: 10%</div>
+                        <div class="outfit-tag">短袖 + 遮阳帽</div>
+                    </div>
+                    <div class="kuse-weather-card">
+                        <div class="date-title">Oct 22 (四)</div>
+                        <div class="icon">🌤️</div>
+                        <div class="status">多云晴</div>
+                        <div class="temp">27°C / 22°C</div>
+                        <div class="rain">降水: 15%</div>
+                        <div class="outfit-tag">商场防冷气外套</div>
+                    </div>
+                    <div class="kuse-weather-card">
+                        <div class="date-title">Oct 23 (五)</div>
+                        <div class="icon">☀️</div>
+                        <div class="status">晴朗</div>
+                        <div class="temp">27°C / 23°C</div>
+                        <div class="rain">降水: 10%</div>
+                        <div class="outfit-tag">轻便短袖</div>
+                    </div>
+                    <div class="kuse-weather-card">
+                        <div class="date-title">Oct 24 (六)</div>
+                        <div class="icon">⛅</div>
+                        <div class="status">多云</div>
+                        <div class="temp">26°C / 22°C</div>
+                        <div class="rain">降水: 20%</div>
+                        <div class="outfit-tag">薄外套 + 备雨伞</div>
+                    </div>
+                    <div class="kuse-weather-card">
+                        <div class="date-title">Oct 25 (日)</div>
+                        <div class="icon">⛅</div>
+                        <div class="status">多云</div>
+                        <div class="temp">26°C / 21°C</div>
+                        <div class="rain">降水: 10%</div>
+                        <div class="outfit-tag">晨间穿薄外套</div>
+                    </div>
+                </div>
+
+                <div class="kuse-warning-box">
+                    <b>⚠️ 特别提醒</b><br>
+                    • <b>Day 2 & Day 5 海滩日落</b>：濑长岛与美国村 Sunset Beach 傍晚海风较大，温差约 5°C ➔ 需备薄风衣。<br>
+                    • <b>Day 3 钟乳石洞</b>：玉泉洞地底常年恒温约 21°C，湿度大，建议携带透气薄长袖。<br>
+                    • <b>室内购物防护</b>：PARCO CITY 与 Outlet Ashibinaa 全室内冷气充足，建议随身携带外套。
+                </div>
+
+                <div style="margin-top:18px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:14px;">
+                    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;">
+                        <div><b style="color:#1d4ed8;">🌐 在线动态天气</b> <span id="weather-mode-text" style="font-size:11px;color:#475569;">准备读取...</span></div>
+                        <button onclick="loadAllTripWeather(true)" style="border:1px solid #93c5fd;background:#fff;color:#1d4ed8;border-radius:7px;padding:5px 9px;font-size:11px;font-weight:800;cursor:pointer;">🔄 立即更新</button>
+                    </div>
+                    <div id="weather-live-status" style="font-size:11px;color:#64748b;margin-top:7px;">进入天气 Tab 后自动读取。当前距离旅行仍较远，若未进入 16 日预测范围，会先显示各路线地点的实时天气。</div>
+                </div>
+
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:12px;" id="live-weather-grid">
+                    <div class="info-card-item"><h4>D1 · 那霸/机场</h4><div id="live-D1">待更新</div><button class="weather-detail-btn" onclick="toggleWeatherDetail('D1')">详细</button><div id="weather-detail-D1" class="weather-inline-detail"></div></div>
+                    <div class="info-card-item"><h4>D2 · 那霸/濑长岛</h4><div id="live-D2">待更新</div><button class="weather-detail-btn" onclick="toggleWeatherDetail('D2')">详细</button><div id="weather-detail-D2" class="weather-inline-detail"></div></div>
+                    <div class="info-card-item"><h4>D3 · 恩纳/万座毛</h4><div id="live-D3">待更新</div><button class="weather-detail-btn" onclick="toggleWeatherDetail('D3')">详细</button><div id="weather-detail-D3" class="weather-inline-detail"></div></div>
+                    <div class="info-card-item"><h4>D4 · 名护/古宇利</h4><div id="live-D4">待更新</div><button class="weather-detail-btn" onclick="toggleWeatherDetail('D4')">详细</button><div id="weather-detail-D4" class="weather-inline-detail"></div></div>
+                    <div class="info-card-item"><h4>D5 · 本部/北谷</h4><div id="live-D5">待更新</div><button class="weather-detail-btn" onclick="toggleWeatherDetail('D5')">详细</button><div id="weather-detail-D5" class="weather-inline-detail"></div></div>
+                    <div class="info-card-item"><h4>D6 · 宜野湾/丰崎</h4><div id="live-D6">待更新</div><button class="weather-detail-btn" onclick="toggleWeatherDetail('D6')">详细</button><div id="weather-detail-D6" class="weather-inline-detail"></div></div>
+                    <div class="info-card-item"><h4>D7 · 糸满/那霸</h4><div id="live-D7">待更新</div><button class="weather-detail-btn" onclick="toggleWeatherDetail('D7')">详细</button><div id="weather-detail-D7" class="weather-inline-detail"></div></div>
+                    <div class="info-card-item"><h4>D8 · 那霸/机场</h4><div id="live-D8">待更新</div><button class="weather-detail-btn" onclick="toggleWeatherDetail('D8')">详细</button><div id="weather-detail-D8" class="weather-inline-detail"></div></div>
+                </div>
+                <div style="font-size:10.5px;color:#64748b;margin-top:8px;">
+                    数据来源：Open-Meteo 免费天气 API（无需 API key；Best Match 会结合包括 JMA 在内的气象模型）。当目标日期进入约 16 日预测范围，页面会自动显示旅行日预测；否则显示该地点当前天气 + 未来24小时概览。
                 </div>
             </div>
         </div>
@@ -1332,17 +1459,277 @@
             </div>
         </div>
 
-        <!-- 10. ℹ️ 实用 Tab -->
+        <!-- 10. ℹ️ 实用 Tab (V7: 恢复 V3/V4 并扩充) -->
         <div id="info" class="tab-content">
-            <div class="card"><div class="card-title">ℹ️ 冲绳自驾与旅行实用资讯百宝箱</div><p>保持简洁高效，详见前文配置。</p></div>
+            <div class="card">
+                <div class="card-title">ℹ️ 冲绳自驾与旅行实用资讯百宝箱</div>
+                
+                <div class="info-grid">
+                    <div class="info-card-item" style="border-left: 4px solid var(--accent-purple);">
+                        <h4>🚘 Times 美荣桥站前店与车种指南</h4>
+                        <ul>
+                            <li><b>取还车优势</b>：美荣桥站前店紧邻单轨美荣桥站，离那霸 La'gent 酒店极近。10/19 09:00 取车，10/24 18:00 还车非常顺路（预订确认号: <b>202601763663</b>）。</li>
+                            <li><b>混能车型优势</b>：预订 Honda Freed / Sienta Hybrid 省油平稳，放置 4 个 28寸行李箱拉平三排座椅空间宽裕。</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>⚡ 电压与插头规格</h4>
+                        <ul>
+                            <li><b>电压规格</b>：日本标准电压为 <b>100V</b> (频率 50Hz/60Hz)。</li>
+                            <li><b>插头类型</b>：<b>A 型双平脚插头</b>（与香港三角扁头不同），手机/相机充电器若为双平头可直接插，三角头需带<b>转换插头</b>。</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>⛽ 自驾加油与 ETC 指南</h4>
+                        <ul>
+                            <li><b>油品选择</b>：租车请认准红枪 <b>Regular (レギュラー) 无铅汽油</b>。</li>
+                            <li><b>还车规则</b>：10/24 18:00 前必须在美荣桥/那霸市区加油站将油箱<b>加满 (Full Tank)</b>，并<b>务必保留加油小票发票</b>。</li>
+                            <li><b>ETC 闸道</b>：行经冲绳自动车道（高速公路），上高速走 <b>ETC 专用通道</b>（限速 20km/h 识别）。</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>🚧 收费公路与道路封路查询</h4>
+                        <ul>
+                            <li><b>冲绳自动车道</b>：西原 JCT 至 许田 IC 收费约 ¥1,000 日元。</li>
+                            <li><b>实时路况/封路查询</b>：可访问日本道路交通情报中心 <a href="https://www.jartic.or.jp/" target="_blank" style="color:#2563eb;">JARTIC 官网 🌐</a> 查询是否有公路施工或临时封路。</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>🏥 紧急求助与当地医院</h4>
+                        <ul>
+                            <li><b>紧急报救</b>：警察局 <b>110</b> ｜ 火灾/救护车 <b>119</b>。</li>
+                            <li><b>中部医院</b>：冲绳县立中部医院 <a href="https://maps.google.com/?q=Okinawa+Prefectural+Chubu+Hospital" target="_blank" class="map-link">📍 Maps</a> (电话: +81 98-973-4111)</li>
+                            <li><b>那霸医院</b>：那霸市立医院 <a href="https://maps.google.com/?q=Naha+Municipal+Hospital" target="_blank" class="map-link">📍 Maps</a> (电话: +81 98-884-5111)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>🚗 冲绳自驾安全与交通法则</h4>
+                        <ul>
+                            <li><b>靠左行驶</b>：右舵左行，转弯谨记“小转转左，大转转右”。</li>
+                            <li><b>行人绝对优先</b>：无路灯斑马线遇到行人必须停下让行。</li>
+                            <li><b>限速提示</b>：一般国道限速 40-50 km/h，高速公路限速 80 km/h。</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>♨️ 温泉与 Spa 入浴礼仪</h4>
+                        <ul>
+                            <li><b>先洗后泡</b>：进入温泉池前必须先在冲洗区彻底洗净身体。</li>
+                            <li><b>毛巾不可入水</b>：小毛巾可叠放在头上，切勿浸入泡汤池中。</li>
+                            <li><b>纹身提示</b>：若有纹身需提前向酒店或 Spa 确认是否需使用贴布遮盖。</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>🛍️ 消费税、退税与机场接驳</h4>
+                        <ul>
+                            <li><b>日本消费税</b>：标准税率 <b>10%</b>（外带食品为 8%）。</li>
+                            <li><b>免税条件 (Tax-Free)</b>：在 PARCO CITY 或唐吉诃德同一店内消费满 <b>5,000 日元（不含税）</b> 即可凭护照退税。</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>🎁 冲绳必买特色伴手礼</h4>
+                        <ul>
+                            <li><b>御菓子御殿</b>：红芋塔 (紫薯塔)、黑糖块。</li>
+                            <li><b>边银食堂</b>：石垣岛辣油 (拌面拌饭绝配)。</li>
+                            <li><b>南风堂/福砂屋</b>：雪盐金楚糕 (Chinsuko)、冲绳限定米果。</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>📶 上网 / 导航 / 离线备援</h4>
+                        <ul>
+                            <li>建议至少两部手机有独立数据；Google Maps 与 Waze 互相备援。</li>
+                            <li>出发前把酒店、租车店、餐厅名称与地址截图或存在 Notes，网络不稳时仍可输入车机。</li>
+                            <li>每日开车前先确认手机电量与车充，避免导航开到一半手机开始表演绝食。</li>
+                        </ul>
+                    </div>
+                    <div class="info-card-item">
+                        <h4>💴 现金 / 信用卡 / 零钱</h4>
+                        <ul>
+                            <li>酒店、商场、租车通常可刷卡，小餐厅、停车机仍建议备日元现金。</li>
+                            <li>准备若干 ¥1,000 纸币及 ¥100 / ¥500 硬币，对停车和小店非常实用。</li>
+                            <li>信用卡不要全部放同一钱包，至少留一张备用。</li>
+                        </ul>
+                    </div>
+                    <div class="info-card-item">
+                        <h4>🅿️ 那霸停车实战</h4>
+                        <ul>
+                            <li>那霸市中心优先收费停车场，先看清「最大料金」适用时段。</li>
+                            <li>北部景点停车相对轻松，但古宇利/热门餐厅假日仍可能满位。</li>
+                            <li>不要在窄路临停搬行李；宁愿多走两分钟，也别把旅程变成跟日本交警认识彼此。</li>
+                        </ul>
+                    </div>
+                    <div class="info-card-item">
+                        <h4>🗣️ 四句最实用日语</h4>
+                        <ul>
+                            <li><b>レギュラー満タンお願いします</b>：Regular 加满，谢谢。</li>
+                            <li><b>駐車場はどこですか？</b>：停车场在哪里？</li>
+                            <li><b>予約しています</b>：我有预约。</li>
+                            <li><b>領収書をお願いします</b>：请给我收据。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- 11. 💎 沧海遗珠 Tab -->
+        <!-- 11. 💎 沧海遗珠 Tab (V7: 合并恢复 V3/V4) -->
         <div id="gems" class="tab-content">
-            <div class="card"><div class="card-title">💎 沧海遗珠清单</div><p>详见前文配置。</p></div>
+            <div class="card">
+                <div class="card-title">💎 沧海遗珠（精选备选餐厅与景点清单）</div>
+                <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">
+                    本专栏汇总了通过 Facebook/Instagram/Tabelog 收集、口碑极高但时间有限未排入主行程的宝藏地点。未来行程若有临时空档，可随时挑选前往！
+                </p>
+
+                <h4 style="margin: 15px 0 10px; font-size:14px; color:#c026d3;">🍱 备选精选美食名店</h4>
+                <div class="food-item-card">
+                    <div class="food-item-header">
+                        <div class="food-title">烧肉 大黑苑 (Daikokuen - 久茂地/国际通)</div>
+                        <div class="food-cost">那霸 ｜ 750日元超级高 CP 值厚切牛舌</div>
+                    </div>
+                    <div style="font-size:12.5px; color:#475569;">
+                        在地极受追捧的怀旧平价老字号烧肉店，超厚切牛舌与横隔膜性价比拔群。
+                        <a href="https://maps.app.goo.gl/1cCW2Apk1oHexXP27" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=Daikokuen+Naha&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </div>
+                </div>
+
+                <div class="food-item-card">
+                    <div class="food-item-header">
+                        <div class="food-title">Captain Kangaroo (名护巨无霸汉堡)</div>
+                        <div class="food-cost">名护 ｜ 冲绳第一人气汉堡店</div>
+                    </div>
+                    <div style="font-size:12.5px; color:#475569;">
+                        名护海边排队王，层层堆叠的特制巨无霸牛肉汉堡，肉汁狂喷。
+                        <a href="https://maps.google.com/?q=Captain+Kangaroo+Nago" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=Captain+Kangaroo+Nago&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </div>
+                </div>
+
+                <div class="food-item-card">
+                    <div class="food-item-header">
+                        <div class="food-title">Flipper 牛排馆 (Restaurant Flipper)</div>
+                        <div class="food-cost">名护 ｜ 1971年创店老字号牛排</div>
+                    </div>
+                    <div style="font-size:12.5px; color:#475569;">
+                        名护海岸边充满美式复古风情的铁板牛排馆，特制蒜香牛排与象排极为经典。
+                        <a href="https://maps.google.com/?q=Restaurant+Flipper+Nago" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=Restaurant+Flipper+Nago&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </div>
+                </div>
+
+                <div class="food-item-card">
+                    <div class="food-item-header">
+                        <div class="food-title">烧肉王 (Yakiniku King 北谷店/那霸店)</div>
+                        <div class="food-cost">连锁 ｜ 极高 CP 值日式烧肉吃到饱</div>
+                    </div>
+                    <div style="font-size:12.5px; color:#475569;">
+                        全日本超高人气日式烧肉吃到饱，名物四大块厚切牛肉与名物酱汁绝配。
+                        <a href="https://maps.google.com/?q=Yakiniku+King+Chatan" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=Yakiniku+King+Chatan&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </div>
+                </div>
+
+                <div class="food-item-card">
+                    <div class="food-item-header">
+                        <div class="food-title">肉割烹にく久 那霸久茂地店 (Meat Kappo Nikukyu)</div>
+                        <div class="food-cost">那霸 ｜ 顶级和牛肉割烹料理</div>
+                    </div>
+                    <div style="font-size:12.5px; color:#475569;">
+                        主打极致品质的和牛割烹刺身与炭火烧肉，气氛极其高雅。
+                        <a href="https://maps.google.com/?q=Meat+Kappo+Nikukyu+Naha" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=Meat+Kappo+Nikukyu+Naha&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </div>
+                </div>
+
+                <div class="food-item-card">
+                    <div class="food-item-header">
+                        <div class="food-title">大东そば (大东冲绳面 & 大东寿司)</div>
+                        <div class="food-cost">那霸 ｜ 饭店对面巷弄地道老店</div>
+                    </div>
+                    <div style="font-size:12.5px; color:#475569;">
+                        汤头清爽甜美、面条 Q 弹带劲，搭配特制大东腌酱鱼肉寿司，极具特色！
+                        <a href="https://maps.app.goo.gl/HaCfqMr8VS3fPpoXA" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=Daito+Soba+Naha&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </div>
+                </div>
+
+<div class="food-item-card">
+                    <div class="food-item-header">
+                        <div class="food-title">中村商店 (南风原冲绳面定食)</div>
+                        <div class="food-cost">南部 ｜ 招牌豆腐三层肉冲绳面 & 照烧鸡定食</div>
+                    </div>
+                    <div style="font-size:12.5px; color:#475569;">
+                        位在南部南风原，阿古猪慢火熬煮汤头，免费续米饭，极其亲子友善。
+                        <a href="https://maps.google.com/?q=Nakamura+Shoten+Haebaru" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=Nakamura+Shoten+Haebaru&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </div>
+                </div>
+
+
+<div class="food-item-card">
+                    <div class="food-item-header">
+                        <div class="food-title">Casa Sol (绝美海景鸟巢咖啡厅)</div>
+                        <div class="food-cost">今归仁村 ｜ 网美打卡巨型造型座椅</div>
+                    </div>
+                    <div style="font-size:12.5px; color:#475569;">
+                        北部今归仁村海边的绝美鸟巢与海景大型鞦韆，拍照打卡效果惊艳。
+                        <a href="https://maps.app.goo.gl/RECx7tySuJRPsypw8" target="_blank" class="map-link">📍 Google</a>
+                        <a href="https://waze.com/ul?q=Casa+Sol+Nakijin&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                    </div>
+                </div>
+
+
+                <h4 style="margin: 20px 0 10px; font-size:14px; color:#c026d3;">🏖️ 备选精选体验与景点</h4>
+                <table class="kuse-table">
+                    <thead><tr><th>景点/设施</th><th>亮点特色</th><th>导航链接</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td><b>DMM Kariyushi 水族馆</b></td>
+                            <td>结合光影与近距离水獭/企鹅喂食 (iias 丰崎内)</td>
+                            <td>
+                                <a href="https://maps.google.com/?q=DMM+Kariyushi+Aquarium" target="_blank" class="map-link">📍 Google</a>
+                                <a href="https://waze.com/ul?q=DMM+Kariyushi+Aquarium&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>古宇利海洋塔 (Ocean Tower)</b></td>
+                            <td>无障碍自动电动车登塔俯瞰 360° 古宇利蓝海景</td>
+                            <td>
+                                <a href="https://maps.google.com/?q=Kouri+Ocean+Tower" target="_blank" class="map-link">📍 Google</a>
+                                <a href="https://waze.com/ul?q=Kouri+Ocean+Tower&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>JUNGLIA OKINAWA</b></td>
+                            <td>北部 2025/2026 最新开幕的大自然丛林主题乐园</td>
+                            <td>
+                                <a href="https://maps.google.com/?q=JUNGLIA+Okinawa" target="_blank" class="map-link">📍 Google</a>
+                                <a href="https://waze.com/ul?q=JUNGLIA+Okinawa&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Panza Okinawa Zipline</b></td>
+                            <td>圣玛丽娜海滩超刺激海上飞索体验 (¥2,750日元)</td>
+                            <td>
+                                <a href="https://carolblog.tw/panza-okinawa-zipline/" target="_blank" class="map-link">🌐 官网攻略</a>
+                                <a href="https://waze.com/ul?q=Panza+Okinawa&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
+
+    <!-- 🗺️    </div>
 
     <!-- 🗺️ 终极地图与计算器全功能 JS 脚本 (含 D4 古宇利大桥纠错、Drop 标记与航班详情) -->
     <script>
@@ -1358,6 +1745,9 @@
 
             if(tabId === 'map-tab') {
                 setTimeout(initMap, 200);
+            }
+            if(tabId === 'weather') {
+                setTimeout(() => loadAllTripWeather(false), 100);
             }
         }
 
@@ -1519,20 +1909,329 @@
 
             flightLayerGroup = L.layerGroup().addTo(map);
 
-            // 1. ✈️ 航班航线标示 (含起降、飞行时间)
-            const hkgCoord = [22.3080, 113.9185];
-            const okaCoord = [26.2064, 127.6465];
+            // 1. ✈️ 往返航班：Flightradar-style「历史航迹模拟」+ 30 分钟 Drop Pin（V6.5）
+            //
+            // 说明：
+            // - 2026/10 实际航迹会受 ATC、天气、风向与空域安排影响，无法在出发前准确知道。
+            // - 以下路线不是实时 ADS-B，也不是冒充某一天的精确历史点阵。
+            // - 路线形状参考公开可见的 HKG ↔ OKA 历史回放模式，使用较密集的代表性航迹点，
+            //   模拟香港起飞后向东、台湾南端附近转向、沿台湾东侧/外海北上，再向冲绳进场的实际飞行感。
+            // - 回程使用独立轨迹，不直接把去程直线反转，让视觉更接近真实航路。
+            // - 30 分钟 Pin 按整条代表性航迹的累计距离比例估算，仅供旅行地图展示。
+            const hkgCoord = [22.3080, 113.9185]; // HKG
+            const okaCoord = [26.2064, 127.6465]; // OKA
 
-            L.marker(hkgCoord).bindPopup("<b>🛫 香港国际机场 (HKG)</b><br>去程起飞: 15:50 ｜ 回程抵达: 13:55").addTo(flightLayerGroup);
-            L.marker(okaCoord).bindPopup("<b>🛬 冲绳那霸机场 (OKA)</b><br>去程抵达: 19:30 ｜ 回程起飞: 11:55").addTo(flightLayerGroup);
+            const outboundFlight = {
+                flightNo: "UO824",
+                airline: "HK Express",
+                departText: "10/18 (日) 15:50 (HKG)",
+                arriveText: "10/18 (日) 19:30 (OKA)",
+                durationText: "约 2 小时 40 分钟",
+                durationMinutes: 160,
+                color: "#0284c7",
+                label: "去程"
+            };
 
-            L.polyline([hkgCoord, [24.0, 120.0], okaCoord], {
-                color: '#0284c7', weight: 4, opacity: 0.85, className: 'flight-path-line'
-            }).bindPopup("<b>✈️ 去程航班：UO824 (HK Express)</b><br>• 起飞：10/18 (日) 15:50 (HKG)<br>• 降落：10/18 (日) 19:30 (OKA)<br>• <b>总飞行时间：约 2 小时 40 分钟</b>").addTo(flightLayerGroup);
+            const inboundFlight = {
+                flightNo: "UO821",
+                airline: "HK Express",
+                departText: "10/25 (日) 11:55 (OKA)",
+                arriveText: "10/25 (日) 13:55 (HKG)",
+                durationText: "约 3 小时 00 分钟",
+                durationMinutes: 180,
+                color: "#d946ef",
+                label: "回程"
+            };
 
-            L.polyline([okaCoord, [24.5, 121.0], hkgCoord], {
-                color: '#d946ef', weight: 4, opacity: 0.85, className: 'flight-path-line'
-            }).bindPopup("<b>✈️ 回程航班：UO821 (HK Express)</b><br>• 起飞：10/25 (日) 11:55 (OKA)<br>• 降落：10/25 (日) 13:55 (HKG)<br>• <b>总飞行时间：约 3 小时 00 分钟</b>").addTo(flightLayerGroup);
+            // Representative historical-style tracks.
+            // 格式：[纬度, 经度]
+            const outboundHistoricalTrack = [
+                [22.3080, 113.9185],
+                [22.3400, 114.0800],
+                [22.3900, 114.3500],
+                [22.4200, 114.7200],
+                [22.4100, 115.1000],
+                [22.3700, 115.5200],
+                [22.3000, 115.9500],
+                [22.2300, 116.4000],
+                [22.1600, 116.8500],
+                [22.0900, 117.3000],
+                [22.0200, 117.7600],
+                [21.9600, 118.2200],
+                [21.9000, 118.7000],
+                [21.8400, 119.1600],
+                [21.7900, 119.6200],
+                [21.7500, 120.0200],
+                [21.7200, 120.3800],
+                [21.7600, 120.7000],
+                [21.9200, 121.0500],
+                [22.1800, 121.3200],
+                [22.5200, 121.5600],
+                [22.9000, 121.7300],
+                [23.3200, 121.8600],
+                [23.7600, 121.9800],
+                [24.1800, 122.1200],
+                [24.5600, 122.3300],
+                [24.9000, 122.6500],
+                [25.1800, 123.0500],
+                [25.4100, 123.5200],
+                [25.5900, 124.0500],
+                [25.7300, 124.6200],
+                [25.8400, 125.1800],
+                [25.9300, 125.7500],
+                [26.0200, 126.2800],
+                [26.0900, 126.7600],
+                [26.1450, 127.1500],
+                [26.1850, 127.4300],
+                [26.2064, 127.6465]
+            ];
+
+            const inboundHistoricalTrack = [
+                [26.2064, 127.6465],
+                [26.1800, 127.4100],
+                [26.1400, 127.0800],
+                [26.0800, 126.6500],
+                [26.0000, 126.1800],
+                [25.9000, 125.6600],
+                [25.7800, 125.1200],
+                [25.6300, 124.5800],
+                [25.4500, 124.0500],
+                [25.2300, 123.5600],
+                [24.9600, 123.1300],
+                [24.6500, 122.7800],
+                [24.3000, 122.5000],
+                [23.9100, 122.3000],
+                [23.5000, 122.1500],
+                [23.0900, 122.0200],
+                [22.7200, 121.8700],
+                [22.3900, 121.6600],
+                [22.1100, 121.3900],
+                [21.9000, 121.0800],
+                [21.7600, 120.7600],
+                [21.7200, 120.4200],
+                [21.7500, 120.0800],
+                [21.8000, 119.7000],
+                [21.8600, 119.2700],
+                [21.9200, 118.8200],
+                [21.9900, 118.3600],
+                [22.0600, 117.9000],
+                [22.1300, 117.4400],
+                [22.2000, 116.9800],
+                [22.2700, 116.5100],
+                [22.3300, 116.0500],
+                [22.3800, 115.6000],
+                [22.4100, 115.1700],
+                [22.4100, 114.7900],
+                [22.3900, 114.4600],
+                [22.3500, 114.1800],
+                [22.3200, 114.0100],
+                [22.3080, 113.9185]
+            ];
+
+            function haversineKm(a, b) {
+                const toRad = deg => deg * Math.PI / 180;
+                const R = 6371;
+                const dLat = toRad(b[0] - a[0]);
+                const dLon = toRad(b[1] - a[1]);
+                const lat1 = toRad(a[0]);
+                const lat2 = toRad(b[0]);
+                const h = Math.sin(dLat / 2) ** 2 +
+                    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+                return 2 * R * Math.asin(Math.sqrt(h));
+            }
+
+            // 沿代表性航迹的累计距离插值，确保 30 分钟 Pin 真正落在弯曲航线上。
+            function pointAlongTrack(track, fraction) {
+                const safeFraction = Math.max(0, Math.min(1, fraction));
+                const segments = [];
+                let total = 0;
+
+                for (let i = 0; i < track.length - 1; i++) {
+                    const dist = haversineKm(track[i], track[i + 1]);
+                    segments.push(dist);
+                    total += dist;
+                }
+
+                const target = total * safeFraction;
+                let travelled = 0;
+
+                for (let i = 0; i < segments.length; i++) {
+                    if (travelled + segments[i] >= target) {
+                        const localFraction = segments[i] === 0 ? 0 : (target - travelled) / segments[i];
+                        return [
+                            track[i][0] + (track[i + 1][0] - track[i][0]) * localFraction,
+                            track[i][1] + (track[i + 1][1] - track[i][1]) * localFraction
+                        ];
+                    }
+                    travelled += segments[i];
+                }
+                return track[track.length - 1];
+            }
+
+            function createFlightDropPin(color) {
+                return L.divIcon({
+                    className: 'flight-drop-pin',
+                    html: `
+                        <div style="
+                            background:${color};
+                            color:#fff;
+                            width:26px;
+                            height:26px;
+                            border-radius:50% 50% 50% 0;
+                            transform:rotate(-45deg);
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            box-shadow:0 3px 8px rgba(15,23,42,0.38);
+                            border:2px solid #fff;">
+                            <span style="transform:rotate(45deg); font-size:12px; line-height:1;">✈</span>
+                        </div>`,
+                    iconSize: [26, 26],
+                    iconAnchor: [13, 26],
+                    popupAnchor: [0, -24]
+                });
+            }
+
+            function createMovingPlaneIcon(color) {
+                return L.divIcon({
+                    className: 'moving-plane-marker',
+                    html: `
+                        <div style="
+                            width:30px;height:30px;
+                            display:flex;align-items:center;justify-content:center;
+                            background:rgba(255,255,255,0.95);
+                            border:2px solid ${color};
+                            border-radius:50%;
+                            box-shadow:0 3px 10px rgba(15,23,42,0.30);
+                            font-size:17px;">
+                            ✈
+                        </div>`,
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15]
+                });
+            }
+
+            function flightPopupHtml(flight, stageLabel) {
+                return `
+                    <div style="font-size:12px; line-height:1.7; min-width:235px;">
+                        <span style="background:${flight.color}; color:#fff; padding:2px 7px; border-radius:4px; font-weight:800;">
+                            ${stageLabel}
+                        </span><br>
+                        <b style="font-size:14px;">✈ ${flight.flightNo} · ${flight.airline}</b><br>
+                        🛫 <b>起飞：</b>${flight.departText}<br>
+                        🛬 <b>降落：</b>${flight.arriveText}<br>
+                        ⏱️ <b>计划飞行时间：</b>${flight.durationText}<br>
+                        🛰️ <b>航迹：</b>历史航路形态模拟<br>
+                        <span style="font-size:10.5px; color:#64748b;">
+                            * 参考公开历史 HKG↔OKA 飞行回放形态；非实时 ADS-B、非 2026/10 当日实际航迹
+                        </span>
+                    </div>`;
+            }
+
+            // 机场 Marker
+            L.marker(hkgCoord)
+                .bindPopup("<b>🛫 香港国际机场 (HKG)</b><br>UO824 去程起飞: 15:50<br>UO821 回程抵达: 13:55")
+                .addTo(flightLayerGroup);
+
+            L.marker(okaCoord)
+                .bindPopup("<b>🛬 冲绳那霸机场 (OKA)</b><br>UO824 去程抵达: 19:30<br>UO821 回程起飞: 11:55")
+                .addTo(flightLayerGroup);
+
+            function drawHistoricalFlightTrack(track, flight) {
+                // 阴影轨迹，让航线更像 FlightRadar 的实线航迹，而不是一条简单虚线。
+                L.polyline(track, {
+                    color: "#0f172a",
+                    weight: 7,
+                    opacity: 0.14,
+                    interactive: false
+                }).addTo(flightLayerGroup);
+
+                const line = L.polyline(track, {
+                    color: flight.color,
+                    weight: 4,
+                    opacity: 0.92,
+                    lineCap: "round",
+                    lineJoin: "round"
+                })
+                .bindPopup(flightPopupHtml(flight, `${flight.label} · 历史航迹模拟`))
+                .addTo(flightLayerGroup);
+
+                // 30 分钟位置
+                const after30 = pointAlongTrack(track, 30 / flight.durationMinutes);
+                const before30 = pointAlongTrack(track, 1 - (30 / flight.durationMinutes));
+                const pin = createFlightDropPin(flight.color);
+
+                L.marker(after30, { icon: pin })
+                    .bindTooltip(`${flight.flightNo} · 起飞后约30分钟`, { direction: "top", opacity: 0.96 })
+                    .bindPopup(flightPopupHtml(flight, `${flight.label} · 起飞后约 30 分钟`))
+                    .addTo(flightLayerGroup);
+
+                L.marker(before30, { icon: pin })
+                    .bindTooltip(`${flight.flightNo} · 降落前约30分钟`, { direction: "top", opacity: 0.96 })
+                    .bindPopup(flightPopupHtml(flight, `${flight.label} · 降落前约 30 分钟`))
+                    .addTo(flightLayerGroup);
+
+                // 沿航迹摆放 3 个小方向箭头，增强“真实飞行方向”感觉。
+                [0.30, 0.53, 0.76].forEach(f => {
+                    const p = pointAlongTrack(track, f);
+                    const p2 = pointAlongTrack(track, Math.min(0.995, f + 0.012));
+                    const angle = Math.atan2(p2[0] - p[0], p2[1] - p[1]) * 180 / Math.PI;
+                    const arrow = L.divIcon({
+                        className: 'flight-direction-arrow',
+                        html: `<div style="
+                            transform:rotate(${angle}deg);
+                            color:${flight.color};
+                            font-size:18px;
+                            font-weight:900;
+                            text-shadow:0 1px 2px #fff, 0 -1px 2px #fff;">➤</div>`,
+                        iconSize: [18, 18],
+                        iconAnchor: [9, 9]
+                    });
+                    L.marker(p, { icon: arrow, interactive: false }).addTo(flightLayerGroup);
+                });
+
+                // 飞机动画：视觉模拟，不代表实时位置。
+                const movingPlane = L.marker(track[0], {
+                    icon: createMovingPlaneIcon(flight.color),
+                    interactive: false,
+                    opacity: 0.96
+                }).addTo(flightLayerGroup);
+
+                let animationStart = null;
+                const animationDuration = 18000; // 18 秒完成一轮视觉模拟
+
+                function animatePlane(timestamp) {
+                    if (!map || !map.hasLayer(flightLayerGroup)) {
+                        requestAnimationFrame(animatePlane);
+                        return;
+                    }
+                    if (!animationStart) animationStart = timestamp;
+                    const elapsed = (timestamp - animationStart) % animationDuration;
+                    const progress = elapsed / animationDuration;
+                    movingPlane.setLatLng(pointAlongTrack(track, progress));
+                    requestAnimationFrame(animatePlane);
+                }
+                requestAnimationFrame(animatePlane);
+
+                return line;
+            }
+
+            const outboundLine = drawHistoricalFlightTrack(outboundHistoricalTrack, outboundFlight);
+            const inboundLine = drawHistoricalFlightTrack(inboundHistoricalTrack, inboundFlight);
+
+            // 供「查看完整航线」按钮使用
+            const fullFlightBounds = L.latLngBounds([
+                ...outboundHistoricalTrack,
+                ...inboundHistoricalTrack
+            ]);
+
+            window.focusFlightRoute = function() {
+                if (!map.hasLayer(flightLayerGroup)) {
+                    document.getElementById('chk-flight').checked = true;
+                    map.addLayer(flightLayerGroup);
+                }
+                map.fitBounds(fullFlightBounds.pad(0.08));
+            };
 
             // 2. 每日行程路线及 Drop 景点标记配置
             const daysConfig = [
@@ -1713,6 +2412,64 @@
             document.getElementById('chk-flight').checked = status;
             updateMapVisibility();
         }
+
+
+        // V7 在线天气：Open-Meteo (无需 API Key)
+        const tripWeatherDays = [
+            {key:"D1",date:"2026-10-18",location:"那霸 / 那霸机场",lat:26.2064,lon:127.6465},
+            {key:"D2",date:"2026-10-19",location:"那霸 / 濑长岛",lat:26.1752,lon:127.6460},
+            {key:"D3",date:"2026-10-20",location:"恩纳 / 万座毛",lat:26.5048,lon:127.8502},
+            {key:"D4",date:"2026-10-21",location:"名护 / 古宇利",lat:26.7022,lon:127.9702},
+            {key:"D5",date:"2026-10-22",location:"本部 / 北谷",lat:26.3163,lon:127.7576},
+            {key:"D6",date:"2026-10-23",location:"宜野湾 / 丰崎",lat:26.2785,lon:127.7380},
+            {key:"D7",date:"2026-10-24",location:"糸满 / 那霸",lat:26.1450,lon:127.6650},
+            {key:"D8",date:"2026-10-25",location:"那霸 / 那霸机场",lat:26.2064,lon:127.6465}
+        ];
+        let weatherLoadedOnce=false;
+
+        function wxText(c){const m={0:"晴朗",1:"大致晴朗",2:"局部多云",3:"多云",45:"雾",48:"雾凇",51:"毛毛雨",53:"毛毛雨",55:"较强毛毛雨",61:"小雨",63:"中雨",65:"大雨",80:"阵雨",81:"较强阵雨",82:"强阵雨",95:"雷暴",96:"雷暴伴冰雹",99:"强雷暴"};return m[c]||`天气代码 ${c}`;}
+        function wxIcon(c){if(c===0)return"☀️";if([1,2].includes(c))return"🌤️";if(c===3)return"☁️";if([45,48].includes(c))return"🌫️";if([51,53,55,61,63,65,80,81,82].includes(c))return"🌧️";if([95,96,99].includes(c))return"⛈️";return"🌤️";}
+        function wxFmt(v,s=""){return(v===null||v===undefined||Number.isNaN(v))?"N/A":`${v}${s}`;}
+
+        async function fetchTripWeather(day){
+            const u=new URL("https://api.open-meteo.com/v1/forecast");
+            u.searchParams.set("latitude",day.lat);u.searchParams.set("longitude",day.lon);u.searchParams.set("timezone","Asia/Tokyo");u.searchParams.set("forecast_days","16");
+            u.searchParams.set("current","temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_gusts_10m");
+            u.searchParams.set("hourly","temperature_2m,precipitation_probability,weather_code,wind_speed_10m");
+            u.searchParams.set("daily","weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,sunrise,sunset");
+            const r=await fetch(u.toString(),{cache:"no-store"}); if(!r.ok)throw new Error(`HTTP ${r.status}`); return await r.json();
+        }
+        function renderTripWeather(day,d){
+            const live=document.getElementById(`live-${day.key}`), detail=document.getElementById(`weather-detail-${day.key}`);
+            const idx=d.daily?.time?.indexOf(day.date)??-1;
+            if(idx>=0){
+                const c=d.daily.weather_code[idx];
+                live.innerHTML=`${wxIcon(c)} <b>旅行日最新：</b>${wxText(c)} · ${d.daily.temperature_2m_min[idx]}–${d.daily.temperature_2m_max[idx]}°C · 雨 ${d.daily.precipitation_probability_max[idx]}%`;
+                detail.innerHTML=`<b>${day.date} · ${day.location}</b><br>天气：${wxIcon(c)} ${wxText(c)}<br>体感：${wxFmt(d.daily.apparent_temperature_min[idx],"°C")}–${wxFmt(d.daily.apparent_temperature_max[idx],"°C")}<br>降雨概率：${wxFmt(d.daily.precipitation_probability_max[idx],"%")} ｜ 雨量：${wxFmt(d.daily.precipitation_sum[idx]," mm")}<br>最大风速：${wxFmt(d.daily.wind_speed_10m_max[idx]," km/h")} ｜ 阵风：${wxFmt(d.daily.wind_gusts_10m_max[idx]," km/h")}<br>日出/日落：${(d.daily.sunrise[idx]||"").slice(11)} / ${(d.daily.sunset[idx]||"").slice(11)}`;
+            }else{
+                const c=d.current||{};
+                let hi="N/A",lo="N/A",rain="N/A";
+                if(d.hourly?.time?.length){
+                    const start=Math.max(0,d.hourly.time.findIndex(t=>t>=c.time));
+                    const temps=d.hourly.temperature_2m.slice(start,start+24).filter(Number.isFinite);
+                    const rains=d.hourly.precipitation_probability.slice(start,start+24).filter(Number.isFinite);
+                    if(temps.length){hi=Math.max(...temps);lo=Math.min(...temps);} if(rains.length)rain=Math.max(...rains);
+                }
+                live.innerHTML=`${wxIcon(c.weather_code)} <b>目前当地：</b>${wxText(c.weather_code)} · ${wxFmt(c.temperature_2m,"°C")} · 风 ${wxFmt(c.wind_speed_10m," km/h")}`;
+                detail.innerHTML=`<b>${day.location}</b><br>旅行日 ${day.date} 尚未进入 16 日预测范围。<br>目前：${wxIcon(c.weather_code)} ${wxText(c.weather_code)} ｜ ${wxFmt(c.temperature_2m,"°C")}（体感 ${wxFmt(c.apparent_temperature,"°C")}）<br>湿度：${wxFmt(c.relative_humidity_2m,"%")} ｜ 降水：${wxFmt(c.precipitation," mm")}<br>风速：${wxFmt(c.wind_speed_10m," km/h")} ｜ 阵风：${wxFmt(c.wind_gusts_10m," km/h")}<br>未来24h：${wxFmt(lo,"°C")}–${wxFmt(hi,"°C")} ｜ 最高降雨概率 ${wxFmt(rain,"%")}`;
+            }
+        }
+        async function loadAllTripWeather(force=false){
+            if(weatherLoadedOnce&&!force)return;
+            const s=document.getElementById("weather-live-status"),m=document.getElementById("weather-mode-text");
+            if(s)s.textContent="正在读取各路线地点最新天气..."; if(m)m.textContent="Open-Meteo · 自动判断实时/旅行日预测";
+            let ok=0,fail=0;
+            await Promise.all(tripWeatherDays.map(async day=>{try{renderTripWeather(day,await fetchTripWeather(day));ok++;}catch(e){fail++;const x=document.getElementById(`live-${day.key}`);if(x)x.textContent="读取失败，请稍后重试";}}));
+            weatherLoadedOnce=true;
+            if(s)s.textContent=`最近更新：${new Date().toLocaleString("zh-HK",{hour12:false})} ｜ 成功 ${ok}/8${fail?` ｜ 失败 ${fail}`:""}。`;
+        }
+        function toggleWeatherDetail(k){const el=document.getElementById(`weather-detail-${k}`);if(el)el.classList.toggle("open");if(!weatherLoadedOnce)loadAllTripWeather(false);}
+
 
         window.addEventListener('DOMContentLoaded', () => {
             recalculateTotals();
