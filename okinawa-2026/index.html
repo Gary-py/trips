@@ -209,11 +209,34 @@
             color: #78350f;
         }
 
-        /* 预算计算器 */
+        /* 预算计算器升级样式 */
         .currency-switch-bar { display: flex; gap: 10px; margin-bottom: 15px; }
-        .currency-btn { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: #f8fafc; font-size: 14px; font-weight: 700; color: var(--text-muted); cursor: pointer; text-align: center; }
+        .currency-btn { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: #f8fafc; font-size: 14px; font-weight: 700; color: var(--text-muted); cursor: pointer; text-align: center; transition: all 0.2s; }
         .currency-btn.active { background: var(--accent-purple); color: white; border-color: var(--accent-purple); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
-        .rate-notice { background: #eef2ff; color: #3730a3; padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
+        
+        .rate-notice { 
+            background: #eef2ff; 
+            color: #3730a3; 
+            padding: 12px 16px; 
+            border-radius: 12px; 
+            font-size: 13px; 
+            font-weight: 600; 
+            margin-bottom: 20px; 
+            display: flex; 
+            flex-wrap: wrap;
+            align-items: center; 
+            justify-content: space-between;
+            gap: 10px; 
+        }
+        .rate-input-group { display: flex; align-items: center; gap: 6px; }
+        .rate-input-group input { width: 70px; padding: 4px 8px; border-radius: 6px; border: 1px solid #a5b4fc; font-weight: 800; color: #312e81; text-align: center; }
+        .rate-input-group button { padding: 4px 10px; border-radius: 6px; border: none; background: var(--accent-purple); color: white; font-size: 11px; font-weight: 700; cursor: pointer; }
+        .rate-input-group button.reset-btn { background: #64748b; }
+
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 20px; }
+        .summary-box { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 14px; padding: 16px; text-align: center; }
+        .summary-box h4 { font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+        .summary-box .amount { font-size: 20px; font-weight: 800; }
 
         /* 紫色报表样式 */
         .kuse-table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
@@ -225,6 +248,29 @@
 
         .add-row-btn { margin-top: 12px; background: #eef2ff; color: var(--accent-purple); border: 1px dashed var(--accent-purple); padding: 10px 16px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .add-row-btn:hover { background: var(--accent-purple); color: white; }
+
+        /* 清算卡片升级 */
+        .settlement-card {
+            background: #f8fafc; 
+            border: 1px solid var(--border-color); 
+            border-radius: 16px; 
+            padding: 20px; 
+            font-size: 13.5px; 
+            line-height: 1.9;
+        }
+        .settlement-card .top-summary-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+        .settlement-card .top-summary-item { text-align: center; }
+        .settlement-card .top-summary-item label { font-size: 11px; color: var(--text-muted); font-weight: 700; display: block; }
+        .settlement-card .top-summary-item span { font-size: 18px; font-weight: 800; color: #0f172a; }
 
         /* 用餐与遗珠卡片样式 */
         .food-item-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; }
@@ -521,7 +567,7 @@
                 </div>
             </div>
 
-            <!-- Day 3 (精准修正：退房Load行李 ➔ 玉泉洞 ➔ 恩纳Check-In ➔ 万座毛 ➔ 残波岬夕阳 ➔ 琉球の牛恩纳本馆) -->
+            <!-- Day 3 -->
             <div class="day-box">
                 <div class="day-header">
                     <div class="day-title-group">
@@ -590,7 +636,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Day 4 (精准重组：恩纳出发 ➔ 星巴克 ➔ 古宇利岛/虾饭 ➔ 凤梨园 ➔ 唐吉诃德 ➔ 烧肉本部牧场) -->
+            <!-- Day 4 -->
             <div class="day-box">
                 <div class="day-header">
                     <div class="day-title-group">
@@ -654,7 +700,7 @@
                 </div>
             </div>
 
-            <!-- Day 5 (精准补全：恩纳退房 ➔ 福木林道 ➔ PARCO CITY/龙虾汤 ➔ 重击汉堡 ➔ Ocean Boo ➔ 那霸Check-In) -->
+            <!-- Day 5 -->
             <div class="day-box">
                 <div class="day-header">
                     <div class="day-title-group">
@@ -667,7 +713,7 @@
                     <div class="time-item">
                         <div class="time-text">09:00 - 09:30</div>
                         <div class="event-name">🏨 Check-Out 退房：恩纳嘉利吉度假酒店退房，行李全部装车</div>
-                        <div class="event-desc">办理退房手费，装好行李开启南下行程。</div>
+                        <div class="event-desc">办理退房手续，装好行李开启南下行程。</div>
                     </div>
                     <div class="time-item">
                         <div class="time-text">10:00 - 11:30</div>
@@ -831,7 +877,7 @@
                         <div class="event-name">🍲 晚餐：Oniku no Isshin (冲绳一心寿喜烧) 
                             <a href="https://share.google/OB5gGw1Z8aFJ1hVW5" target="_blank" class="map-link">📍 Tabelog</a>
                             <a href="https://waze.com/ul?q=Oniku+no+Isshin+Naha&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                            <a href="https://www.tablecheck.com/en/isshin-okinawa" target="_blank" class="reserve-link">📅 预订链接</a>
+                            <a href="https://www.tablecheck.com/en/shops/isshin-okinawa/reserve" target="_blank" class="reserve-link">📅 预订链接</a>
                         </div>
                         <div class="event-desc">关东风甜酱油极品牛肉寿喜烧！牛肉入口即化，极为精致。(建议用餐时间: 2小时，<span style="color:#e11d48; font-weight:bold;">⚠️ 需提前通过 TableCheck 在线预约</span>，大黑苑已列入“沧海遗珠”)</div>
                     </div>
@@ -890,7 +936,7 @@
                 <div class="food-item-card">
                     <div class="food-item-header">
                         <div class="food-title">🔥 炭火烧肉 ぶち 久茂地店 (Buchi Kumojiten) ｜ D2 晚餐</div>
-                        <div class="food-cost">人均约 ¥3,000 - ¥5,000 (约 HK$ 150 - 250)</div>
+                        <div class="food-cost">人均约 ¥3,000 - ¥5,000 (约 HK$ 150.00 - 250.00)</div>
                     </div>
                     <div style="font-size:13px; color:#334155;">
                         <b>🔥 必点招牌菜推荐</b>：超厚切牛舌、特选和牛内脏拼盘、特选カルビ。<br>
@@ -905,7 +951,7 @@
                 <div class="food-item-card">
                     <div class="food-item-header">
                         <div class="food-title">🥩 琉球の牛 (Ryukyu no Ushi 恩纳本馆) ｜ D3 晚餐</div>
-                        <div class="food-cost">人均约 ¥6,000 - ¥9,000 (约 HK$ 300 - 460)</div>
+                        <div class="food-cost">人均约 ¥6,000 - ¥9,000 (约 HK$ 300.00 - 460.00)</div>
                     </div>
                     <div style="font-size:13px; color:#334155;">
                         <b>🔥 必点招牌菜推荐</b>：顶级冲绳和牛烧肉定食、特选无骨牛小排。<br>
@@ -921,7 +967,7 @@
                 <div class="food-item-card">
                     <div class="food-item-header">
                         <div class="food-title">🔥 烧肉本部牧场 名护店 (Yakiniku Motobu Bokujo) ｜ D4 晚餐</div>
-                        <div class="food-cost">人均约 ¥5,000 - ¥8,000 (约 HK$ 250 - 410)</div>
+                        <div class="food-cost">人均约 ¥5,000 - ¥8,000 (约 HK$ 250.00 - 410.00)</div>
                     </div>
                     <div style="font-size:13px; color:#334155;">
                         <b>🔥 必点招牌菜推荐</b>：本部牛极品和牛拼盘、赤身瘦肉、特选牛排。<br>
@@ -936,11 +982,11 @@
                 <div class="food-item-card">
                     <div class="food-item-header">
                         <div class="food-title">🍲 Ocean Boo 阿古猪涮涮锅 (美国村店 / Shabu-Shabu Ocean Boo) ｜ D5 晚餐</div>
-                        <div class="food-cost">人均约 ¥4,000 - ¥6,500 (约 HK$ 200 - 330)</div>
+                        <div class="food-cost">人均约 ¥4,000 - ¥6,500 (约 HK$ 200.00 - 330.00)</div>
                     </div>
                     <div style="font-size:13px; color:#334155;">
                         <b>🔥 必点招牌菜推荐</b>：极品阿古猪薄切肉片、黑毛和牛涮涮锅套餐、昆布高汤杂炊。<br>
-                        <b>💡 预订与避坑</b>：位于美国村商圈，气氛极佳。<span style="color:#e11d48; font-weight:bold;">⚠️ 强烈建议提前在线预订！</span>
+                        <b>💡 预订与避坑</b>：位于美国村核心区，气氛极佳。<span style="color:#e11d48; font-weight:bold;">⚠️ 强烈建议提前在线预订！</span>
                     </div>
                     <div>
                         <a href="https://maps.google.com/?q=Shabu+Shabu+Ocean+Boo+American+Village" target="_blank" class="map-link">📍 Google</a>
@@ -951,7 +997,7 @@
                 <div class="food-item-card">
                     <div class="food-item-header">
                         <div class="food-title">🍲 Oniku no Isshin (冲绳一心寿喜烧) ｜ D7 晚餐</div>
-                        <div class="food-cost">人均约 ¥3,500 - ¥6,000 (约 HK$ 180 - 300)</div>
+                        <div class="food-cost">人均约 ¥3,500 - ¥6,000 (约 HK$ 180.00 - 300.00)</div>
                     </div>
                     <div style="font-size:13px; color:#334155;">
                         <b>🔥 必点招牌菜推荐</b>：关东风甜酱油极品牛肉寿喜烧 (Sukiyaki)、鲜嫩和牛肉片蘸生鸡蛋。<br>
@@ -960,7 +1006,7 @@
                     <div>
                         <a href="https://share.google/OB5gGw1Z8aFJ1hVW5" target="_blank" class="map-link">📍 Tabelog</a>
                         <a href="https://waze.com/ul?q=Oniku+no+Isshin+Naha&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                        <a href="https://www.tablecheck.com/en/isshin-okinawa" target="_blank" class="reserve-link">📅 官方 TableCheck 预订</a>
+                        <a href="https://www.tablecheck.com/en/shops/isshin-okinawa/reserve" target="_blank" class="reserve-link">📅 官方 TableCheck 预订</a>
                     </div>
                 </div>
 
@@ -1067,7 +1113,7 @@
                     <tr><th>预订车型</th><td><b>Honda Freed 或 Toyota Sienta Hybrid (或同级混能 6-7座 MPV)</b></td></tr>
                     <tr><th>取车时间</th><td><b>10月19日 (一) 09:00 AM</b></td></tr>
                     <tr><th>还车时间</th><td><b>10月24日 (六) 18:00 PM (共 6 天)</b></td></tr>
-                    <tr><th>租费总额与日均</th><td>总计 <b>¥59,730 日元 (折合约 HK$ 3,063)</b> ｜ 日均约 <b>¥9,955 日元 (HK$ 510.50)</b></td></tr>
+                    <tr><th>租费总额与日均</th><td>总计 <b>¥59,730 日元 (折合约 HK$ 3,063.08)</b> ｜ 日均约 <b>¥9,955 日元 (HK$ 510.51)</b></td></tr>
                     <tr><th>ETC 电子卡配置</th><td><b>预搭载 ETC 机器卡槽</b>（建议现场租借 ETC 卡便利过闸）</td></tr>
                     <tr><th>还车与加油规则</th><td>10/24 18:00 还车前请在市区 Times 附近加油站<b>加满 Regular 无铅汽油</b>，并<b>务必保留加油小票发票</b>交车行检查。</td></tr>
                 </table>
@@ -1155,87 +1201,99 @@
             </div>
         </div>
 
-        <!-- 9. 🧮 预算/费用 Tab -->
+        <!-- 9. 🧮 预算/费用 Tab (全面重构与双向逻辑升级) -->
         <div id="budget" class="tab-content">
             <div class="card">
                 <div class="card-title">🧮 预算与费用计算器</div>
                 
+                <!-- 币种一键切换按钮 -->
                 <div class="currency-switch-bar">
-                    <button class="currency-btn active" id="btn-hkd" onclick="toggleCurrency('HKD')">$ HKD (港币)</button>
-                    <button class="currency-btn" id="btn-jpy" onclick="toggleCurrency('JPY')">¥ JPY (日圆)</button>
+                    <button class="currency-btn active" id="btn-hkd" onclick="toggleCurrency('HKD')">🇭🇰 优先显示港币 (HKD)</button>
+                    <button class="currency-btn" id="btn-jpy" onclick="toggleCurrency('JPY')">🇯🇵 优先显示日元 (JPY)</button>
                 </div>
 
+                <!-- 汇率手动调节与重置 Bar -->
                 <div class="rate-notice">
-                    ⇄ 汇率参考：1 HKD ≈ 19.50 JPY（数据实时更新）
+                    <div style="display:flex; align-items:center; gap:6px;">
+                        ⇄ 汇率参考：<span id="rate-display-text">1 HKD = 19.50 JPY</span>
+                    </div>
+                    <div class="rate-input-group">
+                        <label for="custom-rate-input" style="font-size:11px; font-weight:700;">手动调整汇率:</label>
+                        <input type="number" id="custom-rate-input" value="19.50" step="0.01" onchange="updateExchangeRateFromInput()">
+                        <button onclick="updateExchangeRateFromInput()">应用</button>
+                        <button class="reset-btn" onclick="resetExchangeRate()">🔄 重置默认(19.50)</button>
+                    </div>
                 </div>
 
+                <!-- 顶部 3 大汇总卡片 -->
                 <div class="summary-grid">
                     <div class="summary-box">
-                        <h4>旅行已知总开销 (含机票/HKD)</h4>
-                        <div class="amount" style="color:var(--accent-purple);" id="calc-total-hkd">HK$ 14,920.18</div>
+                        <h4>旅行已知总开销 (含机票)</h4>
+                        <div class="amount" style="color:var(--accent-purple);" id="calc-total-display">HK$ 18,431.44</div>
                     </div>
                     <div class="summary-box">
-                        <h4>人均应分摊总额 (HKD/人)</h4>
-                        <div class="amount" style="color:#059669;" id="calc-per-person">HK$ 3,730.05</div>
+                        <h4>人均应分摊总额 (4人平摊)</h4>
+                        <div class="amount" style="color:#059669;" id="calc-per-person-display">HK$ 4,607.86</div>
                     </div>
                     <div class="summary-box" style="background:#f5f3ff; border-color:#ddd6fe;">
                         <h4>Gary & Anna 应分摊 (2人份)</h4>
-                        <div class="amount" style="color:#6d28d9;" id="calc-gary-anna">HK$ 7,460.09</div>
+                        <div class="amount" style="color:#6d28d9;" id="calc-gary-anna-display">HK$ 9,215.72</div>
                     </div>
                 </div>
 
-                <h4 style="margin: 20px 0 10px; font-size:14px; color:#475569;">📊 费用明细清单 (支持追加输入)</h4>
+                <!-- 明细表格 (具有双向绑定与自动千位 comma/cents 逻辑) -->
+                <h4 style="margin: 20px 0 10px; font-size:14px; color:#475569;">📊 费用明细清单 (支持修改与追加输入)</h4>
                 <table class="kuse-table" id="excel-table">
                     <thead>
                         <tr>
-                            <th style="width: 25%;">分类 / 费用明细</th>
-                            <th style="width: 15%;">类别</th>
+                            <th style="width: 28%;">分类 / 费用明细</th>
+                            <th style="width: 14%;">类别</th>
                             <th style="width: 20%;">日元 (JPY)</th>
                             <th style="width: 20%;">港币 (HKD)</th>
-                            <th style="width: 20%;">垫付出资人</th>
+                            <th style="width: 18%;">垫付出资人</th>
                         </tr>
                     </thead>
                     <tbody id="excel-tbody">
                         <tr style="background:#f0fdf4;">
                             <td>HK Express 往返机票 (4人)</td>
                             <td>机票/车票</td>
-                            <td>N/A</td>
-                            <td><input type="number" class="excel-input hkd-val" value="4756" onchange="recalculateTotals()"></td>
+                            <td><input type="text" class="excel-input jpy-val" value="92,742" onchange="onJpyInputChanged(this)"></td>
+                            <td><input type="text" class="excel-input hkd-val" value="4,756.00" onchange="onHkdInputChanged(this)"></td>
                             <td><b style="color:#059669;">已结清 (Settled)</b></td>
                         </tr>
                         <tr>
                             <td>那霸 La'gent 柔婕阁酒店段 1 (2晚)</td>
                             <td>住宿</td>
-                            <td>N/A</td>
-                            <td><input type="number" class="excel-input hkd-val" value="2482.84" onchange="recalculateTotals()"></td>
+                            <td><input type="text" class="excel-input jpy-val" value="48,415" onchange="onJpyInputChanged(this)"></td>
+                            <td><input type="text" class="excel-input hkd-val" value="2,482.84" onchange="onHkdInputChanged(this)"></td>
                             <td><b>Gary / Anna</b></td>
                         </tr>
                         <tr style="background:#fef2f2;">
-                            <td>恩纳嘉利吉度假酒店 (2晚)</td>
+                            <td>恩纳嘉利吉度假酒店 (2晚 / USD 363.38)</td>
                             <td>住宿</td>
-                            <td>N/A</td>
-                            <td><input type="number" class="excel-input hkd-val" value="2834.34" onchange="recalculateTotals()"></td>
+                            <td><input type="text" class="excel-input jpy-val" value="55,270" onchange="onJpyInputChanged(this)"></td>
+                            <td><input type="text" class="excel-input hkd-val" value="2,834.34" onchange="onHkdInputChanged(this)"></td>
                             <td><b>Gary / Anna</b> (Anna垫支)</td>
                         </tr>
                         <tr>
                             <td>那霸 La'gent 柔婕阁酒店段 2 (3晚)</td>
                             <td>住宿</td>
-                            <td>N/A</td>
-                            <td><input type="number" class="excel-input hkd-val" value="4618.34" onchange="recalculateTotals()"></td>
+                            <td><input type="text" class="excel-input jpy-val" value="90,058" onchange="onJpyInputChanged(this)"></td>
+                            <td><input type="text" class="excel-input hkd-val" value="4,618.34" onchange="onHkdInputChanged(this)"></td>
                             <td><b>Gary / Anna</b></td>
                         </tr>
                         <tr>
                             <td>Times 美荣桥租车 (Freed/Sienta 确认号:202601763663)</td>
                             <td>租车</td>
-                            <td>¥59,730</td>
-                            <td><input type="number" class="excel-input hkd-val" value="3063" onchange="recalculateTotals()"></td>
+                            <td><input type="text" class="excel-input jpy-val" value="59,730" onchange="onJpyInputChanged(this)"></td>
+                            <td><input type="text" class="excel-input hkd-val" value="3,063.08" onchange="onHkdInputChanged(this)"></td>
                             <td><b>N/A (待付)</b></td>
                         </tr>
                         <tr>
                             <td>景点门票预估 (玉泉洞/凤梨园/万座毛)</td>
                             <td>门票</td>
-                            <td>¥13,200</td>
-                            <td><input type="number" class="excel-input hkd-val" value="0" placeholder="待后补" onchange="recalculateTotals()"></td>
+                            <td><input type="text" class="excel-input jpy-val" value="13,200" onchange="onJpyInputChanged(this)"></td>
+                            <td><input type="text" class="excel-input hkd-val" value="676.92" onchange="onHkdInputChanged(this)"></td>
                             <td><b>N/A (待付)</b></td>
                         </tr>
                         <tr class="blank-row">
@@ -1250,8 +1308,8 @@
                                     <option>杂项</option>
                                 </select>
                             </td>
-                            <td><input type="text" class="excel-input" placeholder="¥ JPY"></td>
-                            <td><input type="number" class="excel-input hkd-val" placeholder="HK$" onchange="recalculateTotals()"></td>
+                            <td><input type="text" class="excel-input jpy-val" placeholder="¥ JPY" onchange="onJpyInputChanged(this)"></td>
+                            <td><input type="text" class="excel-input hkd-val" placeholder="HK$" onchange="onHkdInputChanged(this)"></td>
                             <td>
                                 <select class="excel-select payer-select" onchange="recalculateTotals()">
                                     <option value="GaryAnna">Gary / Anna</option>
@@ -1266,13 +1324,44 @@
 
                 <button class="add-row-btn" onclick="addNewRow()">➕ 追加新费用项目</button>
 
-                <h4 style="margin: 25px 0 8px; font-size:14px; color:#475569;">🤝 动态清算结果 (Settlement Summary)</h4>
-                <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; padding: 15px; font-size: 13px; line-height: 1.9;">
-                    <p style="font-size:12px; color:#059669; font-weight:bold; margin-bottom:6px;">说明：机票费用 HKD 4,756 已全额结清，无须补差价。下方清算卡片仅清算需垫付/补差价的住宿与租车等项：</p>
-                    <ul>
-                        <li><b>Gary / Anna 组合 (2人)</b>：已垫付全部已知住宿款 <b>HK$ 9,935.52</b>（应分摊 HK$ 5,082.09）➔ <b>结算状态</b>：需<b>接收补差价 HK$ 4,853.43</b></li>
-                        <li><b>Carrie (1人)</b>：垫付 <b>HK$ 0 / N/A</b>（应分摊 HK$ 2,541.05）➔ <b>结算状态</b>：需<b>补付给 Gary / Anna 组合 HK$ 2,541.05</b></li>
-                        <li><b>Rosa (1人)</b>：垫付 <b>HK$ 0 / N/A</b>（应分摊 HK$ 2,541.05）➔ <b>结算状态</b>：需<b>补付给 Gary / Anna 组合 HK$ 2,541.05</b></li>
+                <!-- 重构升华的动态清算卡片 (先列总额、人均总额，再列垫付与谁补付给谁) -->
+                <h4 style="margin: 25px 0 10px; font-size:14px; color:#475569;">🤝 动态清算结果 (Settlement Summary)</h4>
+                <div class="settlement-card">
+                    <!-- 1. 优先展示：费用总额与人均总额 -->
+                    <div class="top-summary-bar">
+                        <div class="top-summary-item">
+                            <label>📌 旅行已知费用总额</label>
+                            <span id="settle-total-amount">HK$ 18,431.44</span>
+                        </div>
+                        <div class="top-summary-item">
+                            <label>📌 每人平均应分摊总额</label>
+                            <span id="settle-per-person-amount" style="color:#059669;">HK$ 4,607.86</span>
+                        </div>
+                    </div>
+
+                    <!-- 2. 垫付与结算状态详细说明 -->
+                    <p style="font-size:12px; color:#059669; font-weight:bold; margin-bottom:8px;">
+                        💡 说明：机票费用 HKD 4,756.00 (已全额结清) 不纳入二次差价补付，仅清算由个人垫付的住宿与待付项目差额：
+                    </p>
+                    <ul style="padding-left: 20px;">
+                        <li style="margin-bottom: 6px;">
+                            <b>Gary / Anna 组合 (2人份)</b>：<br>
+                            • 已实际垫付已知款项：<b id="settle-gary-paid">HK$ 9,935.52</b><br>
+                            • 2人份应分摊总额：<b id="settle-gary-share">HK$ 6,835.44</b> (去除机票分摊项后应分摊 <b id="settle-gary-share-sub">HK$ 5,082.09</b>)<br>
+                            ➔ <span style="color:#059669; font-weight:800;">结算状态：需要接收补差价 <span id="settle-gary-status">HK$ 4,853.43</span></span>
+                        </li>
+                        <li style="margin-bottom: 6px;">
+                            <b>Carrie (1人份)</b>：<br>
+                            • 已实际垫付款项：<b>HK$ 0.00 / N/A</b><br>
+                            • 1人份应分摊总额：<b id="settle-carrie-share">HK$ 3,417.72</b> (去除机票分摊项后应补付 <b id="settle-carrie-share-sub">HK$ 2,541.05</b>)<br>
+                            ➔ <span style="color:#dc2626; font-weight:800;">结算状态：需补付给 Gary / Anna 组合 <span id="settle-carrie-status">HK$ 2,541.05</span></span>
+                        </li>
+                        <li style="margin-bottom: 6px;">
+                            <b>Rosa (1人份)</b>：<br>
+                            • 已实际垫付款项：<b>HK$ 0.00 / N/A</b><br>
+                            • 1人份应分摊总额：<b id="settle-rosa-share">HK$ 3,417.72</b> (去除机票分摊项后应补付 <b id="settle-rosa-share-sub">HK$ 2,541.05</b>)<br>
+                            ➔ <span style="color:#dc2626; font-weight:800;">结算状态：需补付给 Gary / Anna 组合 <span id="settle-rosa-status">HK$ 2,541.05</span></span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -1364,7 +1453,7 @@
             </div>
         </div>
 
-        <!-- 11. 💎 沧海遗珠 Tab (已精准增补备选餐厅与烧肉店) -->
+        <!-- 11. 💎 沧海遗珠 Tab -->
         <div id="gems" class="tab-content">
             <div class="card">
                 <div class="card-title">💎 沧海遗珠（精选备选餐厅与景点清单）</div>
@@ -1500,8 +1589,12 @@
 
     </div>
 
-    <!-- Tab 切换、币种切换、计算器、动态加行与 OSRM 地图脚本 -->
+    <!-- 全新计算器双向绑定、汇率调节、千位Comma与两位Cents及地图脚本 -->
     <script>
+        // 核心全局变量
+        let currentRate = 19.50; // 默认汇率 1 HKD = 19.50 JPY
+        let activeCurrency = 'HKD'; // 默认优先币种
+
         function switchTab(tabId) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
@@ -1514,37 +1607,165 @@
             }
         }
 
-        // 币种切换
+        // 格式化辅助函数
+        function formatHKD(num) {
+            return 'HK$ ' + num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        function formatJPY(num) {
+            return '¥ ' + Math.round(num).toLocaleString('en-US');
+        }
+
+        function parseRawNumber(str) {
+            if (!str) return 0;
+            const cleaned = str.toString().replace(/[^0-9.-]/g, '');
+            return parseFloat(cleaned) || 0;
+        }
+
+        // 顶端币种切换 Button
         function toggleCurrency(curr) {
-            document.getElementById('btn-hkd').classList.remove('active');
-            document.getElementById('btn-jpy').classList.remove('active');
-            
-            if(curr === 'HKD') {
-                document.getElementById('btn-hkd').classList.add('active');
-            } else {
-                document.getElementById('btn-jpy').classList.add('active');
+            activeCurrency = curr;
+            document.getElementById('btn-hkd').classList.toggle('active', curr === 'HKD');
+            document.getElementById('btn-jpy').classList.toggle('active', curr === 'JPY');
+            recalculateTotals();
+        }
+
+        // 汇率手动调节与重置
+        function updateExchangeRateFromInput() {
+            const inputVal = parseFloat(document.getElementById('custom-rate-input').value);
+            if (inputVal && inputVal > 0) {
+                currentRate = inputVal;
+                document.getElementById('rate-display-text').innerText = `1 HKD = ${currentRate.toFixed(2)} JPY`;
+                
+                // 重新将所有 HKD 实时换算为 JPY
+                document.querySelectorAll('#excel-tbody tr').forEach(row => {
+                    const hkdInput = row.querySelector('.hkd-val');
+                    const jpyInput = row.querySelector('.jpy-val');
+                    if (hkdInput && jpyInput && hkdInput.value) {
+                        const hkd = parseRawNumber(hkdInput.value);
+                        if (hkd > 0) {
+                            jpyInput.value = Math.round(hkd * currentRate).toLocaleString('en-US');
+                        }
+                    }
+                });
+                recalculateTotals();
             }
         }
 
-        // Excel 自动汇总脚本
+        function resetExchangeRate() {
+            currentRate = 19.50;
+            document.getElementById('custom-rate-input').value = '19.50';
+            document.getElementById('rate-display-text').innerText = '1 HKD = 19.50 JPY';
+            updateExchangeRateFromInput();
+        }
+
+        // 表格明细双向绑定事件
+        function onJpyInputChanged(inputElem) {
+            const row = inputElem.closest('tr');
+            const hkdInput = row.querySelector('.hkd-val');
+            const jpyVal = parseRawNumber(inputElem.value);
+            
+            if (jpyVal > 0) {
+                inputElem.value = Math.round(jpyVal).toLocaleString('en-US');
+                const hkdVal = jpyVal / currentRate;
+                if (hkdInput) {
+                    hkdInput.value = hkdVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                }
+            } else {
+                inputElem.value = '';
+                if (hkdInput) hkdInput.value = '';
+            }
+            recalculateTotals();
+        }
+
+        function onHkdInputChanged(inputElem) {
+            const row = inputElem.closest('tr');
+            const jpyInput = row.querySelector('.jpy-val');
+            const hkdVal = parseRawNumber(inputElem.value);
+
+            if (hkdVal > 0) {
+                inputElem.value = hkdVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                const jpyVal = hkdVal * currentRate;
+                if (jpyInput) {
+                    jpyInput.value = Math.round(jpyVal).toLocaleString('en-US');
+                }
+            } else {
+                inputElem.value = '';
+                if (jpyInput) jpyInput.value = '';
+            }
+            recalculateTotals();
+        }
+
+        // 汇总与清算计算器核心逻辑
         function recalculateTotals() {
             let totalHKD = 0;
             const hkdInputs = document.querySelectorAll('.hkd-val');
-            
+
             hkdInputs.forEach(input => {
-                const val = parseFloat(input.value) || 0;
+                const val = parseRawNumber(input.value);
                 totalHKD += val;
             });
 
-            const perPerson = totalHKD / 4;
-            const garyAnnaShare = perPerson * 2;
+            const totalJPY = totalHKD * currentRate;
+            const perPersonHKD = totalHKD / 4;
+            const perPersonJPY = totalJPY / 4;
+            const garyAnnaHKD = perPersonHKD * 2;
+            const garyAnnaJPY = perPersonJPY * 2;
 
-            document.getElementById('calc-total-hkd').innerText = 'HK$ ' + totalHKD.toFixed(2);
-            document.getElementById('calc-per-person').innerText = 'HK$ ' + perPerson.toFixed(2);
-            document.getElementById('calc-gary-anna').innerText = 'HK$ ' + garyAnnaShare.toFixed(2);
+            // 1. 顶端 3 大卡片展示（根据 activeCurrency 动态切换）
+            if (activeCurrency === 'HKD') {
+                document.getElementById('calc-total-display').innerText = formatHKD(totalHKD);
+                document.getElementById('calc-per-person-display').innerText = formatHKD(perPersonHKD);
+                document.getElementById('calc-gary-anna-display').innerText = formatHKD(garyAnnaHKD);
+            } else {
+                document.getElementById('calc-total-display').innerText = formatJPY(totalJPY);
+                document.getElementById('calc-per-person-display').innerText = formatJPY(perPersonJPY);
+                document.getElementById('calc-gary-anna-display').innerText = formatJPY(garyAnnaJPY);
+            }
+
+            // 2. 清算卡片顶部费用总额与人均总额（兼顾双币展示）
+            document.getElementById('settle-total-amount').innerText = `${formatHKD(totalHKD)} / ${formatJPY(totalJPY)}`;
+            document.getElementById('settle-per-person-amount').innerText = `${formatHKD(perPersonHKD)} / ${formatJPY(perPersonJPY)}`;
+
+            // 3. 清算卡片细节更新
+            const hkpFlight = 4756.00; // 已全额结清机票
+            const nonFlightTotalHKD = totalHKD - hkpFlight;
+            const nonFlightPerPersonHKD = nonFlightTotalHKD / 4;
+
+            // 垫付已知款项：Gary & Anna 垫付三段住宿 HK$ 9,936.70
+            const garyPaidHKD = 2482.84 + 2834.34 + 4618.34;
+            const garyReceiveHKD = garyPaidHKD - (nonFlightPerPersonHKD * 2);
+
+            if (activeCurrency === 'HKD') {
+                document.getElementById('settle-gary-paid').innerText = formatHKD(garyPaidHKD);
+                document.getElementById('settle-gary-share').innerText = formatHKD(garyAnnaHKD);
+                document.getElementById('settle-gary-share-sub').innerText = formatHKD(nonFlightPerPersonHKD * 2);
+                document.getElementById('settle-gary-status').innerText = formatHKD(garyReceiveHKD);
+
+                document.getElementById('settle-carrie-share').innerText = formatHKD(perPersonHKD);
+                document.getElementById('settle-carrie-share-sub').innerText = formatHKD(nonFlightPerPersonHKD);
+                document.getElementById('settle-carrie-status').innerText = formatHKD(nonFlightPerPersonHKD);
+
+                document.getElementById('settle-rosa-share').innerText = formatHKD(perPersonHKD);
+                document.getElementById('settle-rosa-share-sub').innerText = formatHKD(nonFlightPerPersonHKD);
+                document.getElementById('settle-rosa-status').innerText = formatHKD(nonFlightPerPersonHKD);
+            } else {
+                document.getElementById('settle-gary-paid').innerText = formatJPY(garyPaidHKD * currentRate);
+                document.getElementById('settle-gary-share').innerText = formatJPY(garyAnnaJPY);
+                document.getElementById('settle-gary-share-sub').innerText = formatJPY(nonFlightPerPersonHKD * 2 * currentRate);
+                document.getElementById('settle-gary-status').innerText = formatJPY(garyReceiveHKD * currentRate);
+
+                document.getElementById('settle-carrie-share').innerText = formatJPY(perPersonJPY);
+                document.getElementById('settle-carrie-share-sub').innerText = formatJPY(nonFlightPerPersonHKD * currentRate);
+                document.getElementById('settle-carrie-status').innerText = formatJPY(nonFlightPerPersonHKD * currentRate);
+
+                document.getElementById('settle-rosa-share').innerText = formatJPY(perPersonJPY);
+                document.getElementById('settle-rosa-share-sub').innerText = formatJPY(nonFlightPerPersonHKD * currentRate);
+                document.getElementById('settle-rosa-status').innerText = formatJPY(nonFlightPerPersonHKD * currentRate);
+            }
         }
 
-        // 动态添加新行脚本
+        // 动态添加新行
         function addNewRow() {
             const tbody = document.getElementById('excel-tbody');
             const newRow = document.createElement('tr');
@@ -1561,8 +1782,8 @@
                         <option>杂项</option>
                     </select>
                 </td>
-                <td><input type="text" class="excel-input" placeholder="¥ JPY"></td>
-                <td><input type="number" class="excel-input hkd-val" placeholder="HK$" onchange="recalculateTotals()"></td>
+                <td><input type="text" class="excel-input jpy-val" placeholder="¥ JPY" onchange="onJpyInputChanged(this)"></td>
+                <td><input type="text" class="excel-input hkd-val" placeholder="HK$" onchange="onHkdInputChanged(this)"></td>
                 <td>
                     <select class="excel-select payer-select" onchange="recalculateTotals()">
                         <option value="GaryAnna">Gary / Anna</option>
@@ -1575,6 +1796,7 @@
             tbody.appendChild(newRow);
         }
 
+        // 地图脚本
         let mapInitialized = false;
         function initMap() {
             if (mapInitialized) return;
@@ -1586,7 +1808,6 @@
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
 
-            // 1. 各景点坐标点（Anchor Markers + Google / Waze 导航）
             const points = [
                 { name: "那霸机场", lat: 26.2064, lng: 127.6465, tip: "D1 抵冲 & D8 返程", gmap: "Naha+Airport" },
                 { name: "那霸 La'gent 酒店", lat: 26.2185, lng: 127.6820, tip: "D1-D2 & D5-D7 住宿", gmap: "La'gent+Hotel+Okinawa+Naha" },
@@ -1624,7 +1845,6 @@
                         <a href="https://waze.com/ul?ll=${pt.lat},${pt.lng}&navigate=yes" target="_blank" style="color:#0284c7; font-weight:bold;">📍 Waze</a>`);
             });
 
-            // 2. 每日行程路线 (真实 OSRM 道路导航)
             const routes = [
                 {
                     day: "D1 那霸入住", color: "#ef4444", labelCoord: [26.2120, 127.6650],
@@ -1691,6 +1911,11 @@
                     .catch(err => console.error("OSRM 路由加载失败，退回基础标注:", err));
             });
         }
+
+        // 初始化页面时进行第一次汇总计算
+        window.addEventListener('DOMContentLoaded', () => {
+            recalculateTotals();
+        });
     </script>
 </body>
 </html>
