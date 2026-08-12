@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌺 冲绳自驾自由行 2026 | 8天7夜完整行程规划</title>
-    <!-- Trip Guide Version: V7 | Accommodation/car/live-weather/info-gems restoration -->
+    <!-- Trip Guide Version: V7.6 | Unified Splid-style ledger + inline editing + synchronized online FX -->
     
     <!-- Leaflet.js 动态地图 CSS & JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -339,6 +339,90 @@
         .weather-detail-btn { margin-top:7px; padding:4px 8px; border:1px solid #bae6fd; background:#f0f9ff; color:#0369a1; border-radius:6px; font-size:10.5px; font-weight:800; cursor:pointer; }
         .weather-inline-detail { display:none; margin-top:8px; border-top:1px dashed #cbd5e1; padding-top:8px; font-size:11px; line-height:1.6; color:#475569; }
         .weather-inline-detail.open { display:block; }
+
+        /* V7.5 Trip Expense Manager */
+        .expense-manager { margin-top:30px; border-top:3px solid #e0e7ff; padding-top:24px; }
+        .expense-toolbar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:14px; }
+        .expense-action-btn {
+            border:1px solid #c7d2fe; background:#eef2ff; color:#4338ca; border-radius:8px;
+            padding:8px 11px; font-size:11.5px; font-weight:800; cursor:pointer;
+        }
+        .expense-action-btn.primary { background:var(--accent-purple); color:white; border-color:var(--accent-purple); }
+        .expense-action-btn.danger { background:#fff1f2; color:#be123c; border-color:#fecdd3; }
+        .expense-summary-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(155px,1fr)); gap:10px; margin:14px 0; }
+        .expense-summary-card { border:1px solid #e2e8f0; background:#f8fafc; border-radius:12px; padding:13px; }
+        .expense-summary-card label { display:block; color:#64748b; font-size:10.5px; font-weight:700; }
+        .expense-summary-card strong { display:block; color:#0f172a; font-size:18px; margin-top:3px; }
+        .expense-section { margin-top:20px; padding-top:16px; border-top:1px dashed #cbd5e1; }
+        .expense-section h4 { margin-bottom:10px; color:#334155; font-size:14px; }
+        .expense-table-wrap { overflow-x:auto; }
+        .expense-ledger-table { min-width:900px; }
+        .expense-badge { display:inline-block; border-radius:999px; padding:2px 7px; font-size:10px; font-weight:800; margin:1px; }
+        .expense-badge.paid { background:#dcfce7; color:#166534; }
+        .expense-badge.planned { background:#fef3c7; color:#92400e; }
+        .expense-badge.settled { background:#dbeafe; color:#1e40af; }
+        .expense-mini-btn {
+            border:1px solid #cbd5e1; background:#fff; color:#475569; border-radius:5px;
+            padding:3px 6px; font-size:10px; cursor:pointer; margin-right:3px;
+        }
+        .expense-mini-btn.delete { color:#be123c; border-color:#fecdd3; }
+        .expense-category-row {
+            display:grid; grid-template-columns:1.5fr 1fr 1fr 80px; gap:8px; align-items:center;
+            padding:8px 0; border-bottom:1px solid #f1f5f9; font-size:12px;
+        }
+        .expense-progress { height:7px; background:#e2e8f0; border-radius:99px; overflow:hidden; margin-top:4px; }
+        .expense-progress > span { display:block; height:100%; background:var(--accent-purple); border-radius:99px; }
+        .balance-row, .transfer-row {
+            display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; align-items:center;
+            padding:9px 0; border-bottom:1px solid #f1f5f9; font-size:12px;
+        }
+        .balance-positive { color:#059669; font-weight:800; }
+        .balance-negative { color:#dc2626; font-weight:800; }
+        .balance-zero { color:#64748b; font-weight:800; }
+        .fx-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); gap:8px; }
+        .fx-item { background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:8px; font-size:11px; }
+        .fx-item input { width:100%; margin-top:4px; border:1px solid #cbd5e1; border-radius:5px; padding:5px; }
+        .expense-modal-backdrop {
+            position:fixed; inset:0; background:rgba(15,23,42,.55); z-index:5000; display:none;
+            align-items:center; justify-content:center; padding:18px;
+        }
+        .expense-modal-backdrop.open { display:flex; }
+        .expense-modal {
+            width:min(720px,100%); max-height:90vh; overflow:auto; background:white; border-radius:16px;
+            padding:20px; box-shadow:0 30px 60px rgba(0,0,0,.25);
+        }
+        .expense-form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+        .expense-form-field label { display:block; font-size:10.5px; color:#64748b; font-weight:700; margin-bottom:3px; }
+        .expense-form-field input, .expense-form-field select, .expense-form-field textarea {
+            width:100%; border:1px solid #cbd5e1; border-radius:7px; padding:8px; font-size:12px;
+        }
+        .expense-form-wide { grid-column:1 / -1; }
+        .member-split-grid { display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:6px; align-items:center; font-size:11px; }
+        .member-split-grid input { width:100%; border:1px solid #cbd5e1; border-radius:5px; padding:5px; }
+        .expense-error {
+            display:none; background:#fff1f2; color:#be123c; border:1px solid #fecdd3;
+            border-radius:7px; padding:8px; margin-top:8px; font-size:11px; font-weight:700;
+        }
+        @media (max-width:640px) {
+            .expense-form-grid { grid-template-columns:1fr; }
+            .expense-form-wide { grid-column:auto; }
+            .member-split-grid { grid-template-columns:1fr 90px 90px; }
+            .expense-category-row { grid-template-columns:1.2fr 1fr 1fr; }
+            .expense-category-row > div:last-child { display:none; }
+        }
+
+
+        /* V7.6 unified budget ledger */
+        .expense-section-header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+        .expense-ledger-table input,.expense-ledger-table select{width:100%;min-width:92px;border:1px solid #cbd5e1;border-radius:5px;padding:5px 6px;font-size:10.5px;background:white}
+        .expense-ledger-table .item-inline{min-width:180px}
+        .fx-reference-panel{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px 12px;margin-bottom:10px;font-size:11.5px;color:#1e3a8a}
+        .fx-disclaimer{margin-top:10px;background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #f59e0b;padding:10px 12px;border-radius:8px;color:#92400e;font-size:11px;line-height:1.65}
+        .fx-disclaimer a{display:inline-block;margin-left:5px;color:#1d4ed8;font-weight:800}
+        .fx-online{font-size:10px;color:#0369a1;font-weight:700;margin-top:4px}
+        .fx-override-label{font-size:9.5px;color:#64748b;margin-top:6px}
+        .unallocated-warning{background:#fff1f2;color:#be123c;border:1px solid #fecdd3;border-radius:8px;padding:9px 10px;font-size:11px;font-weight:700;margin-bottom:8px}
+
         @media (max-width: 640px) {
             .flight-cards { grid-template-columns: 1fr; margin-top: -20px; }
             .nav-tabs { justify-content: flex-start; }
@@ -1314,147 +1398,129 @@
             </div>
         </div>
 
-        <!-- 9. 🧮 预算/费用 Tab -->
+        <!-- 9. 🧮 预算/费用 Tab (V7.6 Unified Ledger) -->
         <div id="budget" class="tab-content">
             <div class="card">
-                <div class="card-title">🧮 预算与费用计算器</div>
-                
-                <div class="currency-switch-bar">
-                    <button class="currency-btn active" id="btn-hkd" onclick="toggleCurrency('HKD')">🇭🇰 优先显示港币 (HKD)</button>
-                    <button class="currency-btn" id="btn-jpy" onclick="toggleCurrency('JPY')">🇯🇵 优先显示日元 (JPY)</button>
+                <div class="card-title">🧮 预算 / 费用 · Unified Trip Expense Manager</div>
+
+                <div class="section-note">
+                    <b>已整合为单一账本：</b>旧版上半部重复的费用明细及清算表已移除。以下所有总额、分类、成员承担及 Who owes whom 都由同一份费用资料即时计算。
                 </div>
 
-                <div class="rate-notice">
-                    <div style="display:flex; align-items:center; gap:6px;">
-                        ⇄ 汇率参考：<span id="rate-display-text">1 HKD = 19.50 JPY</span>
-                    </div>
-                    <div class="rate-input-group">
-                        <label for="custom-rate-input" style="font-size:11px; font-weight:700;">手动调整汇率:</label>
-                        <input type="number" id="custom-rate-input" value="19.50" step="0.01" onchange="updateExchangeRateFromInput()">
-                        <button onclick="updateExchangeRateFromInput()">应用</button>
-                        <button class="reset-btn" onclick="resetExchangeRate()">🔄 重置默认(19.50)</button>
-                    </div>
+                <div class="expense-summary-grid">
+                    <div class="expense-summary-card"><label>✅ 实际已付总支出</label><strong id="expense-actual-total">HK$ 0.00</strong></div>
+                    <div class="expense-summary-card"><label>📋 预计全程总支出</label><strong id="expense-projected-total">HK$ 0.00</strong></div>
+                    <div class="expense-summary-card"><label>👤 实际平均每人</label><strong id="expense-actual-average">HK$ 0.00</strong></div>
+                    <div class="expense-summary-card"><label>🎯 预计平均每人</label><strong id="expense-projected-average">HK$ 0.00</strong></div>
                 </div>
 
-                <div class="summary-grid">
-                    <div class="summary-box">
-                        <h4>旅行已知总开销 (含机票)</h4>
-                        <div class="amount" style="color:var(--accent-purple);" id="calc-total-display">HK$ 18,431.44</div>
+                <div class="expense-section">
+                    <h4>💱 在线参考汇率 · 全 Tab 共用</h4>
+                    <div class="fx-reference-panel">
+                        <div><b>🌐 Online Reference：</b><span id="fx-online-status">等待读取...</span></div>
+                        <button class="expense-action-btn" onclick="refreshOnlineFx(true)">🔄 更新在线汇率</button>
                     </div>
-                    <div class="summary-box">
-                        <h4>人均应分摊总额 (4人平摊)</h4>
-                        <div class="amount" style="color:#059669;" id="calc-per-person-display">HK$ 4,607.86</div>
-                    </div>
-                    <div class="summary-box" style="background:#f5f3ff; border-color:#ddd6fe;">
-                        <h4>Gary & Anna 应分摊 (2人份)</h4>
-                        <div class="amount" style="color:#6d28d9;" id="calc-gary-anna-display">HK$ 9,215.72</div>
+                    <div class="fx-grid" id="expense-fx-grid"></div>
+                    <div class="fx-disclaimer">
+                        网页自动使用 <b>ECB reference rate via Frankfurter</b> 作为 JPY/HKD、USD/HKD 在线预算参考。
+                        香港汇丰公开汇率计算机使用最新<b>银行牌价 (board rates)</b>，同样属于参考价；实际信用卡入账、现金兑换或客户成交价可能不同。
+                        每笔外币费用可输入「实际入账汇率」，输入后该笔费用会优先使用实际汇率。
+                        <a href="https://www.hsbc.com.hk/zh-hk/investments/currency-exchange-rate-calculator/" target="_blank" rel="noopener">🏦 HSBC HK 官方汇率参考</a>
                     </div>
                 </div>
 
-                <h4 style="margin: 20px 0 10px; font-size:14px; color:#475569;">📊 费用明细清单 (支持修改与追加输入)</h4>
-                <table class="kuse-table" id="excel-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 28%;">分类 / 费用明细</th>
-                            <th style="width: 14%;">类别</th>
-                            <th style="width: 20%;">日元 (JPY)</th>
-                            <th style="width: 20%;">港币 (HKD)</th>
-                            <th style="width: 18%;">垫付出资人</th>
-                        </tr>
-                    </thead>
-                    <tbody id="excel-tbody">
-                        <tr style="background:#f0fdf4;">
-                            <td>HK Express 往返机票 (4人)</td>
-                            <td>机票/车票</td>
-                            <td><input type="text" class="excel-input jpy-val" value="92,742" onchange="onJpyInputChanged(this)"></td>
-                            <td><input type="text" class="excel-input hkd-val" value="4,756.00" onchange="onHkdInputChanged(this)"></td>
-                            <td><b style="color:#059669;">已结清 (Settled)</b></td>
-                        </tr>
-                        <tr>
-                            <td>那霸 La'gent 柔婕阁酒店段 1 (2晚)</td>
-                            <td>住宿</td>
-                            <td><input type="text" class="excel-input jpy-val" value="48,415" onchange="onJpyInputChanged(this)"></td>
-                            <td><input type="text" class="excel-input hkd-val" value="2,482.84" onchange="onHkdInputChanged(this)"></td>
-                            <td><b>Gary / Anna</b></td>
-                        </tr>
-                        <tr style="background:#fef2f2;">
-                            <td>恩纳嘉利吉度假酒店 (2晚 / USD 363.38)</td>
-                            <td>住宿</td>
-                            <td><input type="text" class="excel-input jpy-val" value="55,270" onchange="onJpyInputChanged(this)"></td>
-                            <td><input type="text" class="excel-input hkd-val" value="2,834.34" onchange="onHkdInputChanged(this)"></td>
-                            <td><b>Gary / Anna</b> (Anna垫支)</td>
-                        </tr>
-                        <tr>
-                            <td>那霸 La'gent 柔婕阁酒店段 2 (3晚)</td>
-                            <td>住宿</td>
-                            <td><input type="text" class="excel-input jpy-val" value="90,058" onchange="onJpyInputChanged(this)"></td>
-                            <td><input type="text" class="excel-input hkd-val" value="4,618.34" onchange="onHkdInputChanged(this)"></td>
-                            <td><b>Gary / Anna</b></td>
-                        </tr>
-                        <tr>
-                            <td>Times 美荣桥租车 (Freed/Sienta 确认号:202601763663)</td>
-                            <td>租车</td>
-                            <td><input type="text" class="excel-input jpy-val" value="59,730" onchange="onJpyInputChanged(this)"></td>
-                            <td><input type="text" class="excel-input hkd-val" value="3,063.08" onchange="onHkdInputChanged(this)"></td>
-                            <td><b>N/A (待付)</b></td>
-                        </tr>
-                        <tr>
-                            <td>景点门票预估 (玉泉洞/凤梨园/万座毛)</td>
-                            <td>门票</td>
-                            <td><input type="text" class="excel-input jpy-val" value="13,200" onchange="onJpyInputChanged(this)"></td>
-                            <td><input type="text" class="excel-input hkd-val" value="676.92" onchange="onHkdInputChanged(this)"></td>
-                            <td><b>N/A (待付)</b></td>
-                        </tr>
-                        <tr class="blank-row">
-                            <td><input type="text" class="excel-input" placeholder="追加费用 (例: 汽油费)"></td>
-                            <td>
-                                <select class="excel-select">
-                                    <option>住宿</option><option>机票/车票</option><option>交通/油费</option>
-                                    <option>餐饮</option><option>门票</option><option>杂项</option>
+                <div class="expense-section">
+                    <div class="expense-section-header">
+                        <h4 style="margin:0;">🧾 按项目费用明细</h4>
+                        <button class="expense-action-btn primary" onclick="openExpenseModal()">➕ 新增费用</button>
+                    </div>
+
+                    <div class="expense-table-wrap">
+                        <table class="kuse-table expense-ledger-table">
+                            <thead><tr>
+                                <th>日期</th><th>项目</th><th>类别</th><th>金额</th><th>币种</th>
+                                <th>折算 HKD</th><th>状态</th><th>付款者</th><th>分摊</th><th>操作</th>
+                            </tr></thead>
+                            <tbody id="expense-ledger-body"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="expense-toolbar" style="margin-top:10px;">
+                        <button class="expense-action-btn primary" onclick="openExpenseModal()">➕ 新增费用项目</button>
+                        <button class="expense-action-btn" onclick="exportExpenseLedger()">⬇️ 导出 JSON</button>
+                        <button class="expense-action-btn" onclick="document.getElementById('expense-import-file').click()">⬆️ 导入 JSON</button>
+                        <input type="file" id="expense-import-file" accept="application/json" style="display:none" onchange="importExpenseLedger(event)">
+                        <button class="expense-action-btn danger" onclick="resetExpenseLedger()">↺ 重置初始账本</button>
+                    </div>
+                </div>
+
+                <div class="expense-section">
+                    <h4>📊 分类汇总 · 即时同步</h4>
+                    <div id="expense-category-summary"></div>
+                </div>
+
+                <div class="expense-section">
+                    <h4>👥 成员：谁付了多少 / 谁应该承担多少</h4>
+                    <div class="inline-note" style="margin-bottom:8px;">
+                        已垫付与实际应承担包括已结清费用；预计应承担再加入计划费用；当前应收/应付只计算尚未内部结清的已付费用。
+                    </div>
+                    <div id="expense-member-summary"></div>
+                </div>
+
+                <div class="expense-section">
+                    <h4>💸 Who owes whom · 最少转账</h4>
+                    <div id="expense-unallocated-warning"></div>
+                    <div id="expense-transfer-summary"></div>
+                </div>
+
+                <div class="expense-section">
+                    <h4>✅ 已记录内部结算</h4>
+                    <div id="expense-settlement-history"></div>
+                </div>
+
+                <div class="expense-modal-backdrop" id="expense-modal-backdrop" onclick="if(event.target===this) closeExpenseModal()">
+                    <div class="expense-modal">
+                        <h3 style="margin-bottom:12px;">💰 <span id="expense-modal-title">新增费用</span></h3>
+                        <input type="hidden" id="expense-edit-id">
+
+                        <div class="expense-form-grid">
+                            <div class="expense-form-field"><label>日期</label><input type="date" id="expense-date"></div>
+                            <div class="expense-form-field"><label>类别</label><select id="expense-category"></select></div>
+                            <div class="expense-form-field expense-form-wide"><label>项目名称</label><input type="text" id="expense-item"></div>
+                            <div class="expense-form-field"><label>金额</label><input type="number" min="0" step="0.01" id="expense-amount"></div>
+                            <div class="expense-form-field"><label>币种</label>
+                                <select id="expense-currency">
+                                    <option value="JPY">JPY 日圆</option>
+                                    <option value="HKD">HKD 港币</option>
+                                    <option value="USD">USD 美元</option>
                                 </select>
-                            </td>
-                            <td><input type="text" class="excel-input jpy-val" placeholder="¥ JPY" onchange="onJpyInputChanged(this)"></td>
-                            <td><input type="text" class="excel-input hkd-val" placeholder="HK$" onchange="onHkdInputChanged(this)"></td>
-                            <td>
-                                <select class="excel-select payer-select" onchange="recalculateTotals()">
-                                    <option value="GaryAnna">Gary / Anna</option>
-                                    <option value="Carrie">Carrie</option>
-                                    <option value="Rosa">Rosa</option>
-                                    <option value="NA" selected>N/A (未付)</option>
+                            </div>
+                            <div class="expense-form-field"><label>状态</label>
+                                <select id="expense-status" onchange="updateExpenseModalState()">
+                                    <option value="planned">📋 计划 / 待付</option>
+                                    <option value="paid">✅ 已付 / 待内部清算</option>
+                                    <option value="settled">🔵 已付并已内部结清</option>
                                 </select>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                            </div>
+                            <div class="expense-form-field"><label>实际入账汇率（可选）</label><input type="number" min="0" step="0.000001" id="expense-actual-fx" placeholder="1 外币 = ? HKD"></div>
 
-                <button class="add-row-btn" onclick="addNewRow()">➕ 追加新费用项目</button>
+                            <div class="expense-form-field expense-form-wide">
+                                <label>付款人与分摊份数</label>
+                                <div class="member-split-grid" style="font-weight:800;color:#64748b;margin-bottom:3px;"><span>成员</span><span>实际付款（原币）</span><span>分摊份数</span></div>
+                                <div class="member-split-grid"><span>Gary & Anna</span><input type="number" min="0" step="0.01" id="payer-garyanna"><input type="number" min="0" step="0.1" id="share-garyanna" value="2"></div>
+                                <div class="member-split-grid"><span>Carrie</span><input type="number" min="0" step="0.01" id="payer-carrie"><input type="number" min="0" step="0.1" id="share-carrie" value="1"></div>
+                                <div class="member-split-grid"><span>Rosa</span><input type="number" min="0" step="0.01" id="payer-rosa"><input type="number" min="0" step="0.1" id="share-rosa" value="1"></div>
+                            </div>
 
-                <h4 style="margin: 25px 0 10px; font-size:14px; color:#475569;">🤝 动态清算结果 (Settlement Summary)</h4>
-                <div class="settlement-card">
-                    <div class="top-summary-bar">
-                        <div class="top-summary-item">
-                            <label>📌 旅行已知费用总额</label>
-                            <span id="settle-total-amount">HK$ 18,431.44</span>
+                            <div class="expense-form-field expense-form-wide"><label>备注</label><textarea id="expense-note" rows="2"></textarea></div>
                         </div>
-                        <div class="top-summary-item">
-                            <label>📌 每人平均应分摊总额</label>
-                            <span id="settle-per-person-amount" style="color:#059669;">HK$ 4,607.86</span>
+
+                        <div class="expense-error" id="expense-form-error"></div>
+                        <div class="expense-toolbar" style="justify-content:flex-end;margin-top:12px;margin-bottom:0;">
+                            <button class="expense-action-btn" onclick="closeExpenseModal()">取消</button>
+                            <button class="expense-action-btn primary" onclick="saveExpenseFromModal()">保存费用</button>
                         </div>
                     </div>
-                    <p style="font-size:12px; color:#059669; font-weight:bold; margin-bottom:8px;">
-                        💡 说明：机票费用 HKD 4,756.00 已全额结清，不纳入二次差价补付，仅清算由个人垫付的住宿与待付项目差额：
-                    </p>
-                    <ul style="padding-left: 20px;">
-                        <li style="margin-bottom: 6px;">
-                            <b>Gary / Anna 组合 (2人份)</b>：已垫付 <b id="settle-gary-paid">HK$ 9,935.52</b> ｜ 应分摊 <b id="settle-gary-share">HK$ 6,835.44</b> ➔ <span style="color:#059669; font-weight:800;">需接收补差价 <span id="settle-gary-status">HK$ 4,853.43</span></span>
-                        </li>
-                        <li style="margin-bottom: 6px;">
-                            <b>Carrie (1人份)</b>：已垫付 <b>HK$ 0.00 / N/A</b> ｜ 应分摊 <b id="settle-carrie-share">HK$ 3,417.72</b> ➔ <span style="color:#dc2626; font-weight:800;">需补付给 Gary / Anna 组合 <span id="settle-carrie-status">HK$ 2,541.05</span></span>
-                        </li>
-                        <li style="margin-bottom: 6px;">
-                            <b>Rosa (1人份)</b>：已垫付 <b>HK$ 0.00 / N/A</b> ｜ 应分摊 <b id="settle-rosa-share">HK$ 3,417.72</b> ➔ <span style="color:#dc2626; font-weight:800;">需补付给 Gary / Anna 组合 <span id="settle-rosa-status">HK$ 2,541.05</span></span>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -1748,6 +1814,9 @@
             }
             if(tabId === 'weather') {
                 setTimeout(() => loadAllTripWeather(false), 100);
+            }
+            if(tabId === 'budget') {
+                setTimeout(renderExpenseManager, 50);
             }
         }
 
@@ -2471,8 +2540,506 @@
         function toggleWeatherDetail(k){const el=document.getElementById(`weather-detail-${k}`);if(el)el.classList.toggle("open");if(!weatherLoadedOnce)loadAllTripWeather(false);}
 
 
+
+
+        // ===== V7.6 Unified Trip Expense Manager =====
+
+const ExpenseEngine = (() => {
+  function rateForExpense(expense, rates) {
+    if (expense.currency === "HKD") return 1;
+    const actual = Number(expense.fxRateHKD);
+    if (Number.isFinite(actual) && actual > 0) return actual;
+    const shared = Number(rates[expense.currency]);
+    if (!Number.isFinite(shared) || shared <= 0) throw new Error(`Missing FX rate for ${expense.currency}`);
+    return shared;
+  }
+
+  function expenseToHKD(expense, rates) {
+    return (Number(expense.amount) || 0) * rateForExpense(expense, rates);
+  }
+
+  function computeLedger(expenses, members, rates, settlements) {
+    const balances = Object.fromEntries(members.map(m => [m.id, 0]));
+    const paidByMember = Object.fromEntries(members.map(m => [m.id, 0]));
+    const actualOwedByMember = Object.fromEntries(members.map(m => [m.id, 0]));
+    const projectedOwedByMember = Object.fromEntries(members.map(m => [m.id, 0]));
+    const categoryTotalsActual = {};
+    const categoryTotalsProjected = {};
+    let actualSpend = 0, projectedSpend = 0, unallocatedPaidCount = 0;
+
+    (expenses || []).forEach(expense => {
+      const hkd = expenseToHKD(expense, rates);
+      const shares = Object.fromEntries(
+        members.map(m => [m.id, Math.max(0, Number((expense.shares || {})[m.id]) || 0)])
+      );
+      const totalShares = Object.values(shares).reduce((a,b) => a+b, 0);
+
+      projectedSpend += hkd;
+      categoryTotalsProjected[expense.category] = (categoryTotalsProjected[expense.category] || 0) + hkd;
+      if (totalShares > 0) {
+        members.forEach(m => projectedOwedByMember[m.id] += hkd * shares[m.id] / totalShares);
+      }
+
+      const isActual = expense.status === "paid" || expense.status === "settled";
+      if (!isActual) return;
+
+      actualSpend += hkd;
+      categoryTotalsActual[expense.category] = (categoryTotalsActual[expense.category] || 0) + hkd;
+      if (totalShares > 0) {
+        members.forEach(m => actualOwedByMember[m.id] += hkd * shares[m.id] / totalShares);
+      }
+
+      const payerMap = expense.payers || {};
+      const payerOriginalTotal = Object.values(payerMap).reduce((s,v) => s + (Number(v)||0), 0);
+      if (payerOriginalTotal <= 0) unallocatedPaidCount++;
+
+      members.forEach(m => {
+        paidByMember[m.id] += (Number(payerMap[m.id]) || 0) * rateForExpense(expense, rates);
+      });
+
+      // Settled items remain in cumulative totals, but no longer create current debt.
+      if (expense.status === "settled" || payerOriginalTotal <= 0 || totalShares <= 0) return;
+
+      members.forEach(m => {
+        const paidHKD = (Number(payerMap[m.id]) || 0) * rateForExpense(expense, rates);
+        balances[m.id] += paidHKD - (hkd * shares[m.id] / totalShares);
+      });
+    });
+
+    (settlements || []).forEach(s => {
+      const amount = Number(s.amountHKD) || 0;
+      if (amount > 0 && balances[s.from] !== undefined && balances[s.to] !== undefined) {
+        balances[s.from] += amount;
+        balances[s.to] -= amount;
+      }
+    });
+
+    const totalPeople = members.reduce((s,m) => s + (Number(m.defaultWeight)||1), 0);
+    return {
+      actualSpend,
+      projectedSpend,
+      averageActualPerPerson: totalPeople ? actualSpend / totalPeople : 0,
+      averageProjectedPerPerson: totalPeople ? projectedSpend / totalPeople : 0,
+      balances,
+      paidByMember,
+      actualOwedByMember,
+      projectedOwedByMember,
+      categoryTotalsActual,
+      categoryTotalsProjected,
+      unallocatedPaidCount
+    };
+  }
+
+  function minimizeTransfers(balances, members) {
+    const debtors = [], creditors = [];
+    members.forEach(m => {
+      const v = Number(balances[m.id]) || 0;
+      if (v < -0.005) debtors.push({id:m.id, amount:-v});
+      if (v > 0.005) creditors.push({id:m.id, amount:v});
+    });
+    debtors.sort((a,b)=>b.amount-a.amount);
+    creditors.sort((a,b)=>b.amount-a.amount);
+    const out = [];
+    let d=0,c=0;
+    while (d<debtors.length && c<creditors.length) {
+      const amount = Math.min(debtors[d].amount, creditors[c].amount);
+      if (amount > 0.005) out.push({from:debtors[d].id,to:creditors[c].id,amount:Math.round(amount*100)/100});
+      debtors[d].amount -= amount;
+      creditors[c].amount -= amount;
+      if (debtors[d].amount <= 0.005) d++;
+      if (creditors[c].amount <= 0.005) c++;
+    }
+    return out;
+  }
+
+  return { rateForExpense, expenseToHKD, computeLedger, minimizeTransfers };
+})();
+
+if (typeof module !== "undefined" && module.exports) module.exports = ExpenseEngine;
+
+
+        const EXPENSE_STORAGE_KEY="okinawa2026-expense-ledger-v7.6";
+        const LEGACY_EXPENSE_STORAGE_KEY="okinawa2026-expense-ledger-v7.5";
+
+        const expenseMembers=[
+          {id:"garyanna",name:"Gary & Anna",defaultWeight:2},
+          {id:"carrie",name:"Carrie",defaultWeight:1},
+          {id:"rosa",name:"Rosa",defaultWeight:1}
+        ];
+
+        const expenseCategories=["✈️ 机票","🏨 住宿","🚘 租车","🍴 餐饮","🚕 交通","⛽ 油费","🎫 门票","🛍️ 购物","🎳 娱乐","📦 其他"];
+        const expenseCurrencies=[
+          {code:"HKD",name:"港币",symbol:"HK$"},
+          {code:"JPY",name:"日圆",symbol:"¥"},
+          {code:"USD",name:"美元",symbol:"US$"}
+        ];
+        const defaultReferenceRates={HKD:1,JPY:1/19.5,USD:7.8};
+
+        let expenseState=null;
+
+        function defaultExpenseState(){
+          return{
+            version:"7.6",
+            baseCurrency:"HKD",
+            referenceRates:{...defaultReferenceRates},
+            manualRates:{HKD:1,JPY:null,USD:null},
+            fxMeta:{source:"Default fallback",date:null,lastUpdated:null},
+            expenses:[
+              {id:"seed-flight",date:"2026-10-18",item:"HK Express 往返机票（4人）",category:"✈️ 机票",amount:4756,currency:"HKD",status:"settled",fxRateHKD:null,payers:{garyanna:4756},shares:{garyanna:2,carrie:1,rosa:1},note:"已全额结清；计入累计支出和成员承担，但不再产生欠款。"},
+              {id:"seed-hotel-1",date:"2026-10-08",item:"La'gent 那霸酒店段1（2房×2晚）",category:"🏨 住宿",amount:2482.84,currency:"HKD",status:"planned",fxRateHKD:null,payers:{},shares:{garyanna:2,carrie:1,rosa:1},note:"预计10/8扣款。"},
+              {id:"seed-hotel-2",date:"2026-10-08",item:"Kariyushi 恩纳酒店（2房×2晚）",category:"🏨 住宿",amount:363.38,currency:"USD",status:"planned",fxRateHKD:null,payers:{},shares:{garyanna:2,carrie:1,rosa:1},note:"预计10/8扣款 USD 363.38。"},
+              {id:"seed-hotel-3",date:"2026-10-13",item:"La'gent 那霸酒店段2（2房×3晚）",category:"🏨 住宿",amount:4618.34,currency:"HKD",status:"planned",fxRateHKD:null,payers:{},shares:{garyanna:2,carrie:1,rosa:1},note:"预计10/13扣款。"},
+              {id:"seed-car",date:"2026-10-19",item:"Times 美荣桥租车",category:"🚘 租车",amount:59730,currency:"JPY",status:"planned",fxRateHKD:null,payers:{},shares:{garyanna:2,carrie:1,rosa:1},note:"取车时支付。"},
+              {id:"seed-tickets",date:"2026-10-20",item:"景点门票预算（玉泉洞 / 凤梨园 / 万座毛等）",category:"🎫 门票",amount:13200,currency:"JPY",status:"planned",fxRateHKD:null,payers:{},shares:{garyanna:2,carrie:1,rosa:1},note:"预算项目；实际购买后可拆成逐项费用。"}
+            ],
+            settlements:[]
+          };
+        }
+
+        function migrateLegacyState(oldState){
+          const fresh=defaultExpenseState();
+          if(!oldState||!Array.isArray(oldState.expenses))return fresh;
+          fresh.expenses=oldState.expenses.map(e=>({
+            ...e,
+            status:e.status==="paid"&&e.alreadySettled?"settled":e.status,
+            fxRateHKD:Number(e.fxRateHKD)>0?Number(e.fxRateHKD):null
+          }));
+          fresh.settlements=Array.isArray(oldState.settlements)?oldState.settlements:[];
+          if(oldState.rates){
+            fresh.referenceRates={HKD:1,JPY:Number(oldState.rates.JPY)||defaultReferenceRates.JPY,USD:Number(oldState.rates.USD)||defaultReferenceRates.USD};
+          }
+          return fresh;
+        }
+
+        function loadExpenseState(){
+          try{
+            const raw=localStorage.getItem(EXPENSE_STORAGE_KEY);
+            if(raw)expenseState=JSON.parse(raw);
+            else{
+              const legacy=localStorage.getItem(LEGACY_EXPENSE_STORAGE_KEY);
+              expenseState=legacy?migrateLegacyState(JSON.parse(legacy)):defaultExpenseState();
+            }
+          }catch(_){expenseState=defaultExpenseState();}
+          expenseState.referenceRates={...defaultReferenceRates,...(expenseState.referenceRates||{})};
+          expenseState.manualRates={HKD:1,JPY:null,USD:null,...(expenseState.manualRates||{})};
+          if(!Array.isArray(expenseState.expenses))expenseState.expenses=[];
+          if(!Array.isArray(expenseState.settlements))expenseState.settlements=[];
+          saveExpenseState(false);
+        }
+
+        function saveExpenseState(render=true){
+          localStorage.setItem(EXPENSE_STORAGE_KEY,JSON.stringify(expenseState));
+          if(render)renderExpenseManager();
+        }
+
+        function effectiveRates(){
+          return{
+            HKD:1,
+            JPY:Number(expenseState.manualRates.JPY)>0?Number(expenseState.manualRates.JPY):Number(expenseState.referenceRates.JPY),
+            USD:Number(expenseState.manualRates.USD)>0?Number(expenseState.manualRates.USD):Number(expenseState.referenceRates.USD)
+          };
+        }
+
+        function moneyHKD(v){return"HK$ "+(Number(v)||0).toLocaleString("en-HK",{minimumFractionDigits:2,maximumFractionDigits:2});}
+        function memberName(id){return(expenseMembers.find(m=>m.id===id)||{name:id}).name;}
+
+        function categoryOptions(selected){return expenseCategories.map(c=>`<option value="${c}" ${c===selected?"selected":""}>${c}</option>`).join("");}
+        function currencyOptions(selected){return expenseCurrencies.map(c=>`<option value="${c.code}" ${c.code===selected?"selected":""}>${c.code}</option>`).join("");}
+        function statusOptions(selected){
+          return[["planned","📋 计划"],["paid","✅ 已付"],["settled","🔵 已结清"]]
+            .map(([v,l])=>`<option value="${v}" ${v===selected?"selected":""}>${l}</option>`).join("");
+        }
+
+        function payerMode(e){
+          if(e.status==="planned")return"NA";
+          const active=Object.entries(e.payers||{}).filter(([,v])=>Number(v)>0);
+          if(active.length===0)return"NA";
+          if(active.length===1)return active[0][0];
+          return"MULTI";
+        }
+
+        function payerOptions(e){
+          const selected=payerMode(e);
+          return[["NA","— 未指定 —"],["garyanna","Gary & Anna"],["carrie","Carrie"],["rosa","Rosa"],["MULTI","多人共同付款"]]
+            .map(([v,l])=>`<option value="${v}" ${v===selected?"selected":""}>${l}</option>`).join("");
+        }
+
+        async function refreshOnlineFx(force=false){
+          const status=document.getElementById("fx-online-status");
+          if(status)status.textContent="正在读取 ECB reference rate...";
+          try{
+            const res=await fetch("https://api.frankfurter.dev/v2/rates?base=HKD&quotes=JPY,USD&providers=ECB",{cache:force?"no-store":"default"});
+            if(!res.ok)throw new Error(`HTTP ${res.status}`);
+            const rows=await res.json();
+            const map=Object.fromEntries(rows.map(r=>[r.quote,r]));
+            if(!map.JPY||!map.USD)throw new Error("Missing JPY/USD");
+
+            expenseState.referenceRates.JPY=1/Number(map.JPY.rate);
+            expenseState.referenceRates.USD=1/Number(map.USD.rate);
+            expenseState.fxMeta={source:"ECB reference rate via Frankfurter",date:map.JPY.date||map.USD.date||null,lastUpdated:new Date().toISOString()};
+            saveExpenseState();
+          }catch(err){
+            if(status)status.textContent="在线汇率暂时读取失败，继续使用上次/备用参考值。";
+            console.warn("FX refresh failed",err);
+          }
+        }
+
+        function renderExpenseFx(){
+          const grid=document.getElementById("expense-fx-grid");
+          const status=document.getElementById("fx-online-status");
+          if(!grid)return;
+          const eff=effectiveRates(),meta=expenseState.fxMeta||{};
+          if(status)status.textContent=`${meta.source||"参考值"}${meta.date?" · "+meta.date:""} · JPY→HKD ${Number(expenseState.referenceRates.JPY).toFixed(6)} · USD→HKD ${Number(expenseState.referenceRates.USD).toFixed(6)}`;
+
+          grid.innerHTML=expenseCurrencies.map(c=>{
+            if(c.code==="HKD")return`<div class="fx-item"><b>HKD · 港币</b><div>基准结算币种</div><input value="1" disabled></div>`;
+            const ref=Number(expenseState.referenceRates[c.code])||0;
+            const manual=Number(expenseState.manualRates[c.code])>0?Number(expenseState.manualRates[c.code]):"";
+            return`<div class="fx-item">
+              <b>${c.code} · ${c.name}</b>
+              <div class="fx-online">Online: 1 ${c.code} = ${ref.toFixed(6)} HKD</div>
+              <div class="fx-override-label">全局实际/手动覆盖（留空=Online）</div>
+              <input type="number" step="0.000001" min="0" value="${manual}" placeholder="${ref.toFixed(6)}" onchange="setManualFx('${c.code}',this.value)">
+              <div class="inline-note">当前有效：${Number(eff[c.code]).toFixed(6)} HKD</div>
+            </div>`;
+          }).join("");
+        }
+
+        function setManualFx(code,value){
+          const raw=String(value).trim();
+          expenseState.manualRates[code]=raw===""?null:Number(raw);
+          if(expenseState.manualRates[code]!==null&&(!Number.isFinite(expenseState.manualRates[code])||expenseState.manualRates[code]<=0))expenseState.manualRates[code]=null;
+          saveExpenseState();
+        }
+
+        function quickUpdateExpense(id,field,value){
+          const e=expenseState.expenses.find(x=>x.id===id); if(!e)return;
+          if(field==="date")e.date=value;
+          if(field==="item")e.item=value.trim();
+          if(field==="category")e.category=value;
+          if(field==="currency"){e.currency=value;if(value==="HKD")e.fxRateHKD=null;}
+          if(field==="amount"){
+            const n=Number(value);
+            if(Number.isFinite(n)&&n>=0){
+              const mode=payerMode(e); e.amount=n;
+              if(["garyanna","carrie","rosa"].includes(mode))e.payers={[mode]:n};
+            }
+          }
+          saveExpenseState();
+        }
+
+        function changeExpenseStatus(id,newStatus,selectEl){
+          const e=expenseState.expenses.find(x=>x.id===id); if(!e)return;
+          if((newStatus==="paid"||newStatus==="settled")&&payerMode(e)==="NA"){
+            selectEl.value=e.status; openExpenseModal(e,newStatus); return;
+          }
+          e.status=newStatus;
+          if(newStatus==="planned")e.payers={};
+          saveExpenseState();
+        }
+
+        function changeExpensePayer(id,newPayer,selectEl){
+          const e=expenseState.expenses.find(x=>x.id===id); if(!e)return;
+          if(newPayer==="MULTI"){selectEl.value=payerMode(e);openExpenseModal(e,e.status==="planned"?"paid":e.status);return;}
+          if(newPayer==="NA"){e.payers={};e.status="planned";saveExpenseState();return;}
+          e.payers={[newPayer]:Number(e.amount)||0};
+          if(e.status==="planned")e.status="paid";
+          saveExpenseState();
+        }
+
+        function renderExpenseLedger(){
+          const body=document.getElementById("expense-ledger-body");if(!body)return;
+          const rates=effectiveRates();
+          body.innerHTML=expenseState.expenses.slice().sort((a,b)=>String(a.date).localeCompare(String(b.date))).map(e=>{
+            let hkd=0;try{hkd=ExpenseEngine.expenseToHKD(e,rates);}catch(_){}
+            const shares=expenseMembers.filter(m=>Number((e.shares||{})[m.id])>0).map(m=>`${m.name}:${(e.shares||{})[m.id]}`).join(" / ")||"—";
+            const fxTag=e.currency!=="HKD"&&Number(e.fxRateHKD)>0?`<div class="inline-note">实际汇率 ${Number(e.fxRateHKD).toFixed(6)}</div>`:"";
+            return`<tr>
+              <td><input type="date" value="${e.date||""}" onchange="quickUpdateExpense('${e.id}','date',this.value)"></td>
+              <td><input class="item-inline" type="text" value="${String(e.item||"").replace(/"/g,"&quot;")}" onchange="quickUpdateExpense('${e.id}','item',this.value)">${e.note?`<div class="inline-note">${e.note}</div>`:""}</td>
+              <td><select onchange="quickUpdateExpense('${e.id}','category',this.value)">${categoryOptions(e.category)}</select></td>
+              <td><input type="number" min="0" step="0.01" value="${e.amount}" onchange="quickUpdateExpense('${e.id}','amount',this.value)"></td>
+              <td><select onchange="quickUpdateExpense('${e.id}','currency',this.value)">${currencyOptions(e.currency)}</select></td>
+              <td><b>${moneyHKD(hkd)}</b>${fxTag}</td>
+              <td><select onchange="changeExpenseStatus('${e.id}',this.value,this)">${statusOptions(e.status)}</select></td>
+              <td><select onchange="changeExpensePayer('${e.id}',this.value,this)">${payerOptions(e)}</select></td>
+              <td>${shares}<br><button class="expense-mini-btn" onclick="editExpense('${e.id}')">调整分摊</button></td>
+              <td><button class="expense-mini-btn" onclick="editExpense('${e.id}')">编辑</button><button class="expense-mini-btn delete" onclick="deleteExpense('${e.id}')">删除</button></td>
+            </tr>`;
+          }).join("");
+        }
+
+        function renderExpenseCategories(summary){
+          const el=document.getElementById("expense-category-summary");if(!el)return;
+          const cats=Array.from(new Set([...Object.keys(summary.categoryTotalsProjected),...Object.keys(summary.categoryTotalsActual)]))
+            .sort((a,b)=>(summary.categoryTotalsProjected[b]||0)-(summary.categoryTotalsProjected[a]||0));
+          const max=Math.max(1,...cats.map(c=>summary.categoryTotalsProjected[c]||0));
+          el.innerHTML=cats.map(cat=>{
+            const actual=summary.categoryTotalsActual[cat]||0,projected=summary.categoryTotalsProjected[cat]||0;
+            return`<div class="expense-category-row">
+              <div><b>${cat}</b><div class="expense-progress"><span style="width:${projected/max*100}%"></span></div></div>
+              <div>实际<br><b>${moneyHKD(actual)}</b></div>
+              <div>预计<br><b>${moneyHKD(projected)}</b></div>
+              <div>${summary.projectedSpend?(projected/summary.projectedSpend*100).toFixed(1):"0.0"}%</div>
+            </div>`;
+          }).join("")||"<div class='inline-note'>尚无费用。</div>";
+        }
+
+        function renderExpenseMembers(summary){
+          const el=document.getElementById("expense-member-summary");if(!el)return;
+          el.innerHTML=expenseMembers.map(m=>{
+            const bal=summary.balances[m.id]||0;
+            const cls=bal>.005?"balance-positive":bal<-.005?"balance-negative":"balance-zero";
+            const net=bal>.005?`当前应收 ${moneyHKD(bal)}`:bal<-.005?`当前应付 ${moneyHKD(-bal)}`:"当前已平衡";
+            return`<div class="balance-row">
+              <div><b>${m.name}</b> <span class="inline-note">(${m.defaultWeight}人份)</span></div>
+              <div>已垫付 <b>${moneyHKD(summary.paidByMember[m.id]||0)}</b><br>
+                   实际应承担 <b>${moneyHKD(summary.actualOwedByMember[m.id]||0)}</b><br>
+                   预计应承担 <b>${moneyHKD(summary.projectedOwedByMember[m.id]||0)}</b></div>
+              <div class="${cls}">${net}</div>
+            </div>`;
+          }).join("");
+        }
+
+        function renderExpenseTransfers(summary){
+          const warning=document.getElementById("expense-unallocated-warning");
+          const el=document.getElementById("expense-transfer-summary");if(!el)return;
+          if(summary.unallocatedPaidCount>0){
+            if(warning)warning.innerHTML=`<div class="unallocated-warning">⚠️ 有 ${summary.unallocatedPaidCount} 笔已付费用未指定付款者。总支出会计算，但 Who owes whom 暂不纳入这些项目。</div>`;
+          }else if(warning)warning.innerHTML="";
+          const transfers=ExpenseEngine.minimizeTransfers(summary.balances,expenseMembers);
+          if(!transfers.length){el.innerHTML=`<div class="balance-zero">✅ 当前没有未结清差额。</div>`;return;}
+          el.innerHTML=transfers.map(t=>`<div class="transfer-row">
+            <div><b>${memberName(t.from)}</b> → <b>${memberName(t.to)}</b></div>
+            <div class="balance-negative">${moneyHKD(t.amount)}</div>
+            <button class="expense-mini-btn" onclick="markExpenseTransferPaid('${t.from}','${t.to}',${t.amount})">✅ 标记已付</button>
+          </div>`).join("");
+        }
+
+        function renderSettlementHistory(){
+          const el=document.getElementById("expense-settlement-history");if(!el)return;
+          if(!expenseState.settlements.length){el.innerHTML=`<div class="inline-note">尚未记录任何内部转账。</div>`;return;}
+          el.innerHTML=expenseState.settlements.slice().reverse().map(s=>`<div class="transfer-row">
+            <div>${s.date} · <b>${memberName(s.from)}</b> → <b>${memberName(s.to)}</b></div>
+            <div class="balance-positive">${moneyHKD(s.amountHKD)}</div>
+            <button class="expense-mini-btn delete" onclick="deleteSettlement('${s.id}')">撤销</button>
+          </div>`).join("");
+        }
+
+        function renderExpenseManager(){
+          if(!expenseState)loadExpenseState();
+          const summary=ExpenseEngine.computeLedger(expenseState.expenses,expenseMembers,effectiveRates(),expenseState.settlements);
+          const setText=(id,t)=>{const el=document.getElementById(id);if(el)el.textContent=t;};
+          setText("expense-actual-total",moneyHKD(summary.actualSpend));
+          setText("expense-projected-total",moneyHKD(summary.projectedSpend));
+          setText("expense-actual-average",moneyHKD(summary.averageActualPerPerson));
+          setText("expense-projected-average",moneyHKD(summary.averageProjectedPerPerson));
+          renderExpenseFx();renderExpenseLedger();renderExpenseCategories(summary);renderExpenseMembers(summary);renderExpenseTransfers(summary);renderSettlementHistory();
+        }
+
+        function populateExpenseCategorySelect(selected){
+          const s=document.getElementById("expense-category");if(s)s.innerHTML=categoryOptions(selected||"🍴 餐饮");
+        }
+
+        function openExpenseModal(expense=null,proposedStatus=null){
+          document.getElementById("expense-form-error").style.display="none";
+          document.getElementById("expense-modal-title").textContent=expense?"编辑费用":"新增费用";
+          document.getElementById("expense-edit-id").value=expense?expense.id:"";
+          document.getElementById("expense-date").value=expense?expense.date:new Date().toISOString().slice(0,10);
+          document.getElementById("expense-item").value=expense?expense.item:"";
+          populateExpenseCategorySelect(expense?expense.category:"🍴 餐饮");
+          document.getElementById("expense-amount").value=expense?expense.amount:"";
+          document.getElementById("expense-currency").value=expense?expense.currency:"JPY";
+          document.getElementById("expense-status").value=proposedStatus||(expense?expense.status:"paid");
+          document.getElementById("expense-actual-fx").value=expense&&Number(expense.fxRateHKD)>0?expense.fxRateHKD:"";
+          document.getElementById("expense-note").value=expense?(expense.note||""):"";
+          expenseMembers.forEach(m=>{
+            document.getElementById(`payer-${m.id}`).value=expense?((expense.payers||{})[m.id]||""):"";
+            document.getElementById(`share-${m.id}`).value=expense?((expense.shares||{})[m.id]??m.defaultWeight):m.defaultWeight;
+          });
+          updateExpenseModalState();
+          document.getElementById("expense-modal-backdrop").classList.add("open");
+        }
+
+        function closeExpenseModal(){document.getElementById("expense-modal-backdrop").classList.remove("open");}
+        function updateExpenseModalState(){
+          const planned=document.getElementById("expense-status").value==="planned";
+          expenseMembers.forEach(m=>{const i=document.getElementById(`payer-${m.id}`);i.disabled=planned;if(planned)i.value="";});
+        }
+        function showExpenseFormError(msg){const e=document.getElementById("expense-form-error");e.textContent=msg;e.style.display="block";}
+
+        function saveExpenseFromModal(){
+          const id=document.getElementById("expense-edit-id").value||`e-${Date.now()}`;
+          const item=document.getElementById("expense-item").value.trim();
+          const amount=Number(document.getElementById("expense-amount").value);
+          const currency=document.getElementById("expense-currency").value;
+          const status=document.getElementById("expense-status").value;
+          const fxRaw=document.getElementById("expense-actual-fx").value.trim();
+          const fxRateHKD=fxRaw===""?null:Number(fxRaw);
+          const payers={},shares={};
+          expenseMembers.forEach(m=>{
+            payers[m.id]=Number(document.getElementById(`payer-${m.id}`).value)||0;
+            shares[m.id]=Math.max(0,Number(document.getElementById(`share-${m.id}`).value)||0);
+          });
+
+          if(!item)return showExpenseFormError("请输入费用项目名称。");
+          if(!Number.isFinite(amount)||amount<=0)return showExpenseFormError("金额必须大于0。");
+          if(currency!=="HKD"&&fxRateHKD!==null&&(!Number.isFinite(fxRateHKD)||fxRateHKD<=0))return showExpenseFormError("实际汇率必须大于0，或留空使用 Online 参考汇率。");
+          if(Object.values(shares).reduce((a,b)=>a+b,0)<=0)return showExpenseFormError("至少一名成员必须参与分摊。");
+          if(status==="paid"||status==="settled"){
+            const paidSum=Object.values(payers).reduce((a,b)=>a+b,0);
+            if(Math.abs(paidSum-amount)>Math.max(.02,amount*.0001))return showExpenseFormError(`付款人金额合计 ${paidSum.toFixed(2)} ${currency}，必须等于费用总额 ${amount.toFixed(2)} ${currency}。`);
+          }
+
+          const obj={
+            id,date:document.getElementById("expense-date").value,item,
+            category:document.getElementById("expense-category").value,amount,currency,status,
+            fxRateHKD:currency==="HKD"?null:fxRateHKD,
+            payers:(status==="paid"||status==="settled")?payers:{},
+            shares,note:document.getElementById("expense-note").value.trim()
+          };
+          const idx=expenseState.expenses.findIndex(e=>e.id===id);
+          if(idx>=0)expenseState.expenses[idx]=obj;else expenseState.expenses.push(obj);
+          saveExpenseState();closeExpenseModal();
+        }
+
+        function editExpense(id){const e=expenseState.expenses.find(x=>x.id===id);if(e)openExpenseModal(e);}
+        function deleteExpense(id){const e=expenseState.expenses.find(x=>x.id===id);if(!e||!confirm(`删除费用「${e.item}」？`))return;expenseState.expenses=expenseState.expenses.filter(x=>x.id!==id);saveExpenseState();}
+        function markExpenseTransferPaid(from,to,amount){if(!confirm(`确认已支付：${memberName(from)} → ${memberName(to)} ${moneyHKD(amount)}？`))return;expenseState.settlements.push({id:`s-${Date.now()}`,from,to,amountHKD:Number(amount),date:new Date().toISOString().slice(0,10)});saveExpenseState();}
+        function deleteSettlement(id){if(!confirm("撤销这笔内部结算记录？"))return;expenseState.settlements=expenseState.settlements.filter(s=>s.id!==id);saveExpenseState();}
+
+        function exportExpenseLedger(){
+          const payload={exportedAt:new Date().toISOString(),trip:"okinawa-2026",data:expenseState};
+          const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+          const url=URL.createObjectURL(blob),a=document.createElement("a");
+          a.href=url;a.download=`okinawa-2026-expenses-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);
+        }
+
+        function importExpenseLedger(event){
+          const file=event.target.files&&event.target.files[0];if(!file)return;
+          const reader=new FileReader();
+          reader.onload=()=>{
+            try{
+              const parsed=JSON.parse(reader.result),incoming=parsed.data||parsed;
+              if(!incoming||!Array.isArray(incoming.expenses))throw new Error("invalid");
+              if(!confirm("导入会覆盖本浏览器目前账本。继续？"))return;
+              expenseState=incoming.version==="7.6"?incoming:migrateLegacyState(incoming);saveExpenseState();
+            }catch(_){alert("无法导入：JSON 格式或账本结构不正确。");}
+            finally{event.target.value="";}
+          };
+          reader.readAsText(file);
+        }
+
+        function resetExpenseLedger(){
+          if(!confirm("确定重置账本？后来输入的费用和结算记录会被清除。建议先导出 JSON。"))return;
+          expenseState=defaultExpenseState();saveExpenseState();refreshOnlineFx(true);
+        }
+
+
         window.addEventListener('DOMContentLoaded', () => {
-            recalculateTotals();
+            loadExpenseState();
+            renderExpenseManager();
+            refreshOnlineFx(false);
         });
     </script>
 </body>
