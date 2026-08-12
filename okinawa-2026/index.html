@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌺 冲绳自驾自由行 2026 | 8天7夜完整行程规划</title>
-    <!-- Trip Guide Version: V8.2 | Remove stale duplicate actual-budget buckets + clearer number formatting -->
+    <!-- Trip Guide Version: V8.3 | Authoritative actual-cost migration across local/GitHub origins -->
     
     <!-- Leaflet.js 动态地图 CSS & JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -2942,8 +2942,8 @@ const BudgetEngine = (() => {
 if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngine;
 
 
-        const EXPENSE_STORAGE_KEY="okinawa2026-expense-ledger-v8.2";
-        const LEGACY_EXPENSE_STORAGE_KEYS=["okinawa2026-expense-ledger-v8","okinawa2026-expense-ledger-v7.6","okinawa2026-expense-ledger-v7.5"];
+        const EXPENSE_STORAGE_KEY="okinawa2026-expense-ledger-v8.3";
+        const LEGACY_EXPENSE_STORAGE_KEYS=["okinawa2026-expense-ledger-v8.2","okinawa2026-expense-ledger-v8","okinawa2026-expense-ledger-v7.6","okinawa2026-expense-ledger-v7.5"];
 
         const expenseMembers=[
           {id:"garyanna",name:"Gary & Anna",defaultWeight:2},
@@ -2978,7 +2978,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
 
         function defaultExpenseState(){
           return{
-            version:"8.2",
+            version:"8.3",
             baseCurrency:"HKD",
             referenceRates:{...defaultReferenceRates},
             manualRates:{HKD:1,JPY:null,USD:null},
@@ -3017,34 +3017,70 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
           return fresh;
         }
 
-        function sanitizeV82State(state){
+        function sanitizeV83State(state){
           if(!state || typeof state!=="object") return defaultExpenseState();
 
+          const defaults=defaultExpenseState();
           const canonicalBudgetIds=new Set(defaultBudgetBuckets().map(b=>b.id));
-          const fixedActualCategories=new Set(["✈️ 机票","🏨 住宿","🚘 租车"]);
 
-          // Remove obsolete V8 buckets (flight/hotel/car) and any other stale bucket
-          // that is no longer part of the canonical editable-budget set.
+          // Keep only current editable budget buckets, while preserving user-edited values.
           state.budgetBuckets=(Array.isArray(state.budgetBuckets)?state.budgetBuckets:defaultBudgetBuckets())
             .filter(b=>canonicalBudgetIds.has(b.id));
-
-          // Merge current saved values into the canonical bucket list so new defaults
-          // appear without throwing away user-edited budget amounts.
           const savedById=Object.fromEntries(state.budgetBuckets.map(b=>[b.id,b]));
           state.budgetBuckets=defaultBudgetBuckets().map(def=>({
             ...def,
             ...(savedById[def.id]||{})
           }));
 
-          // Actual flight/hotel/car must not consume an editable future budget bucket.
-          (state.expenses||[]).forEach(e=>{
+          if(!Array.isArray(state.expenses)) state.expenses=[];
+
+          // Authoritative fixed costs confirmed as already incurred by the user.
+          // Force these known seed rows to Actual/Settled on migration from older schemas.
+          const authoritativeActualSeeds=new Map(
+            defaults.expenses
+              .filter(e=>["seed-flight","seed-hotel-1","seed-hotel-2","seed-hotel-3","seed-car"].includes(e.id))
+              .map(e=>[e.id,e])
+          );
+
+          const byId=new Map(state.expenses.map(e=>[e.id,e]));
+
+          authoritativeActualSeeds.forEach((def,id)=>{
+            const existing=byId.get(id);
+            if(existing){
+              existing.status="settled";
+              existing.budgetBucketId=null;
+              existing.budgetUnitsConsumed=0;
+
+              // If an old schema had no payer because it was still Planned,
+              // restore the authoritative seeded payer so member totals are not zero.
+              const payerTotal=Object.values(existing.payers||{}).reduce((s,v)=>s+(Number(v)||0),0);
+              if(payerTotal<=0){
+                existing.payers={...(def.payers||{})};
+              }
+
+              // Preserve any real amount/date/note the user may already have changed.
+              // Only fall back to defaults if the field is absent.
+              if(existing.amount===undefined || existing.amount===null) existing.amount=def.amount;
+              if(!existing.currency) existing.currency=def.currency;
+              if(!existing.date) existing.date=def.date;
+              if(!existing.category) existing.category=def.category;
+              if(!existing.item) existing.item=def.item;
+              if(!existing.shares) existing.shares={...(def.shares||{})};
+            }else{
+              state.expenses.push({...def});
+            }
+          });
+
+          // Any actual fixed-cost category must not be linked to future Budget.
+          const fixedActualCategories=new Set(["✈️ 机票","🏨 住宿","🚘 租车"]);
+          state.expenses.forEach(e=>{
             if((e.status==="paid"||e.status==="settled") && fixedActualCategories.has(e.category)){
               e.budgetBucketId=null;
               e.budgetUnitsConsumed=0;
             }
           });
 
-          state.version="8.2";
+          state.version="8.3";
           return state;
         }
 
@@ -3067,7 +3103,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
           if(!Array.isArray(expenseState.expenses))expenseState.expenses=[];
           if(!Array.isArray(expenseState.settlements))expenseState.settlements=[];
 
-          expenseState=sanitizeV82State(expenseState);
+          expenseState=sanitizeV83State(expenseState);
           saveExpenseState(false);
         }
 
@@ -3563,7 +3599,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
           const payload={exportedAt:new Date().toISOString(),trip:"okinawa-2026",data:expenseState};
           const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
           const url=URL.createObjectURL(blob),a=document.createElement("a");
-          a.href=url;a.download=`okinawa-2026-expenses-v8.2-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);
+          a.href=url;a.download=`okinawa-2026-expenses-v8.3-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);
         }
         function importExpenseLedger(event){
           const file=event.target.files&&event.target.files[0];if(!file)return;
@@ -3573,7 +3609,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
               const parsed=JSON.parse(reader.result),incoming=parsed.data||parsed;
               if(!incoming||!Array.isArray(incoming.expenses))throw new Error("invalid");
               if(!confirm("导入会覆盖本浏览器目前账本。继续？"))return;
-              expenseState=incoming.version==="8.2"?sanitizeV82State(incoming):sanitizeV82State(migrateLegacyState(incoming));saveExpenseState();
+              expenseState=incoming.version==="8.3"?sanitizeV83State(incoming):sanitizeV83State(migrateLegacyState(incoming));saveExpenseState();
             }catch(_){alert("无法导入：JSON 格式或账本结构不正确。");}
             finally{event.target.value="";}
           };
