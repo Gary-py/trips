@@ -209,7 +209,7 @@
             color: #78350f;
         }
 
-        /* 预算计算器升级样式 */
+        /* 预算计算器 */
         .currency-switch-bar { display: flex; gap: 10px; margin-bottom: 15px; }
         .currency-btn { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: #f8fafc; font-size: 14px; font-weight: 700; color: var(--text-muted); cursor: pointer; text-align: center; transition: all 0.2s; }
         .currency-btn.active { background: var(--accent-purple); color: white; border-color: var(--accent-purple); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
@@ -249,7 +249,7 @@
         .add-row-btn { margin-top: 12px; background: #eef2ff; color: var(--accent-purple); border: 1px dashed var(--accent-purple); padding: 10px 16px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .add-row-btn:hover { background: var(--accent-purple); color: white; }
 
-        /* 清算卡片升级 */
+        /* 清算卡片 */
         .settlement-card {
             background: #f8fafc; 
             border: 1px solid var(--border-color); 
@@ -272,6 +272,52 @@
         .settlement-card .top-summary-item label { font-size: 11px; color: var(--text-muted); font-weight: 700; display: block; }
         .settlement-card .top-summary-item span { font-size: 18px; font-weight: 800; color: #0f172a; }
 
+        /* 地图控制面板与图标 */
+        .map-filter-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+        }
+        .map-filter-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #334155;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .map-checkbox-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 14px;
+        }
+        .map-checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            user-select: none;
+        }
+        .map-checkbox-item input {
+            cursor: pointer;
+            accent-color: var(--accent-purple);
+        }
+        .map-color-badge {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        /* 航线与箭头指示样式 */
+        .flight-path-line { stroke-dasharray: 8, 8; animation: dash 20s linear infinite; }
+        @keyframes dash { to { stroke-dashoffset: -1000; } }
+
         /* 用餐与遗珠卡片样式 */
         .food-item-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; }
         .food-item-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed var(--border-color); padding-bottom: 6px; }
@@ -286,10 +332,6 @@
 
         /* 地图图例与样式 */
         #map { height: 520px; width: 100%; border-radius: 12px; z-index: 1; }
-        .route-legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; background: #f8fafc; padding: 12px; border-radius: 10px; font-size: 12px; }
-        .legend-item { display: flex; align-items: center; gap: 6px; font-weight: 600; }
-        .legend-color { width: 18px; height: 6px; border-radius: 3px; }
-
         .day-label-marker { background: white; border: 2px solid; border-radius: 12px; padding: 2px 6px; font-size: 11px; font-weight: 800; box-shadow: 0 2px 6px rgba(0,0,0,0.2); white-space: nowrap; text-align: center; }
 
         @media (max-width: 640px) {
@@ -908,21 +950,58 @@
             </div>
         </div>
 
-        <!-- 4. 动态地图 Tab -->
+        <!-- 4. 动态地图 Tab (新增复选框筛选与尖嘴行走方向控制) -->
         <div id="map-tab" class="tab-content">
             <div class="card">
-                <div class="card-title">🗺️ 冲绳公路导航路线图 (OSRM 真实道路/含估算行车时间)</div>
+                <div class="card-title">🗺️ 冲绳公路导航路线图 (真实道路 / 沿途方向箭头指示 / 动态行程筛选)</div>
                 
-                <!-- 图例说明 -->
-                <div class="route-legend">
-                    <div class="legend-item"><div class="legend-color" style="background: #ef4444;"></div> D1 那霸入住</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #f97316;"></div> D2 Times取车/小禄/濑长岛</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #eab308;"></div> D3 南下北上/残波岬/琉球の牛</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #22c55e;"></div> D4 北部巡游/名护本部烧肉</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #3b82f6;"></div> D5 PARCO/美国村/OceanBoo</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #a855f7;"></div> D6 Outlet/宜野湾</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #ec4899;"></div> D7 糸满/Rycom/还车</div>
-                    <div class="legend-item"><div class="legend-color" style="background: #64748b;"></div> D8 顺利返港</div>
+                <!-- 每日 Checkbox 筛选控制器 -->
+                <div class="map-filter-box">
+                    <div class="map-filter-title">
+                        <span>🎯 勾选切换需要显示的行程路线与关联景点：</span>
+                        <div>
+                            <button onclick="toggleAllMapDays(true)" style="padding:2px 8px; font-size:11px; border-radius:4px; border:1px solid #cbd5e1; background:#fff; cursor:pointer;">全选</button>
+                            <button onclick="toggleAllMapDays(false)" style="padding:2px 8px; font-size:11px; border-radius:4px; border:1px solid #cbd5e1; background:#fff; cursor:pointer; margin-left:4px;">全不选</button>
+                        </div>
+                    </div>
+                    <div class="map-checkbox-grid">
+                        <label class="map-checkbox-item">
+                            <input type="checkbox" id="chk-flight" checked onchange="updateMapVisibility()">
+                            <span style="color:#0284c7;">✈️ 往返机票航线 (HKG ↔ OKA)</span>
+                        </label>
+                        <label class="map-checkbox-item">
+                            <input type="checkbox" class="day-chk" data-day="D1" checked onchange="updateMapVisibility()">
+                            <span class="map-color-badge" style="background:#ef4444;"></span> D1 那霸入住
+                        </label>
+                        <label class="map-checkbox-item">
+                            <input type="checkbox" class="day-chk" data-day="D2" checked onchange="updateMapVisibility()">
+                            <span class="map-color-badge" style="background:#f97316;"></span> D2 取车/小禄/濑长岛
+                        </label>
+                        <label class="map-checkbox-item">
+                            <input type="checkbox" class="day-chk" data-day="D3" checked onchange="updateMapVisibility()">
+                            <span class="map-color-badge" style="background:#eab308;"></span> D3 残波岬/琉球の牛
+                        </label>
+                        <label class="map-checkbox-item">
+                            <input type="checkbox" class="day-chk" data-day="D4" checked onchange="updateMapVisibility()">
+                            <span class="map-color-badge" style="background:#22c55e;"></span> D4 北部巡游/名护本部烧肉
+                        </label>
+                        <label class="map-checkbox-item">
+                            <input type="checkbox" class="day-chk" data-day="D5" checked onchange="updateMapVisibility()">
+                            <span class="map-color-badge" style="background:#3b82f6;"></span> D5 PARCO/美国村/OceanBoo
+                        </label>
+                        <label class="map-checkbox-item">
+                            <input type="checkbox" class="day-chk" data-day="D6" checked onchange="updateMapVisibility()">
+                            <span class="map-color-badge" style="background:#a855f7;"></span> D6 Outlet/宜野湾
+                        </label>
+                        <label class="map-checkbox-item">
+                            <input type="checkbox" class="day-chk" data-day="D7" checked onchange="updateMapVisibility()">
+                            <span class="map-color-badge" style="background:#ec4899;"></span> D7 糸满/Rycom/还车
+                        </label>
+                        <label class="map-checkbox-item">
+                            <input type="checkbox" class="day-chk" data-day="D8" checked onchange="updateMapVisibility()">
+                            <span class="map-color-badge" style="background:#64748b;"></span> D8 顺利返港
+                        </label>
+                    </div>
                 </div>
 
                 <div id="map"></div>
@@ -1201,18 +1280,16 @@
             </div>
         </div>
 
-        <!-- 9. 🧮 预算/费用 Tab (全面重构与双向逻辑升级) -->
+        <!-- 9. 🧮 预算/费用 Tab -->
         <div id="budget" class="tab-content">
             <div class="card">
                 <div class="card-title">🧮 预算与费用计算器</div>
                 
-                <!-- 币种一键切换按钮 -->
                 <div class="currency-switch-bar">
                     <button class="currency-btn active" id="btn-hkd" onclick="toggleCurrency('HKD')">🇭🇰 优先显示港币 (HKD)</button>
                     <button class="currency-btn" id="btn-jpy" onclick="toggleCurrency('JPY')">🇯🇵 优先显示日元 (JPY)</button>
                 </div>
 
-                <!-- 汇率手动调节与重置 Bar -->
                 <div class="rate-notice">
                     <div style="display:flex; align-items:center; gap:6px;">
                         ⇄ 汇率参考：<span id="rate-display-text">1 HKD = 19.50 JPY</span>
@@ -1225,7 +1302,6 @@
                     </div>
                 </div>
 
-                <!-- 顶部 3 大汇总卡片 -->
                 <div class="summary-grid">
                     <div class="summary-box">
                         <h4>旅行已知总开销 (含机票)</h4>
@@ -1241,7 +1317,6 @@
                     </div>
                 </div>
 
-                <!-- 明细表格 (具有双向绑定与自动千位 comma/cents 逻辑) -->
                 <h4 style="margin: 20px 0 10px; font-size:14px; color:#475569;">📊 费用明细清单 (支持修改与追加输入)</h4>
                 <table class="kuse-table" id="excel-table">
                     <thead>
@@ -1324,10 +1399,8 @@
 
                 <button class="add-row-btn" onclick="addNewRow()">➕ 追加新费用项目</button>
 
-                <!-- 重构升华的动态清算卡片 (先列总额、人均总额，再列垫付与谁补付给谁) -->
                 <h4 style="margin: 25px 0 10px; font-size:14px; color:#475569;">🤝 动态清算结果 (Settlement Summary)</h4>
                 <div class="settlement-card">
-                    <!-- 1. 优先展示：费用总额与人均总额 -->
                     <div class="top-summary-bar">
                         <div class="top-summary-item">
                             <label>📌 旅行已知费用总额</label>
@@ -1339,7 +1412,6 @@
                         </div>
                     </div>
 
-                    <!-- 2. 垫付与结算状态详细说明 -->
                     <p style="font-size:12px; color:#059669; font-weight:bold; margin-bottom:8px;">
                         💡 说明：机票费用 HKD 4,756.00 (已全额结清) 不纳入二次差价补付，仅清算由个人垫付的住宿与待付项目差额：
                     </p>
@@ -1371,7 +1443,6 @@
         <div id="info" class="tab-content">
             <div class="card">
                 <div class="card-title">ℹ️ 冲绳自驾与旅行实用资讯百宝箱</div>
-                
                 <div class="info-grid">
                     <div class="info-card-item" style="border-left: 4px solid var(--accent-purple);">
                         <h4>🚘 Times 美荣桥站前店与车种指南</h4>
@@ -1380,73 +1451,25 @@
                             <li><b>混能车型优势</b>：预订 Honda Freed / Sienta Hybrid 省油平稳，放置 4 个 28寸行李箱拉平三排座椅空间宽裕。</li>
                         </ul>
                     </div>
-
                     <div class="info-card-item">
                         <h4>⚡ 电压与插头规格</h4>
                         <ul>
                             <li><b>电压规格</b>：日本标准电压为 <b>100V</b> (频率 50Hz/60Hz)。</li>
-                            <li><b>插头类型</b>：<b>A 型双平脚插头</b>（与香港三角扁头不同），手机/相机充电器若为双平头可直接插，三角头需带<b>转换插头</b>。</li>
+                            <li><b>插头类型</b>：<b>A 型双平脚插头</b>，手机/相机充电器双平头可直接插。</li>
                         </ul>
                     </div>
-
                     <div class="info-card-item">
                         <h4>⛽ 自驾加油与 ETC 指南</h4>
                         <ul>
                             <li><b>油品选择</b>：租车请认准红枪 <b>Regular (レギュラー) 无铅汽油</b>。</li>
-                            <li><b>还车规则</b>：10/24 18:00 前必须在美荣桥/那霸市区加油站将油箱<b>加满 (Full Tank)</b>，并<b>务必保留加油小票发票</b>。</li>
-                            <li><b>ETC 闸道</b>：行经冲绳自动车道（高速公路），上高速走 <b>ETC 专用通道</b>（限速 20km/h 识别）。</li>
+                            <li><b>还车规则</b>：10/24 18:00 前必须在美荣桥附近加油站<b>加满 (Full Tank)</b> 并保留发票。</li>
                         </ul>
                     </div>
-
-                    <div class="info-card-item">
-                        <h4>🚧 收费公路与道路封路查询</h4>
-                        <ul>
-                            <li><b>冲绳自动车道</b>：西原 JCT 至 许田 IC 收费约 ¥1,000 日元。</li>
-                            <li><b>实时路况/封路查询</b>：可访问日本道路交通情报中心 <a href="https://www.jartic.or.jp/" target="_blank" style="color:#2563eb;">JARTIC 官网 🌐</a> 查询是否有公路施工或临时封路。</li>
-                        </ul>
-                    </div>
-
                     <div class="info-card-item">
                         <h4>🏥 紧急求助与当地医院</h4>
                         <ul>
                             <li><b>紧急报救</b>：警察局 <b>110</b> ｜ 火灾/救护车 <b>119</b>。</li>
-                            <li><b>中部医院</b>：冲绳县立中部医院 <a href="https://maps.google.com/?q=Okinawa+Prefectural+Chubu+Hospital" target="_blank" class="map-link">📍 Maps</a> (电话: +81 98-973-4111)</li>
-                            <li><b>那霸医院</b>：那霸市立医院 <a href="https://maps.google.com/?q=Naha+Municipal+Hospital" target="_blank" class="map-link">📍 Maps</a> (电话: +81 98-884-5111)</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card-item">
-                        <h4>🚗 冲绳自驾安全与交通法则</h4>
-                        <ul>
-                            <li><b>靠左行驶</b>：右舵左行，转弯谨记“小转转左，大转转右”。</li>
-                            <li><b>行人绝对优先</b>：无路灯斑马线遇到行人必须停下让行。</li>
-                            <li><b>限速提示</b>：一般国道限速 40-50 km/h，高速公路限速 80 km/h。</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card-item">
-                        <h4>♨️ 温泉与 Spa 入浴礼仪</h4>
-                        <ul>
-                            <li><b>先洗后泡</b>：进入温泉池前必须先在冲洗区彻底洗净身体。</li>
-                            <li><b>毛巾不可入水</b>：小毛巾可叠放在头上，切勿浸入泡汤池中。</li>
-                            <li><b>纹身提示</b>：若有纹身需提前向酒店或 Spa 确认是否需使用贴布遮盖。</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card-item">
-                        <h4>🛍️ 消费税、退税与机场接驳</h4>
-                        <ul>
-                            <li><b>日本消费税</b>：标准税率 <b>10%</b>（外带食品为 8%）。</li>
-                            <li><b>免税条件 (Tax-Free)</b>：在 PARCO CITY 或唐吉诃德同一店内消费满 <b>5,000 日元（不含税）</b> 即可凭护照退税。</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card-item">
-                        <h4>🎁 冲绳必买特色伴手礼</h4>
-                        <ul>
-                            <li><b>御菓子御殿</b>：红芋塔 (紫薯塔)、黑糖块。</li>
-                            <li><b>边银食堂</b>：石垣岛辣油 (拌面拌饭绝配)。</li>
-                            <li><b>南风堂/福砂屋</b>：雪盐金楚糕 (Chinsuko)、冲绳限定米果。</li>
+                            <li><b>那霸医院</b>：那霸市立医院 (电话: +81 98-884-5111)</li>
                         </ul>
                     </div>
                 </div>
@@ -1460,8 +1483,6 @@
                 <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">
                     本专栏汇总了通过 Facebook/Instagram/Tabelog 收集、口碑极高但时间有限未排入主行程的宝藏地点。未来行程若有临时空档，可随时挑选前往！
                 </p>
-
-                <h4 style="margin: 15px 0 10px; font-size:14px; color:#c026d3;">🍱 备选精选美食名店</h4>
                 <div class="food-item-card">
                     <div class="food-item-header">
                         <div class="food-title">烧肉 大黑苑 (Daikokuen - 久茂地/国际通)</div>
@@ -1470,130 +1491,17 @@
                     <div style="font-size:12.5px; color:#475569;">
                         在地极受追捧的怀旧平价老字号烧肉店，超厚切牛舌与横隔膜性价比拔群。
                         <a href="https://maps.app.goo.gl/1cCW2Apk1oHexXP27" target="_blank" class="map-link">📍 Google</a>
-                        <a href="https://waze.com/ul?q=Daikokuen+Naha&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
                     </div>
                 </div>
-
-                <div class="food-item-card">
-                    <div class="food-item-header">
-                        <div class="food-title">Captain Kangaroo (名护巨无霸汉堡)</div>
-                        <div class="food-cost">名护 ｜ 冲绳第一人气汉堡店</div>
-                    </div>
-                    <div style="font-size:12.5px; color:#475569;">
-                        名护海边排队王，层层堆叠的特制巨无霸牛肉汉堡，肉汁狂喷。
-                        <a href="https://maps.google.com/?q=Captain+Kangaroo+Nago" target="_blank" class="map-link">📍 Google</a>
-                        <a href="https://waze.com/ul?q=Captain+Kangaroo+Nago&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                    </div>
-                </div>
-
-                <div class="food-item-card">
-                    <div class="food-item-header">
-                        <div class="food-title">Flipper 牛排馆 (Restaurant Flipper)</div>
-                        <div class="food-cost">名护 ｜ 1971年创店老字号牛排</div>
-                    </div>
-                    <div style="font-size:12.5px; color:#475569;">
-                        名护海岸边充满美式复古风情的铁板牛排馆，特制蒜香牛排与象排极为经典。
-                        <a href="https://maps.google.com/?q=Restaurant+Flipper+Nago" target="_blank" class="map-link">📍 Google</a>
-                        <a href="https://waze.com/ul?q=Restaurant+Flipper+Nago&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                    </div>
-                </div>
-
-                <div class="food-item-card">
-                    <div class="food-item-header">
-                        <div class="food-title">烧肉王 (Yakiniku King 北谷店/那霸店)</div>
-                        <div class="food-cost">连锁 ｜ 极高 CP 值日式烧肉吃到饱</div>
-                    </div>
-                    <div style="font-size:12.5px; color:#475569;">
-                        全日本超高人气日式烧肉吃到饱，名物四大块厚切牛肉与名物酱汁绝配。
-                        <a href="https://maps.google.com/?q=Yakiniku+King+Chatan" target="_blank" class="map-link">📍 Google</a>
-                        <a href="https://waze.com/ul?q=Yakiniku+King+Chatan&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                    </div>
-                </div>
-
-                <div class="food-item-card">
-                    <div class="food-item-header">
-                        <div class="food-title">百年古家 大家 (Ufuya)</div>
-                        <div class="food-cost">名护 ｜ 百年老宅阿古猪涮涮锅</div>
-                    </div>
-                    <div style="font-size:12.5px; color:#475569;">
-                        百年日式古宅与瀑布庭院，主打极品阿古猪涮涮锅。
-                        <a href="https://maps.google.com/?q=Ufuya+Okinawa" target="_blank" class="map-link">📍 Google</a>
-                        <a href="https://waze.com/ul?q=Ufuya+Okinawa&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                    </div>
-                </div>
-
-                <div class="food-item-card">
-                    <div class="food-item-header">
-                        <div class="food-title">肉割烹にく久 那霸久茂地店 (Meat Kappo Nikukyu)</div>
-                        <div class="food-cost">那霸 ｜ 顶级和牛肉割烹料理</div>
-                    </div>
-                    <div style="font-size:12.5px; color:#475569;">
-                        主打极致品质的和牛割烹刺身与炭火烧肉，气氛极其高雅。
-                        <a href="https://maps.google.com/?q=Meat+Kappo+Nikukyu+Naha" target="_blank" class="map-link">📍 Google</a>
-                        <a href="https://waze.com/ul?q=Meat+Kappo+Nikukyu+Naha&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                    </div>
-                </div>
-
-                <div class="food-item-card">
-                    <div class="food-item-header">
-                        <div class="food-title">大东そば (大东冲绳面 & 大东寿司)</div>
-                        <div class="food-cost">那霸 ｜ 饭店对面巷弄地道老店</div>
-                    </div>
-                    <div style="font-size:12.5px; color:#475569;">
-                        汤头清爽甜美、面条 Q 弹带劲，搭配特制大东腌酱鱼肉寿司，极具特色！
-                        <a href="https://maps.app.goo.gl/HaCfqMr8VS3fPpoXA" target="_blank" class="map-link">📍 Google</a>
-                        <a href="https://waze.com/ul?q=Daito+Soba+Naha&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                    </div>
-                </div>
-
-                <h4 style="margin: 20px 0 10px; font-size:14px; color:#c026d3;">🏖️ 备选精选体验与景点</h4>
-                <table class="kuse-table">
-                    <thead><tr><th>景点/设施</th><th>亮点特色</th><th>导航链接</th></tr></thead>
-                    <tbody>
-                        <tr>
-                            <td><b>DMM Kariyushi 水族馆</b></td>
-                            <td>结合光影与近距离水獭/企鹅喂食 (iias 丰崎内)</td>
-                            <td>
-                                <a href="https://maps.google.com/?q=DMM+Kariyushi+Aquarium" target="_blank" class="map-link">📍 Google</a>
-                                <a href="https://waze.com/ul?q=DMM+Kariyushi+Aquarium&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>古宇利海洋塔 (Ocean Tower)</b></td>
-                            <td>无障碍自动电动车登塔俯瞰 360° 古宇利蓝海景</td>
-                            <td>
-                                <a href="https://maps.google.com/?q=Kouri+Ocean+Tower" target="_blank" class="map-link">📍 Google</a>
-                                <a href="https://waze.com/ul?q=Kouri+Ocean+Tower&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>JUNGLIA OKINAWA</b></td>
-                            <td>北部 2025/2026 最新开幕的大自然丛林主题乐园</td>
-                            <td>
-                                <a href="https://maps.google.com/?q=JUNGLIA+Okinawa" target="_blank" class="map-link">📍 Google</a>
-                                <a href="https://waze.com/ul?q=JUNGLIA+Okinawa&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Panza Okinawa Zipline</b></td>
-                            <td>圣玛丽娜海滩超刺激海上飞索体验 (¥2,750日元)</td>
-                            <td>
-                                <a href="https://carolblog.tw/panza-okinawa-zipline/" target="_blank" class="map-link">🌐 官网攻略</a>
-                                <a href="https://waze.com/ul?q=Panza+Okinawa&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
 
     </div>
 
-    <!-- 全新计算器双向绑定、汇率调节、千位Comma与两位Cents及地图脚本 -->
+    <!-- 核心 JS 脚本 (含地图多选 Checkbox 控制、尖嘴箭头和飞机航线) -->
     <script>
-        // 核心全局变量
-        let currentRate = 19.50; // 默认汇率 1 HKD = 19.50 JPY
-        let activeCurrency = 'HKD'; // 默认优先币种
+        let currentRate = 19.50;
+        let activeCurrency = 'HKD';
 
         function switchTab(tabId) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1607,7 +1515,7 @@
             }
         }
 
-        // 格式化辅助函数
+        // 计算器辅助函数
         function formatHKD(num) {
             return 'HK$ ' + num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
@@ -1618,11 +1526,9 @@
 
         function parseRawNumber(str) {
             if (!str) return 0;
-            const cleaned = str.toString().replace(/[^0-9.-]/g, '');
-            return parseFloat(cleaned) || 0;
+            return parseFloat(str.toString().replace(/[^0-9.-]/g, '')) || 0;
         }
 
-        // 顶端币种切换 Button
         function toggleCurrency(curr) {
             activeCurrency = curr;
             document.getElementById('btn-hkd').classList.toggle('active', curr === 'HKD');
@@ -1630,22 +1536,17 @@
             recalculateTotals();
         }
 
-        // 汇率手动调节与重置
         function updateExchangeRateFromInput() {
             const inputVal = parseFloat(document.getElementById('custom-rate-input').value);
             if (inputVal && inputVal > 0) {
                 currentRate = inputVal;
                 document.getElementById('rate-display-text').innerText = `1 HKD = ${currentRate.toFixed(2)} JPY`;
-                
-                // 重新将所有 HKD 实时换算为 JPY
                 document.querySelectorAll('#excel-tbody tr').forEach(row => {
                     const hkdInput = row.querySelector('.hkd-val');
                     const jpyInput = row.querySelector('.jpy-val');
                     if (hkdInput && jpyInput && hkdInput.value) {
                         const hkd = parseRawNumber(hkdInput.value);
-                        if (hkd > 0) {
-                            jpyInput.value = Math.round(hkd * currentRate).toLocaleString('en-US');
-                        }
+                        if (hkd > 0) jpyInput.value = Math.round(hkd * currentRate).toLocaleString('en-US');
                     }
                 });
                 recalculateTotals();
@@ -1659,18 +1560,13 @@
             updateExchangeRateFromInput();
         }
 
-        // 表格明细双向绑定事件
         function onJpyInputChanged(inputElem) {
             const row = inputElem.closest('tr');
             const hkdInput = row.querySelector('.hkd-val');
             const jpyVal = parseRawNumber(inputElem.value);
-            
             if (jpyVal > 0) {
                 inputElem.value = Math.round(jpyVal).toLocaleString('en-US');
-                const hkdVal = jpyVal / currentRate;
-                if (hkdInput) {
-                    hkdInput.value = hkdVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                }
+                if (hkdInput) hkdInput.value = (jpyVal / currentRate).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             } else {
                 inputElem.value = '';
                 if (hkdInput) hkdInput.value = '';
@@ -1682,13 +1578,9 @@
             const row = inputElem.closest('tr');
             const jpyInput = row.querySelector('.jpy-val');
             const hkdVal = parseRawNumber(inputElem.value);
-
             if (hkdVal > 0) {
                 inputElem.value = hkdVal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                const jpyVal = hkdVal * currentRate;
-                if (jpyInput) {
-                    jpyInput.value = Math.round(jpyVal).toLocaleString('en-US');
-                }
+                if (jpyInput) jpyInput.value = Math.round(hkdVal * currentRate).toLocaleString('en-US');
             } else {
                 inputElem.value = '';
                 if (jpyInput) jpyInput.value = '';
@@ -1696,23 +1588,15 @@
             recalculateTotals();
         }
 
-        // 汇总与清算计算器核心逻辑
         function recalculateTotals() {
             let totalHKD = 0;
-            const hkdInputs = document.querySelectorAll('.hkd-val');
-
-            hkdInputs.forEach(input => {
-                const val = parseRawNumber(input.value);
-                totalHKD += val;
-            });
-
+            document.querySelectorAll('.hkd-val').forEach(input => totalHKD += parseRawNumber(input.value));
             const totalJPY = totalHKD * currentRate;
             const perPersonHKD = totalHKD / 4;
             const perPersonJPY = totalJPY / 4;
             const garyAnnaHKD = perPersonHKD * 2;
             const garyAnnaJPY = perPersonJPY * 2;
 
-            // 1. 顶端 3 大卡片展示（根据 activeCurrency 动态切换）
             if (activeCurrency === 'HKD') {
                 document.getElementById('calc-total-display').innerText = formatHKD(totalHKD);
                 document.getElementById('calc-per-person-display').innerText = formatHKD(perPersonHKD);
@@ -1723,16 +1607,11 @@
                 document.getElementById('calc-gary-anna-display').innerText = formatJPY(garyAnnaJPY);
             }
 
-            // 2. 清算卡片顶部费用总额与人均总额（兼顾双币展示）
             document.getElementById('settle-total-amount').innerText = `${formatHKD(totalHKD)} / ${formatJPY(totalJPY)}`;
             document.getElementById('settle-per-person-amount').innerText = `${formatHKD(perPersonHKD)} / ${formatJPY(perPersonJPY)}`;
 
-            // 3. 清算卡片细节更新
-            const hkpFlight = 4756.00; // 已全额结清机票
-            const nonFlightTotalHKD = totalHKD - hkpFlight;
+            const nonFlightTotalHKD = totalHKD - 4756.00;
             const nonFlightPerPersonHKD = nonFlightTotalHKD / 4;
-
-            // 垫付已知款项：Gary & Anna 垫付三段住宿 HK$ 9,936.70
             const garyPaidHKD = 2482.84 + 2834.34 + 4618.34;
             const garyReceiveHKD = garyPaidHKD - (nonFlightPerPersonHKD * 2);
 
@@ -1765,7 +1644,6 @@
             }
         }
 
-        // 动态添加新行
         function addNewRow() {
             const tbody = document.getElementById('excel-tbody');
             const newRow = document.createElement('tr');
@@ -1774,12 +1652,8 @@
                 <td><input type="text" class="excel-input" placeholder="输入追加费用名称"></td>
                 <td>
                     <select class="excel-select">
-                        <option>住宿</option>
-                        <option>机票/车票</option>
-                        <option>交通/油费</option>
-                        <option>餐饮</option>
-                        <option>门票</option>
-                        <option>杂项</option>
+                        <option>住宿</option><option>机票/车票</option><option>交通/油费</option>
+                        <option>餐饮</option><option>门票</option><option>杂项</option>
                     </select>
                 </td>
                 <td><input type="text" class="excel-input jpy-val" placeholder="¥ JPY" onchange="onJpyInputChanged(this)"></td>
@@ -1796,123 +1670,126 @@
             tbody.appendChild(newRow);
         }
 
-        // 地图脚本
-        let mapInitialized = false;
-        function initMap() {
-            if (mapInitialized) return;
-            mapInitialized = true;
+        // 🗺️ Leaflet 地图核心：动态勾选、沿途尖嘴方向箭头与机票虚线航线
+        let map;
+        let dayLayerGroups = {};
+        let flightLayerGroup;
 
-            const map = L.map('map').setView([26.4000, 127.8000], 10);
+        function initMap() {
+            if (map) return;
+
+            map = L.map('map').setView([26.4000, 127.8000], 10);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; OpenStreetMap contributors'
             }).addTo(map);
 
-            const points = [
-                { name: "那霸机场", lat: 26.2064, lng: 127.6465, tip: "D1 抵冲 & D8 返程", gmap: "Naha+Airport" },
-                { name: "那霸 La'gent 酒店", lat: 26.2185, lng: 127.6820, tip: "D1-D2 & D5-D7 住宿", gmap: "La'gent+Hotel+Okinawa+Naha" },
-                { name: "Times 租车美荣桥站前店", lat: 26.2195, lng: 127.6855, tip: "D2 取车 & D7 18:00 还车点", gmap: "Times+Car+Rental+Miebashi+Station" },
-                { name: "波上宫", lat: 26.2201, lng: 127.6711, tip: "D2 悬崖神社", gmap: "Naminoue+Shrine" },
-                { name: "Sam's By-the-sea (小禄店)", lat: 26.1925, lng: 127.6530, tip: "D2 美式海军风午餐", gmap: "Sams+By+the+Sea+Oroku" },
-                { name: "濑长岛 UMIKAJI TERRACE", lat: 26.1752, lng: 127.6460, tip: "D2 看落日与飞机/幸福松饼", gmap: "Umikaji+Terrace" },
-                { name: "炭火烧肉 ぶち 久茂地店", lat: 26.2155, lng: 127.6835, tip: "D2 炭火烧肉晚餐", gmap: "Buchi+Kumojiten+Naha" },
-                { name: "玉泉洞 (冲绳世界)", lat: 26.1398, lng: 127.7504, tip: "D3 地底钟乳石洞", gmap: "Okinawa+World" },
-                { name: "万座毛", lat: 26.5048, lng: 127.8502, tip: "D3 象鼻悬崖", gmap: "Cape+Manzamo" },
-                { name: "残波岬 & 读谷灯塔", lat: 26.4410, lng: 127.7145, tip: "D3 断崖落日夕阳与残波大狮子", gmap: "Cape+Zanpa" },
-                { name: "琉球の牛 (恩纳本馆)", lat: 26.4485, lng: 127.7980, tip: "D3 顶级和牛烧肉晚餐", gmap: "Ryukyu+no+Ushi+Onna" },
-                { name: "恩纳嘉利吉度假酒店", lat: 26.5265, lng: 127.9250, tip: "D3-D4 住宿", gmap: "Okinawa+Kariyushi+Beach+Resort+Ocean+Spa" },
-                { name: "21世纪之森公园 & 星巴克", lat: 26.5962, lng: 127.9730, tip: "D4 翻新海景星巴克", gmap: "21st+Century+Forest+Park+Nago" },
-                { name: "古宇利岛 & 心形岩", lat: 26.7022, lng: 127.9702, tip: "D4 跨海大桥与虾饭", gmap: "Kouri+Island" },
-                { name: "名护凤梨园", lat: 26.6217, lng: 127.9653, tip: "D4 乘无人凤梨车", gmap: "Nago+Pineapple+Park" },
-                { name: "烧肉本部牧场 (名护店)", lat: 26.5910, lng: 127.9770, tip: "D4 顶级和牛晚餐", gmap: "Yakiniku+Motobu+Bokujo+Nago" },
-                { name: "备濑福木林道", lat: 26.7035, lng: 127.8785, tip: "D5 骑单车/水牛车", gmap: "Bise+Fukugi+Tree+Path" },
-                { name: "SAN-A PARCO CITY", lat: 26.2622, lng: 127.6975, tip: "D5 3.5 小时海景采买/龙虾汤午餐", gmap: "PARCO+CITY+Okinawa" },
-                { name: "美国村 Sunset Beach", lat: 26.3163, lng: 127.7576, tip: "D5 夕阳与重击汉堡", gmap: "American+Village+Okinawa" },
-                { name: "Ocean Boo 阿古猪 (美国村店)", lat: 26.3155, lng: 127.7570, tip: "D5 极品阿古猪涮涮锅晚餐", gmap: "Ocean+Boo+American+Village" },
-                { name: "Round 1 宜野湾店", lat: 26.2785, lng: 127.7380, tip: "D6 室内保龄球与 Sam's 铁板烧", gmap: "Round+1+Ginowan" },
-                { name: "Outlet Mall Ashibinaa", lat: 26.1583, lng: 127.6575, tip: "D6 沉浸式 Outlet 血拼", gmap: "Outlet+Mall+Ashibinaa" },
-                { name: "一兰拉面 (那霸国际通店)", lat: 26.2140, lng: 127.6870, tip: "D6 豚骨拉面晚餐", gmap: "Ichiran+Ramen+Naha" },
-                { name: "糸满鱼市场 (道の駅)", lat: 26.1450, lng: 127.6650, tip: "D7 海鲜观光与 Brunch", gmap: "Itoman+Fish+Market" },
-                { name: "AEON MALL Okinawa Rycom", lat: 26.3140, lng: 127.7950, tip: "D7 巨型 Mall 补货/抹茶芭菲", gmap: "AEON+MALL+Okinawa+Rycom" },
-                { name: "第一牧志公设市场", lat: 26.2145, lng: 127.6885, tip: "D7 还车后传统市场漫步", gmap: "Makishi+Public+Market" },
-                { name: "Oniku no Isshin (冲绳一心寿喜烧)", lat: 26.2160, lng: 127.6825, tip: "D7 关东风寿喜烧晚餐", gmap: "Oniku+no+Isshin+Naha" }
+            flightLayerGroup = L.layerGroup().addTo(map);
+
+            // 1. ✈️ 往返机票航线图段 (HKG ↔ OKA)
+            const hkgCoord = [22.3080, 113.9185];
+            const okaCoord = [26.2064, 127.6465];
+
+            // 香港与那霸 Marker
+            L.marker(hkgCoord).bindPopup("<b>🛫 香港国际机场 (HKG)</b><br>去程: 15:50 起飞 ｜ 回程: 13:55 抵达").addTo(flightLayerGroup);
+            L.marker(okaCoord).bindPopup("<b>🛬 冲绳那霸机场 (OKA)</b><br>去程: 19:30 抵达 ｜ 回程: 11:55 起飞").addTo(flightLayerGroup);
+
+            // 去程弧线 (UO824)
+            const outboundPoly = L.polyline([hkgCoord, [24.0, 120.0], okaCoord], {
+                color: '#0284c7', weight: 4, opacity: 0.8, className: 'flight-path-line'
+            }).bindPopup("<b>去程 UO824 (HKG ➔ OKA)</b><br>10/18 (日) 15:50 - 19:30").addTo(flightLayerGroup);
+
+            // 回程弧线 (UO821)
+            const inboundPoly = L.polyline([okaCoord, [24.5, 121.0], hkgCoord], {
+                color: '#d946ef', weight: 4, opacity: 0.8, className: 'flight-path-line'
+            }).bindPopup("<b>回程 UO821 (OKA ➔ HKG)</b><br>10/25 (日) 11:55 - 13:55").addTo(flightLayerGroup);
+
+            // 2. 🚗 每日公路行车路线配置 (包含方向箭头 Decorator 模拟)
+            const routesConfig = [
+                { day: "D1", color: "#ef4444", labelCoord: [26.2120, 127.6650], waypoints: [[127.6465, 26.2064], [127.6820, 26.2185]] },
+                { day: "D2", color: "#f97316", labelCoord: [26.1970, 127.6580], waypoints: [[127.6820, 26.2185], [127.6855, 26.2195], [127.6711, 26.2201], [127.6530, 26.1925], [127.6460, 26.1752], [127.6835, 26.2155]] },
+                { day: "D3", color: "#eab308", labelCoord: [26.3200, 127.8000], waypoints: [[127.6820, 26.2185], [127.7504, 26.1398], [127.8502, 26.5048], [127.7145, 26.4410], [127.7980, 26.4485], [127.9250, 26.5265]] },
+                { day: "D4", color: "#22c55e", labelCoord: [26.6600, 127.9500], waypoints: [[127.9250, 26.5265], [127.9730, 26.5962], [127.9702, 26.7022], [127.9653, 26.6217], [127.9770, 26.5910], [127.9250, 26.5265]] },
+                { day: "D5", color: "#3b82f6", labelCoord: [26.5000, 127.8100], waypoints: [[127.9250, 26.5265], [127.8785, 26.7035], [127.6975, 26.2622], [127.7576, 26.3163], [127.7570, 26.3155], [127.6820, 26.2185]] },
+                { day: "D6", color: "#a855f7", labelCoord: [26.2200, 127.7100], waypoints: [[127.6820, 26.2185], [127.7380, 26.2785], [127.6575, 26.1583], [127.6870, 26.2140]] },
+                { day: "D7", color: "#ec4899", labelCoord: [26.2250, 127.6800], waypoints: [[127.6820, 26.2185], [127.6650, 26.1450], [127.7950, 26.3140], [127.6855, 26.2195]] },
+                { day: "D8", color: "#64748b", labelCoord: [26.2120, 127.6600], waypoints: [[127.6820, 26.2185], [127.6465, 26.2064]] }
             ];
 
-            points.forEach(pt => {
-                L.marker([pt.lat, pt.lng]).addTo(map)
-                    .bindPopup(`<b>${pt.name}</b><br>${pt.tip}<br>
-                        <a href="https://maps.google.com/?q=${pt.gmap}" target="_blank" style="color:#2563eb; font-weight:bold;">📍 Google</a> ｜ 
-                        <a href="https://waze.com/ul?ll=${pt.lat},${pt.lng}&navigate=yes" target="_blank" style="color:#0284c7; font-weight:bold;">📍 Waze</a>`);
-            });
+            routesConfig.forEach(r => {
+                const group = L.layerGroup().addTo(map);
+                dayLayerGroups[r.day] = group;
 
-            const routes = [
-                {
-                    day: "D1 那霸入住", color: "#ef4444", labelCoord: [26.2120, 127.6650],
-                    waypoints: [[127.6465, 26.2064], [127.6820, 26.2185]]
-                },
-                {
-                    day: "D2 取车/小禄/濑长岛", color: "#f97316", labelCoord: [26.1970, 127.6580],
-                    waypoints: [[127.6820, 26.2185], [127.6855, 26.2195], [127.6711, 26.2201], [127.6530, 26.1925], [127.6460, 26.1752], [127.6835, 26.2155]]
-                },
-                {
-                    day: "D3 南下北上/残波岬/琉球の牛", color: "#eab308", labelCoord: [26.3200, 127.8000],
-                    waypoints: [[127.6820, 26.2185], [127.7504, 26.1398], [127.8502, 26.5048], [127.7145, 26.4410], [127.7980, 26.4485], [127.9250, 26.5265]]
-                },
-                {
-                    day: "D4 北部巡游/名护本部烧肉", color: "#22c55e", labelCoord: [26.6600, 127.9500],
-                    waypoints: [[127.9250, 26.5265], [127.9730, 26.5962], [127.9702, 26.7022], [127.9653, 26.6217], [127.9770, 26.5910], [127.9250, 26.5265]]
-                },
-                {
-                    day: "D5 PARCO/美国村/OceanBoo", color: "#3b82f6", labelCoord: [26.5000, 127.8100],
-                    waypoints: [[127.9250, 26.5265], [127.8785, 26.7035], [127.6975, 26.2622], [127.7576, 26.3163], [127.7570, 26.3155], [127.6820, 26.2185]]
-                },
-                {
-                    day: "D6 Outlet/宜野湾", color: "#a855f7", labelCoord: [26.2200, 127.7100],
-                    waypoints: [[127.6820, 26.2185], [127.7380, 26.2785], [127.6575, 26.1583], [127.6870, 26.2140]]
-                },
-                {
-                    day: "D7 糸满/Rycom/还车", color: "#ec4899", labelCoord: [26.2250, 127.6800],
-                    waypoints: [[127.6820, 26.2185], [127.6650, 26.1450], [127.7950, 26.3140], [127.6855, 26.2195]]
-                },
-                {
-                    day: "D8 顺利返港", color: "#64748b", labelCoord: [26.2120, 127.6600],
-                    waypoints: [[127.6820, 26.2185], [127.6465, 26.2064]]
-                }
-            ];
-
-            routes.forEach(r => {
                 const waypointsString = r.waypoints.map(wp => wp.join(',')).join(';');
                 const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${waypointsString}?overview=full&geometries=geojson`;
 
                 fetch(osrmUrl)
-                    .then(response => response.json())
+                    .then(res => res.json())
                     .then(data => {
                         if (data.routes && data.routes.length > 0) {
-                            const routeData = data.routes[0];
-                            const coordinates = routeData.geometry.coordinates.map(coord => [coord[1], coord[0]]);
-                            const durationMinutes = Math.round(routeData.duration / 60);
-                            const distanceKm = (routeData.distance / 1000).toFixed(1);
+                            const coords = data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]);
+                            const durationMinutes = Math.round(data.routes[0].duration / 60);
+                            const distanceKm = (data.routes[0].distance / 1000).toFixed(1);
 
-                            L.polyline(coordinates, {
-                                color: r.color,
-                                weight: 5,
-                                opacity: 0.8
-                            }).addTo(map).bindPopup(`<b>${r.day} 路线</b><br>🚗 预估实际驾车时长：<b>${durationMinutes} 分钟</b><br>📏 实际公路里程：<b>${distanceKm} km</b>`);
+                            // 绘制折线
+                            const polyline = L.polyline(coords, {
+                                color: r.color, weight: 5, opacity: 0.85
+                            }).bindPopup(`<b>${r.day} 行程路线</b><br>🚗 预估实际驾车时长：<b>${durationMinutes} 分钟</b><br>📏 实际公路里程：<b>${distanceKm} km</b>`).addTo(group);
 
+                            // 沿途添加方向尖嘴箭头标志 (SVG Arrow Markers)
+                            const step = Math.floor(coords.length / 4);
+                            for (let i = step; i < coords.length - 1; i += step) {
+                                const p1 = coords[i];
+                                const p2 = coords[i + 1];
+                                const angle = Math.atan2(p2[0] - p1[0], p2[1] - p1[1]) * (180 / Math.PI);
+                                
+                                const arrowIcon = L.divIcon({
+                                    className: 'direction-arrow',
+                                    html: `<div style="transform: rotate(${angle}deg); color:${r.color}; font-size:16px; font-weight:bold;">➤</div>`,
+                                    iconSize: [16, 16],
+                                    iconAnchor: [8, 8]
+                                });
+                                L.marker(p1, { icon: arrowIcon }).addTo(group);
+                            }
+
+                            // Day Label 标志
                             const dayLabelIcon = L.divIcon({
                                 className: 'custom-day-label',
-                                html: `<div class="day-label-marker" style="border-color:${r.color}; color:${r.color};">${r.day.split(' ')[0]}</div>`,
-                                iconSize: [40, 20],
-                                iconAnchor: [20, 10]
+                                html: `<div class="day-label-marker" style="border-color:${r.color}; color:${r.color};">${r.day}</div>`,
+                                iconSize: [36, 18],
+                                iconAnchor: [18, 9]
                             });
-                            L.marker(r.labelCoord, { icon: dayLabelIcon }).addTo(map);
+                            L.marker(r.labelCoord, { icon: dayLabelIcon }).addTo(group);
                         }
-                    })
-                    .catch(err => console.error("OSRM 路由加载失败，退回基础标注:", err));
+                    });
             });
         }
 
-        // 初始化页面时进行第一次汇总计算
+        // 复选框筛选控制脚本
+        function updateMapVisibility() {
+            if (!map) return;
+
+            // 机票航线
+            const chkFlight = document.getElementById('chk-flight').checked;
+            if (chkFlight) map.addLayer(flightLayerGroup);
+            else map.removeLayer(flightLayerGroup);
+
+            // 每日公路行程
+            document.querySelectorAll('.day-chk').forEach(chk => {
+                const dayKey = chk.getAttribute('data-day');
+                if (dayLayerGroups[dayKey]) {
+                    if (chk.checked) map.addLayer(dayLayerGroups[dayKey]);
+                    else map.removeLayer(dayLayerGroups[dayKey]);
+                }
+            });
+        }
+
+        function toggleAllMapDays(status) {
+            document.querySelectorAll('.day-chk').forEach(chk => chk.checked = status);
+            document.getElementById('chk-flight').checked = status;
+            updateMapVisibility();
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             recalculateTotals();
         });
