@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌺 冲绳自驾自由行 2026 | 8天7夜完整行程规划</title>
-    <!-- Trip Guide Version: V8.3 | Authoritative actual-cost migration across local/GitHub origins -->
+    <!-- Trip Guide Version: V10.7 | Final candidate + resilient Japanese TTS; Expense schema remains V8.3 -->
     
     <!-- Leaflet.js 动态地图 CSS & JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -566,6 +566,397 @@
             }
         }
 
+
+        /* V9 storytelling layer — Expense/Budget schema remains V8.3 */
+        .v9-hero{position:relative;overflow:hidden;border-radius:18px;padding:28px;margin-bottom:18px;color:#fff;background:linear-gradient(135deg,#075985,#0891b2 38%,#38bdf8 72%,#f59e0b 145%);box-shadow:0 18px 42px rgba(15,23,42,.18)}
+        .v9-hero:after{content:"";position:absolute;right:-50px;bottom:-70px;width:280px;height:180px;border-radius:50%;background:rgba(255,255,255,.14)}
+        .v9-hero-inner{position:relative;z-index:1;max-width:760px}
+        .v9-kicker{display:inline-block;border:1px solid rgba(255,255,255,.5);background:rgba(15,23,42,.18);padding:5px 10px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.08em}
+        .v9-hero h2{font-size:clamp(26px,4vw,43px);line-height:1.08;margin:12px 0}
+        .v9-hero p{font-size:13.5px;line-height:1.9;color:rgba(255,255,255,.96)}
+        .v9-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+        .v9-btn{border:1px solid rgba(255,255,255,.45);background:#fff;color:#075985;border-radius:8px;padding:8px 11px;font-size:11px;font-weight:900;cursor:pointer;text-decoration:none}
+        .v9-btn.dark{background:rgba(15,23,42,.72);color:#fff}
+        .v9-section-title{margin:22px 0 10px;font-size:15px;color:#0f172a}
+        .v9-story-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+        .v9-story{border:1px solid #e2e8f0;border-radius:13px;overflow:hidden;background:#fff;box-shadow:0 5px 18px rgba(15,23,42,.06)}
+        .v9-art{height:112px;display:flex;align-items:center;justify-content:center;font-size:48px;color:white;position:relative}
+        .v9-art span{filter:drop-shadow(0 4px 8px rgba(0,0,0,.18))}
+        .v9-story-body{padding:11px 12px 13px}
+        .v9-story-body b{font-size:12.5px;color:#0f172a}
+        .v9-story-body p{font-size:11.2px;color:#64748b;line-height:1.6;margin:4px 0 0}
+        .v9-moments,.v9-soundtrack,.v9-shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px}
+        .v9-moment{border-left:4px solid #06b6d4;background:#f0fdfa;padding:9px 10px;border-radius:8px;font-size:11px;line-height:1.55;color:#334155}
+        .v9-song{border:1px solid #dbeafe;background:linear-gradient(135deg,#eff6ff,#fff);border-radius:10px;padding:10px}
+        .v9-song b{font-size:11.5px;color:#1e3a8a}.v9-song small{display:block;font-size:10px;line-height:1.45;color:#64748b;margin:3px 0 7px}
+        .v9-mini{display:inline-block;border:1px solid #bfdbfe;background:#fff;color:#1d4ed8;border-radius:6px;padding:5px 7px;font-size:9.8px;font-weight:800;text-decoration:none;cursor:pointer}
+        .v9-shot{min-height:92px;border-radius:11px;color:#fff;padding:10px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:inset 0 -55px 60px rgba(15,23,42,.24)}
+        .v9-shot b{font-size:11px}.v9-shot small{font-size:9px;opacity:.92}
+        .day-opening-card{border:1px solid #dbeafe;background:linear-gradient(135deg,#eff6ff,#fff 58%,#fef3c7 150%);border-radius:11px;padding:11px 13px;margin:0 0 13px}
+        .day-opening-card h4{font-size:13px;margin:0 0 6px;color:#0f172a}
+        .day-opening-meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:4px 8px;font-size:10.3px;color:#475569}
+        .day-opening-quote{margin-top:7px;border-top:1px dashed #bfdbfe;padding-top:7px;color:#0c4a6e;font-size:10.8px;font-weight:700}
+        .orion-highlight{background:#fff7ed;border:1px solid #fed7aa;border-left:4px solid #f97316;padding:9px 11px;border-radius:8px;margin-top:7px;font-size:10.8px;line-height:1.6;color:#9a3412}
+        .media-backdrop{position:fixed;inset:0;z-index:8000;background:rgba(2,6,23,.84);display:none;align-items:center;justify-content:center;padding:15px}.media-backdrop.open{display:flex}
+        .media-box{width:min(900px,100%);background:#020617;border:1px solid #334155;border-radius:15px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+        .media-head{display:flex;justify-content:space-between;align-items:center;color:#fff;padding:9px 11px;font-size:11px;font-weight:800}.media-close{border:1px solid #475569;background:#0f172a;color:#fff;border-radius:6px;padding:5px 8px;cursor:pointer}
+        .youtube-wrap,.trailer-stage{aspect-ratio:16/9;background:#000}.youtube-wrap iframe{width:100%;height:100%;border:0}
+        .trailer-stage{position:relative;overflow:hidden}.trailer-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;color:#fff;padding:clamp(22px,5vw,58px);display:flex;flex-direction:column;justify-content:flex-end}.trailer-slide.active{opacity:1}
+        .trailer-slide h3{font-size:clamp(24px,5vw,45px);margin:0 0 7px}.trailer-slide p{font-size:clamp(10px,2vw,15px);line-height:1.6;max-width:620px}
+        .trailer-progress{position:absolute;bottom:0;left:0;height:4px;background:#38bdf8;width:0;z-index:5}
+
+
+        /* V10 CINEMATIC OKINAWA — real photos; Expense/Budget remains V8.3 */
+        .v10-hero{position:relative;height:clamp(390px,54vw,620px);border-radius:20px;overflow:hidden;margin-bottom:18px;background:#0f172a;box-shadow:0 22px 55px rgba(15,23,42,.22)}
+        .v10-hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.15s ease;background-size:cover;background-position:center;transform:scale(1.02)}
+        .v10-hero-slide.active{opacity:1;animation:v10KenBurns 9s ease-out both}@keyframes v10KenBurns{from{transform:scale(1.02)}to{transform:scale(1.08)}}
+        .v10-hero-overlay{position:absolute;inset:0;z-index:3;background:linear-gradient(90deg,rgba(2,6,23,.86) 0%,rgba(2,6,23,.54) 48%,rgba(2,6,23,.15) 100%),linear-gradient(0deg,rgba(2,6,23,.68),transparent 50%);color:white;padding:clamp(24px,5vw,56px);display:flex;align-items:flex-end}
+        .v10-hero-copy{max-width:760px}.v10-hero-kicker{display:inline-block;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(8px);font-size:10px;font-weight:900;letter-spacing:.09em}
+        .v10-hero h2{margin:12px 0 10px;font-size:clamp(28px,5vw,54px);line-height:1.05;letter-spacing:-.025em}.v10-hero p{margin:0;font-size:clamp(12px,1.8vw,15px);line-height:1.85;color:rgba(255,255,255,.95)}
+        .v10-hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.v10-btn{border:1px solid rgba(255,255,255,.45);border-radius:9px;padding:8px 11px;background:white;color:#075985;font-size:10.8px;font-weight:900;cursor:pointer;text-decoration:none}.v10-btn.dark{background:rgba(15,23,42,.72);color:white}
+        .v10-dots{position:absolute;right:18px;bottom:18px;z-index:5;display:flex;gap:6px}.v10-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.65);cursor:pointer}.v10-dot.active{background:white;transform:scale(1.15)}
+        .v10-section{margin-top:22px}.v10-section-title{margin:0 0 10px;font-size:16px;color:#0f172a}.v10-subtitle{font-size:11px;color:#64748b;margin:-4px 0 11px;line-height:1.6}
+        .v10-photo-story{display:grid;grid-template-columns:minmax(250px,.9fr) minmax(0,1.25fr);gap:14px;align-items:stretch;margin:12px 0;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 6px 20px rgba(15,23,42,.05)}
+        .v10-photo-story.reverse{grid-template-columns:minmax(0,1.25fr) minmax(250px,.9fr)}.v10-photo-story.reverse .v10-photo{order:2}
+        .v10-photo{min-height:240px;background-size:cover;background-position:center;position:relative}.v10-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,6,23,.28),transparent 45%)}.v10-photo-label{position:absolute;z-index:2;left:11px;bottom:10px;color:white;font-size:10px;font-weight:800;text-shadow:0 1px 5px rgba(0,0,0,.5)}
+        .v10-story-copy{padding:15px 16px}.v10-story-copy h4{margin:0 0 6px;font-size:14px;color:#0f172a}.v10-story-copy p,.v10-story-copy li{font-size:11.5px;line-height:1.7;color:#475569}.v10-story-copy ul{padding-left:18px;margin:7px 0}
+        .v10-history-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.v10-history-card{border:1px solid #e2e8f0;border-radius:13px;overflow:hidden;background:white}.v10-history-img{height:150px;background-size:cover;background-position:center}.v10-history-body{padding:11px 12px 13px}.v10-history-body h4{margin:0 0 5px;font-size:12.5px;color:#0f172a}.v10-history-body p{margin:0;font-size:10.9px;line-height:1.62;color:#64748b}
+        .v10-film-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.v10-film-card{position:relative;min-height:190px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;color:white;cursor:pointer;box-shadow:0 8px 24px rgba(15,23,42,.14)}.v10-film-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,6,23,.86),rgba(2,6,23,.12) 65%)}.v10-film-body{position:absolute;z-index:2;left:12px;right:12px;bottom:12px}.v10-film-body b{font-size:13px}.v10-film-body small{display:block;margin:3px 0 7px;font-size:10px;line-height:1.45;opacity:.94}.v10-play{display:inline-block;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.92);color:#0f172a;font-size:9.5px;font-weight:900}
+        .v10-place-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.v10-place-card{border:1px solid #e2e8f0;border-radius:13px;overflow:hidden;background:#fff;box-shadow:0 5px 16px rgba(15,23,42,.05)}.v10-place-img{height:145px;background-size:cover;background-position:center}.v10-place-body{padding:11px 12px 13px}.v10-place-body h4{margin:0 0 5px;font-size:12.4px;color:#0f172a}.v10-place-body p{margin:0;font-size:10.8px;line-height:1.6;color:#64748b}
+        .v10-food-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.v10-food-card{min-height:190px;border-radius:13px;overflow:hidden;position:relative;background-size:cover;background-position:center;color:white}.v10-food-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,6,23,.88),transparent 70%)}.v10-food-body{position:absolute;z-index:2;left:12px;right:12px;bottom:11px}.v10-food-body b{font-size:12.5px}.v10-food-body p{font-size:10.5px;line-height:1.5;margin:4px 0 0;color:rgba(255,255,255,.94)}
+        .v10-route-strip{display:flex;flex-wrap:wrap;gap:7px;align-items:center;background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:10px}.v10-route-node{padding:6px 8px;border-radius:8px;background:white;border:1px solid #cbd5e1;font-size:10.5px;font-weight:800;color:#334155}.v10-route-arrow{color:#94a3b8;font-weight:900}
+        .day-v10-photo{height:170px;margin:-1px -1px 10px;border-radius:10px 10px 8px 8px;background-size:cover;background-position:center;position:relative;overflow:hidden}.day-v10-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(2,6,23,.45),transparent 55%)}.day-v10-photo span{position:absolute;z-index:2;left:10px;bottom:8px;color:white;font-size:10px;font-weight:800;text-shadow:0 1px 5px rgba(0,0,0,.5)}
+        .v10-film-stage{aspect-ratio:16/9;position:relative;overflow:hidden;background:#020617}.v10-film-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;background-size:cover;background-position:center}.v10-film-slide.active{opacity:1;animation:v10FilmZoom 7s ease-out both}@keyframes v10FilmZoom{from{transform:scale(1.01)}to{transform:scale(1.075)}}.v10-film-caption{position:absolute;left:0;right:0;bottom:0;z-index:4;padding:34px 18px 14px;color:white;background:linear-gradient(0deg,rgba(2,6,23,.88),transparent)}.v10-film-caption b{font-size:clamp(15px,3vw,25px)}.v10-film-caption p{margin:4px 0 0;font-size:11px;line-height:1.55;color:rgba(255,255,255,.94)}
+        .v10-audio-dock{background:#0f172a;border-top:1px solid #334155;padding:8px 10px;color:#cbd5e1;font-size:10px}.v10-audio-dock iframe{width:100%;height:80px;border:0;margin-top:6px;border-radius:7px;overflow:hidden}.v10-film-progress{height:4px;background:#38bdf8;width:0}
+        .v10-credits{margin-top:20px;padding:10px 12px;border-radius:9px;background:#f8fafc;border:1px solid #e2e8f0;font-size:9.5px;line-height:1.55;color:#64748b}.v10-credits a{color:#2563eb}
+        @media(max-width:760px){.v10-photo-story,.v10-photo-story.reverse{grid-template-columns:1fr}.v10-photo-story.reverse .v10-photo{order:0}.v10-photo{min-height:200px}}
+
+
+        /* V10.2 Visual Index Edition */
+        .v10-hero-slide.v10-broken {
+            display:none !important;
+        }
+        .v10-hero-place {
+            position:absolute;
+            z-index:4;
+            top:18px;
+            right:18px;
+            max-width:min(430px,58vw);
+            padding:10px 14px;
+            border-radius:12px;
+            background:rgba(2,6,23,.70);
+            border:1px solid rgba(255,255,255,.32);
+            backdrop-filter:blur(8px);
+            color:#fff;
+            text-align:right;
+            box-shadow:0 8px 24px rgba(0,0,0,.18);
+        }
+        .v10-hero-place b {
+            display:block;
+            font-size:clamp(16px,2.4vw,26px);
+            line-height:1.12;
+        }
+        .v10-hero-place span {
+            display:block;
+            margin-top:3px;
+            font-size:10px;
+            opacity:.9;
+        }
+
+        .day-opening-card {
+            position:relative;
+            overflow:hidden;
+        }
+        .day-v10-photo {
+            height:210px !important;
+            margin:-1px -1px 12px !important;
+            border-radius:12px 12px 8px 8px !important;
+        }
+        .day-v10-photo:after {
+            background:
+              linear-gradient(90deg,rgba(15,23,42,.74) 0%,rgba(15,23,42,.12) 34%,rgba(15,23,42,.16) 68%,rgba(15,23,42,.72) 100%),
+              linear-gradient(0deg,rgba(2,6,23,.38),transparent 48%) !important;
+        }
+        .day-v10-photo span {
+            display:none !important;
+        }
+        .day-photo-day-badge {
+            position:absolute;
+            z-index:4;
+            left:12px;
+            top:12px;
+            min-width:64px;
+            height:64px;
+            padding:0 11px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:16px;
+            background:linear-gradient(135deg,#f97316,#ef4444);
+            color:white;
+            font-size:28px;
+            font-weight:1000;
+            letter-spacing:-.03em;
+            box-shadow:0 10px 24px rgba(239,68,68,.35);
+            border:2px solid rgba(255,255,255,.85);
+            text-shadow:0 2px 4px rgba(0,0,0,.2);
+        }
+        .day-photo-place-label {
+            position:absolute;
+            z-index:4;
+            right:12px;
+            top:12px;
+            max-width:64%;
+            padding:10px 13px;
+            border-radius:13px;
+            background:linear-gradient(135deg,rgba(2,132,199,.94),rgba(13,148,136,.94));
+            color:white;
+            text-align:right;
+            box-shadow:0 10px 24px rgba(2,132,199,.24);
+            border:1px solid rgba(255,255,255,.55);
+        }
+        .day-photo-place-label b {
+            display:block;
+            font-size:clamp(16px,2.2vw,24px);
+            line-height:1.15;
+            text-shadow:0 2px 4px rgba(0,0,0,.18);
+        }
+        .day-photo-place-label span {
+            display:block !important;
+            position:static !important;
+            margin-top:4px;
+            font-size:10.5px !important;
+            font-weight:700 !important;
+            opacity:.95;
+            text-shadow:none !important;
+        }
+        .day-photo-index-strip {
+            position:absolute;
+            z-index:4;
+            left:12px;
+            right:12px;
+            bottom:10px;
+            display:flex;
+            justify-content:space-between;
+            gap:8px;
+            align-items:flex-end;
+            color:#fff;
+            font-size:10px;
+            font-weight:800;
+            text-shadow:0 2px 5px rgba(0,0,0,.65);
+        }
+        .day-photo-index-strip .tag {
+            padding:4px 7px;
+            border-radius:999px;
+            background:rgba(15,23,42,.64);
+            border:1px solid rgba(255,255,255,.28);
+        }
+
+        @media(max-width:640px){
+            .day-v10-photo{height:185px !important}
+            .day-photo-day-badge{
+                min-width:54px;height:54px;font-size:23px;border-radius:14px;
+            }
+            .day-photo-place-label{max-width:67%;padding:8px 10px}
+            .day-photo-place-label b{font-size:15px}
+            .v10-hero-place{top:10px;right:10px;max-width:70vw;padding:8px 10px}
+            .v10-hero-place b{font-size:15px}
+        }
+
+        /* V10.4 BRIGHT VISUAL TUNING */
+        .v10-hero-slide,
+        .day-v10-photo,
+        .v10-photo,
+        .v10-place-img,
+        .v10-history-img,
+        .v10-film-card,
+        .v10-food-card {
+            background-color: rgba(255,255,255,.17) !important;
+            background-blend-mode: screen !important;
+        }
+
+        .v10-hero-slide::after {
+            content:"";
+            position:absolute;
+            inset:0;
+            background:linear-gradient(0deg,rgba(255,255,255,.04),rgba(255,255,255,.10));
+            pointer-events:none;
+        }
+
+        .day-v10-photo:after {
+            background:
+              linear-gradient(90deg,rgba(15,23,42,.48) 0%,rgba(255,255,255,.03) 28%,rgba(255,255,255,.05) 70%,rgba(15,23,42,.46) 100%),
+              linear-gradient(0deg,rgba(2,6,23,.22),transparent 44%) !important;
+        }
+
+        .v10-photo:after,
+        .v10-food-card:after,
+        .v10-film-card:after {
+            background:linear-gradient(0deg,rgba(2,6,23,.46),transparent 62%) !important;
+        }
+
+        .v104-food-showcase {
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(245px,1fr));
+            gap:12px;
+            margin:12px 0 18px;
+        }
+
+        .v104-food-card {
+            min-height:245px;
+            border-radius:15px;
+            overflow:hidden;
+            position:relative;
+            background-size:cover;
+            background-position:center;
+            background-color:rgba(255,255,255,.12);
+            background-blend-mode:screen;
+            box-shadow:0 10px 28px rgba(15,23,42,.12);
+            border:1px solid #e2e8f0;
+        }
+
+        .v104-food-card:after {
+            content:"";
+            position:absolute;
+            inset:0;
+            background:linear-gradient(0deg,rgba(2,6,23,.78) 0%,rgba(2,6,23,.12) 58%,rgba(255,255,255,.05) 100%);
+        }
+
+        .v104-food-copy {
+            position:absolute;
+            z-index:2;
+            left:14px;
+            right:14px;
+            bottom:13px;
+            color:white;
+        }
+
+        .v104-food-copy b {
+            display:block;
+            font-size:17px;
+            line-height:1.18;
+            text-shadow:0 2px 5px rgba(0,0,0,.35);
+        }
+
+        .v104-food-copy span {
+            display:block;
+            margin-top:5px;
+            font-size:10.5px;
+            opacity:.93;
+        }
+
+        .v104-food-day {
+            position:absolute;
+            z-index:3;
+            left:12px;
+            top:12px;
+            padding:6px 9px;
+            border-radius:9px;
+            color:#fff;
+            font-size:12px;
+            font-weight:900;
+            background:linear-gradient(135deg,#f97316,#dc2626);
+            border:1px solid rgba(255,255,255,.65);
+            box-shadow:0 6px 16px rgba(220,38,38,.25);
+        }
+
+        .v104-food-note {
+            font-size:10.5px;
+            color:#64748b;
+            margin-top:6px;
+        }
+
+        .v10-food-grid {
+            display:none !important;
+        }
+        /* ==========================================================
+           V10.6 PRACTICAL + APPS + TRANSPORT CARDS
+           ========================================================== */
+        .v106-app-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+            gap:10px;
+            margin-top:10px;
+        }
+        .v106-app-card{
+            border:1px solid #dbeafe;
+            border-radius:12px;
+            padding:11px 12px;
+            background:linear-gradient(135deg,#f8fafc,#ffffff);
+            box-shadow:0 4px 14px rgba(15,23,42,.05);
+        }
+        .v106-app-card h5{
+            margin:0 0 5px;
+            font-size:12.5px;
+            color:#0f172a;
+        }
+        .v106-app-card p{
+            margin:0 0 7px;
+            font-size:10.6px;
+            line-height:1.58;
+            color:#64748b;
+        }
+        .v106-app-link{
+            display:inline-block;
+            margin:2px 4px 0 0;
+            padding:5px 8px;
+            border-radius:7px;
+            background:#2563eb;
+            color:#fff !important;
+            text-decoration:none;
+            font-size:9.8px;
+            font-weight:800;
+        }
+        .v106-app-link.alt{background:#0f766e}
+        .v106-app-link.dark{background:#334155}
+        .v106-alert{
+            border-left:5px solid #dc2626;
+            background:#fff7ed;
+            padding:10px 12px;
+            border-radius:9px;
+            font-size:10.8px;
+            line-height:1.65;
+            color:#7c2d12;
+            margin-top:8px;
+        }
+        .v106-card-table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:8px;
+            font-size:10.5px;
+        }
+        .v106-card-table th,.v106-card-table td{
+            border:1px solid #e2e8f0;
+            padding:7px;
+            vertical-align:top;
+        }
+        .v106-card-table th{
+            background:#eff6ff;
+            color:#1e3a8a;
+            text-align:left;
+        }
+        .jp-phrase{
+            display:grid;
+            grid-template-columns:42px 1fr;
+            grid-template-areas:"btn jp" "btn trans";
+            column-gap:8px;
+            align-items:center;
+            padding:10px;
+            border:1px solid #e2e8f0;
+            border-radius:10px;
+            background:#fff;
+        }
+        .jp-phrase button{
+            grid-area:btn;
+            width:38px;height:38px;
+            border:0;border-radius:50%;
+            cursor:pointer;
+            background:linear-gradient(135deg,#8b5cf6,#2563eb);
+            color:#fff;font-size:16px;
+            box-shadow:0 4px 12px rgba(79,70,229,.22);
+        }
+        .jp-phrase b{grid-area:jp;font-size:13px;color:#0f172a;}
+        .jp-phrase span{grid-area:trans;font-size:10.5px;color:#64748b;margin-top:2px;}
         @media (max-width: 640px) {
             .flight-cards { grid-template-columns: 1fr; margin-top: -20px; }
             .nav-tabs { justify-content: flex-start; }
@@ -628,91 +1019,162 @@
 
         <!-- 1. 总览 Tab -->
         <div id="overview" class="tab-content active">
-            <div class="card">
-                <div class="card-title">✨ 踏上南国海风之旅：冲绳 8天7夜 极致自驾全景序曲</div>
-                
-                <p style="font-size: 14.5px; color: #334155; line-height: 1.8; margin-bottom: 16px;">
-                    <b>当飞机穿过云层，那一片被誉为“琉球蓝”的绝美海域便跃然眼底。</b><br>
-                    冲绳，古称“琉球王国”。这里不仅是曾经海上丝绸之路上连接东亚与南洋的“万国津梁”，更是一个将古琉球红瓦的庄严、美军风情与现代南国慢生活完美交织的梦幻之岛。
-                </p>
-
-                <p style="font-size: 14.5px; color: #334155; line-height: 1.8; margin-bottom: 16px;">
-                    从韩剧《没关系，是爱情啊》里赵寅成与孔晓振驾车驰骋的万座毛与古宇利大桥，到张国荣、王菲在《恋战冲绳》里留下的海风余温；从三线琴拉响的《童神》悠扬旋律，到安室奈美惠歌声里的热烈阳光——冲绳，从来不只是一趟旅行，而是一场关于海风、自由、美食与治愈的南国电影。
-                </p>
-
-                <p style="font-size: 14.5px; color: #334155; line-height: 1.8; margin-bottom: 16px;">
-                    本行程专为 <b>4 位同行好友/家人</b> 量身打造，摒弃所有赶场与陡坡疲惫，以 <b>MPV 混能自驾</b> 为优雅双翼。让我们沿着 58 号海滨公路，把生活过成诗，开启这场极致舒适的南国饗宴！
-                </p>
-
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-                    <h4 style="font-size: 15px; color: var(--accent-purple); margin-bottom: 10px;">🌏 史诗地缘：中、日、台交织的三重奏与“万国津梁”</h4>
-                    <ul style="font-size: 13.5px; color: #475569; padding-left: 20px; line-height: 1.8;">
-                        <li><b>🇨🇳 中国明清清韵（册封与朝贡）</b>：自 1372 年明太祖赐姓与册封起，琉球便与中国建立了五百年的深厚羁绊。福州“琉球馆”记载着当年“闽人三十六姓”移居琉球、带来造船、建筑与饮食文化的盛况；首里城的红瓦飞檐、石狮子（シーサー / 来源于闽南石狮）、以及冲绳荞麦面与红东坡肉（ラフテー），都是华风东渡的历史印记。</li>
-                        <li><b>🇯🇵 日本萨摩与融合（文化与武士）</b>：1609 年日本萨摩藩入侵后，琉球形成了“对内朝贡明清、对外臣服萨摩”的独特双重地缘政治。日本的假名、三味线（演变为冲绳三线琴）与神社文化与琉球本土信仰巧妙融合，形成了如今独特而包容的南国文化。</li>
-                        <li><b>🇹🇼 台湾近邻羁绊（黑潮与生活）</b>：琉球与台湾仅一水之隔（与花莲/宜兰直线距离仅百余公里）。从清代黑潮洋流上的渔民往来，到日治时期的八重山台湾开拓农民（带来菠萝种植与凤梨园产业），两地民间血脉相连。在冲绳，你能切身感受到那份与台湾极其相似的湿润海风、亲切的人情味与饮食烟火气。</li>
-                    </ul>
+            <div class="v10-hero" id="v10-hero">
+                <div class="v10-hero-slide active" data-img="assets/images/overview/nago-kouri-bridge-3.jpg" style="background-image:url(&quot;assets/images/overview/nago-kouri-bridge-3.jpg&quot;)"><div class="v10-hero-place"><b>古宇利大桥 · Kouri Bridge</b><span>今归仁 / 古宇利岛 · 琉球蓝</span></div></div><div class="v10-hero-slide" data-img="assets/images/overview/naha-shuri-castle-1.jpg" style="background-image:url(&quot;assets/images/overview/naha-shuri-castle-1.jpg&quot;)"><div class="v10-hero-place"><b>首里城 · Shuri Castle</b><span>那霸 · 琉球王国</span></div></div><div class="v10-hero-slide" data-img="assets/images/overview/onna-manzamo-2.jpg" style="background-image:url(&quot;assets/images/overview/onna-manzamo-2.jpg&quot;)"><div class="v10-hero-place"><b>万座毛 · Cape Manzamo</b><span>恩纳村 · 海蚀断崖</span></div></div><div class="v10-hero-slide" data-img="assets/images/overview/american-village-3.JPG" style="background-image:url(&quot;assets/images/overview/american-village-3.JPG&quot;)"><div class="v10-hero-place"><b>美国村 · American Village</b><span>北谷 · Sunset → Neon</span></div></div><div class="v10-hero-slide" data-img="assets/images/history/Itoman-peace-memorial-1.jpg" style="background-image:url(&quot;assets/images/history/Itoman-peace-memorial-1.jpg&quot;)"><div class="v10-hero-place"><b>和平祈念公园</b><span>糸满 · 1945 战争与和平</span></div></div>
+                <div class="v10-hero-overlay">
+                    <div class="v10-hero-copy">
+                        <span class="v10-hero-kicker">OKINAWA 2026 · CINEMATIC EDITION</span>
+                        <h2>✨ 踏上南国海风之旅：<br>冲绳 8天7夜 极致自驾全景序曲</h2>
+                        <p><b>当飞机穿过云层，那一片被誉为“琉球蓝”的绝美海域便跃然眼底。</b><br>冲绳，古称“琉球王国”。这里不仅是曾经连接东亚与南洋的“万国津梁”，更是一个把古琉球红瓦、美军风情、战争记忆与现代南国慢生活叠在同一座岛上的地方。</p>
+                        <div class="v10-hero-actions">
+                            <button class="v10-btn" onclick="openV10Film('blue')">🎬 琉球蓝视觉短片</button>
+                            <button class="v10-btn dark" onclick="openV10Film('memory')">🕊️ 王国与记忆</button>
+                            <button class="v10-btn dark" onclick="openV10Film('road')">🚗 Road Trip Okinawa</button>
+                            <button class="v10-btn dark" onclick="switchTab('itinerary')">📅 进入 D1–D8</button>
+                        </div>
+                    </div>
                 </div>
-
-                <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-                    <h4 style="font-size: 15px; color: #be185d; margin-bottom: 10px;">🎬 深度人文与景致故事：行走在南国的光影与神话中</h4>
-                    <ul style="font-size: 13.5px; color: #831843; padding-left: 20px; line-height: 1.8;">
-                        <li><b>波上宫 (D2)</b>：<b>【崖顶上的琉球守护神】</b> 悬崖峭壁上的“琉球八社之首”。这里曾是古代大航海时代，琉球船队扬帆远航前全员仰望祈福的红瓦圣地。站在波之桥远眺，朱红色的神社与湛蓝的大海交相辉映，肃穆而神圣。</li>
-                        <li><b>濑长岛 UMIKAJI TERRACE (D2)</b>：<b>【冲绳小希腊与飞机落日】</b> 创世神“阿摩美久”降临的神圣之岛。纯白色的台阶式露台延伸至海边，坐在海景第一排咬下一口刚出炉的<b>幸福松饼</b>，看呼啸而过的飞机划过晚霞，浪漫至极。</li>
-                        <li><b>玉泉洞 & 冲绳世界 (D3)</b>：<b>【30万年的地底时光宫殿】</b> 走进历经 30 万年地质演变形成的钟乳石奇观，感受地底恒温 21°C 的震撼。漫步在移筑而来的百年琉球红瓦古民家间，听一曲震撼人心震彻山谷的传统太鼓舞表演。</li>
-                        <li><b>万座毛 (D3)</b>：<b>【经典影视打卡地】</b> 尚敬王赞誉“可供万人坐下之草原”的象鼻海蚀崖。这里不仅是韩剧《没关系，是爱情啊》最经典的取景地，更是观赏太平洋巨浪拍打珊瑚礁崖绝景的最佳视角。</li>
-                        <li><b>残波岬 & 读谷灯塔 (D3)</b>：<b>【断崖夕阳与泰期雕像】</b> 伫立在冲绳本岛最西端 30 米高的珊瑚礁断崖边看绝美夕阳，打卡全冲绳最大的“残波大狮子”与指向中国的“泰期雕像”。</li>
-                        <li><b>古宇利大桥 & 心形岩 (D4)</b>：<b>【琉球创世“恋岛”传奇】</b> 驾车横跨 1,960 公尺伸向大海深处的跨海大桥，如同飞驰在翡翠色的海水之上。探访拥有“琉球版亚当与夏娃”创世神话的神秘心形岩沙滩，再吃上一份浓郁爆汁的<b>蒜香奶油虾饭</b>。</li>
-                        <li><b>备濑福木林道 (D5)</b>：<b>【300年的绿色时光隧道】</b> 漫步在数万株为抵御台风而植下的古福木树下，光影透过树叶洒在平坦的小径上，可骑电动单车或乘坐悠闲的水牛车，体验最纯粹的琉球原乡慢生活。</li>
-                        <li><b>顶级商圈与血拼 (D5/D7)</b>：<b>【从美军旧址到海景殿堂】</b> 畅逛美军司令部旧址改建的全冲绳最大购物殿堂 <b>AEON MALL Rycom</b>、全室内海景商场 <b>PARCO CITY (3.5小时)</b> 与欧式 <b>Outlet Ashibinaa (4小时)</b>，在冷气充足的室内尽情享受免税购物的快乐！</li>
-                    </ul>
-                </div>
-
-                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
-                    <h4 style="font-size: 15px; color: var(--accent-purple); margin-bottom: 10px;">🥩 舌尖上的冲绳：一场关于和牛、海鲜与烟火气的味蕾盛宴</h4>
-                    <ul style="font-size: 13.5px; color: #475569; padding-left: 20px; line-height: 1.8;">
-                        <li><b>深夜宵夜与久茂地烧肉 (D1/D2)</b>：首夜 <b>Sanukiya</b> 热腾腾的深夜天妇罗乌冬面暖胃；D2 入住那霸市区后，直奔久茂地首选 <b>炭火烧肉 ぶち (Buchi)</b>，品尝令人惊艳的超厚切牛舌与极品和牛内脏拼盘！</li>
-                        <li><b>恩纳琉球の牛与名护本部牛 (D3/D4)</b>：D3 享用 <b>琉球の牛 (恩纳本馆)</b> 顶级和牛；D4 在名护市 <b>烧肉本部牧场</b> 享用牧场直送的顶级冲绳本部牛，油脂在炭火上滋滋作响。</li>
-                        <li><b>海滨美式重击与阿古猪涮涮锅 (D5)</b>：午餐在 PARCO CITY 享用鲜美<b>龙虾浓汤套餐</b>；下午在美国村啃着爆汁的<b>手作重击汉堡</b>看日落；晚餐享用 <b>Ocean Boo</b> 极品阿古猪涮涮锅。</li>
-                        <li><b>鲜海产 Brunch 与极品寿喜烧 (D7)</b>：前往南部最大 <b>糸满鱼市场</b> 观光并现场挑选烤龙虾与刺身；晚上还车后在 <b>Oniku no Isshin (冲绳一心)</b> 享用关东风极品牛肉寿喜烧。</li>
-                    </ul>
-                </div>
-
-                <div style="background: #eff6ff; border-left: 4px solid var(--accent-purple); padding: 12px; border-radius: 8px; font-size: 13px; color: #1e40af;">
-                    <b>🚗 路线节点概览：</b><br>
-                    那霸市区 La'gent (D1-D2) ➔ 恩纳嘉利吉 (D3-D4) ➔ 那霸市区 La'gent (D5-D7) ➔ 返港 (D8)
-                </div>
+                <div class="v10-dots"><button class="v10-dot active" onclick="setV10Hero(0)" aria-label="Hero 1"></button><button class="v10-dot" onclick="setV10Hero(1)" aria-label="Hero 2"></button><button class="v10-dot" onclick="setV10Hero(2)" aria-label="Hero 3"></button><button class="v10-dot" onclick="setV10Hero(3)" aria-label="Hero 4"></button><button class="v10-dot" onclick="setV10Hero(4)" aria-label="Hero 5"></button></div>
             </div>
-            
+
+            <div class="card">
+                <div class="card-title">🎞️ 一部属于我们的 Okinawa Road Movie</div>
+                <p style="font-size:13px;line-height:1.9;color:#475569;">从韩剧《没关系，是爱情啊》里让许多人记住冲绳的海岸与跨海公路，到张国荣、王菲在《恋战冲绳》留下的海风余温；从三线琴拉响的岛歌，到安室奈美惠与 BEGIN 所代表的现代 Okinawan pop culture——<b>冲绳从来不只是一趟“去海边”的旅行，而是一场关于海风、自由、历史、美食与治愈的南国电影。</b></p>
+                <p style="font-size:13px;line-height:1.9;color:#475569;">本行程专为 <b>4 位同行好友/家人</b> 设计，以 MPV 混能自驾串起那霸、恩纳、名护、古宇利与南部；尽量避开无意义赶场，让 58 号海滨公路本身成为旅程的一部分，而不是单纯的“移动时间”。</p>
+
+                <div class="v10-section">
+                    <h3 class="v10-section-title">🌏 史诗地缘：中、日、台交织的三重奏与“万国津梁”</h3>
+                    <p class="v10-subtitle">原有历史背景全部保留，并补上 1945 战争、美国统治与 1972 回归日本这一条不能缺席的现代历史线。</p>
+
+                    <div class="v10-photo-story">
+                        <div class="v10-photo" style="background-image:url(&quot;assets/images/overview/naha-shuri-castle-1.jpg&quot;)"><span class="v10-photo-label">首里城 · 琉球王国政治与文化中心</span></div>
+                        <div class="v10-story-copy"><h4>🇨🇳 中国明清清韵（册封、朝贡与大交易时代）</h4><p>1372 年，明朝与中山建立朝贡关系，北山、南山随后加入；1429 年尚巴志统一三山，琉球王国正式形成。凭借位处东海与南海之间的地理位置，琉球与中国、日本、朝鲜及东南亚进行转口贸易，1458 年铸造的“万国津梁之钟”正是这种海洋国家身份的象征。</p><p>福州琉球馆、久米村“闽人三十六姓”、造船、历法、礼制与饮食，都说明琉球并不是孤立小岛。今天在红瓦飞檐、Shisa、Rafute 等生活细节里，仍可看到中国文化长期交流留下的痕迹。</p></div>
+                    </div>
+
+                    <div class="v10-photo-story reverse">
+                        <div class="v10-photo" style="background-image:url(&quot;assets/images/d2/naha-naminoue-1.jpg&quot;)"><span class="v10-photo-label">波上宫 · 琉球八社之一</span></div>
+                        <div class="v10-story-copy"><h4>🇯🇵 日本萨摩与融合（文化与武士）</h4><p>1609 年萨摩藩入侵后，琉球一方面继续维持与明、清的朝贡关系，另一方面又被纳入萨摩与德川幕府的政治体系，形成罕见的“双重从属”。这种夹在几个世界之间的处境，反而催生了极有辨识度的琉球礼仪、音乐、舞蹈与工艺。</p><p>三线琴、琉球舞踊、Bingata、Yachimun 以及神社与本土信仰的共存，都不是简单的“日本南方版本”，而是一种长期混合后长成自己的文化。</p></div>
+                    </div>
+
+                    <div class="v10-photo-story">
+                        <div class="v10-photo" style="background-image:url(&quot;assets/images/overview/nago-kouri-bridge-3.jpg&quot;)"><span class="v10-photo-label">黑潮海域 · 冲绳与台湾长期隔海相望</span></div>
+                        <div class="v10-story-copy"><h4>🇹🇼 台湾近邻羁绊（黑潮、八重山与生活）</h4><p>冲绳县岛链一路向西南延伸，最西端与那国岛与台湾距离很近；历史上黑潮洋流上的渔民往来，以及近代台湾移民在八重山参与凤梨、农业开发，都为两地留下实际的人口与产业联系。</p><p>所以在冲绳旅行时，很多香港、台湾旅客会对湿润海风、热带植物、市场烟火气与“岛民节奏”产生一种莫名熟悉感。这里不是台湾，但两地确实共享一部分东海与黑潮塑造的生活背景。</p></div>
+                    </div>
+                </div>
+
+                <div class="v10-section">
+                    <h3 class="v10-section-title">🕊️ The Other Okinawa：度假岛背后的战争与和平</h3>
+                    <p class="v10-subtitle">不把这一层硬塞进已经敲定的休闲行程，但如果不了解 1945，就很难真正理解今天的冲绳。</p>
+                    <div class="v10-history-grid">
+                        <div class="v10-history-card"><div class="v10-history-img" style="background-image:url(&quot;assets/images/history/Itoman-peace-memorial-1.jpg&quot;)"></div><div class="v10-history-body"><h4>1945 · 冲绳战役</h4><p>冲绳成为太平洋战争末期最惨烈的地面战场之一，军民死伤约 20 万；首里城与大量文化遗产、城市与村落被毁。这不是背景资料，而是很多冲绳家庭至今仍有直接记忆的历史。</p></div></div>
+                        <div class="v10-history-card"><div class="v10-history-img" style="background-image:url(&quot;assets/images/history/himeyuri-2.jpg&quot;)"></div><div class="v10-history-body"><h4>姬百合学徒队</h4><p>女学生与教师被动员到军医院护理伤员，许多人死于战火与洞窟。姬百合之塔与资料馆今天成为理解战争如何落在普通年轻人身上的重要地点。</p></div></div>
+                        <div class="v10-history-card"><div class="v10-history-img" style="background-image:url(&quot;assets/images/overview/american-village-3.JPG&quot;)"></div><div class="v10-history-body"><h4>1945–1972 · 美国统治</h4><p>战后冲绳长期由美国管理，军事基地、美元经济、汉堡、Taco Rice、Ryukyu Glass 的战后发展，以及今天美国村的视觉文化，都与这段历史有关。1972 年冲绳才正式回归日本。</p></div></div>
+                    </div>
+                    <div class="section-note" style="margin-top:10px;"><b>第二次来值得安排：</b>和平祈念公园、姬百合之塔/资料馆、旧海军司令部壕。本次 8 天以休闲自驾为主，不额外硬塞入长时间战争纪念馆行程。</div>
+                </div>
+
+                <div class="v10-section">
+                    <h3 class="v10-section-title">🎬 深度人文与景致故事：行走在南国的光影与神话中</h3>
+                    <div class="v10-place-grid">
+                        <div class="v10-place-card"><div class="v10-place-img" style="background-image:url(&quot;assets/images/d2/naha-naminoue-1.jpg&quot;)"></div><div class="v10-place-body"><h4>波上宫 (D2) · 崖顶上的琉球守护神</h4><p>琉球八社之首，神社坐在珊瑚礁悬崖上。古代海上往来频繁，航海安全与祈愿信仰在这里特别有意义；从桥位远望，朱红神社与湛蓝海面几乎就是“那霸版冲绳明信片”。</p></div></div>
+                        <div class="v10-place-card"><div class="v10-place-img" style="background-image:url(&quot;assets/images/d2/naha-umikaji-terrace-2.jpg&quot;)"></div><div class="v10-place-body"><h4>濑长岛 UMIKAJI TERRACE (D2) · 小希腊与飞机落日</h4><p>白色阶梯式建筑贴着海岸展开，最大魅力不是“购物”，而是机场航线、夕阳与海风叠在一起。坐在露台吃幸福松饼，看飞机从低空划过，是 D2 最有度假感的一幕。</p></div></div>
+                        <div class="v10-place-card"><div class="v10-place-img" style="background-image:url(&quot;assets/images/d3/nanjo-gyokusendo-2.jpg&quot;)"></div><div class="v10-place-body"><h4>玉泉洞 & 冲绳世界 (D3) · 30万年的地底时光</h4><p>大型钟乳石洞把冲绳从“海岛”拉回地质时间；地面上的红瓦古民家、传统工艺与 Eisa，则把自然史接到文化史。这里适合第一次到冲绳的人一次看懂几个核心元素。</p></div></div>
+                        <div class="v10-place-card"><div class="v10-place-img" style="background-image:url(&quot;assets/images/overview/onna-manzamo-2.jpg&quot;)"></div><div class="v10-place-body"><h4>万座毛 (D3) · 象鼻断崖与影视记忆</h4><p>尚敬王赞誉“可供万人坐下”的草原，象鼻海蚀崖则成为冲绳最有辨识度的海岸轮廓之一。韩剧《没关系，是爱情啊》的冲绳片段也让不少亚洲旅客把这里与浪漫 Road Trip 联系起来。</p></div></div>
+                        <div class="v10-place-card"><div class="v10-place-img" style="background-image:url(&quot;assets/images/overview/nago-kouri-bridge-3.jpg&quot;)"></div><div class="v10-place-body"><h4>古宇利大桥 & Heart Rock (D4) · “恋岛”传奇</h4><p>横跨蓝绿色海面的古宇利大桥，本身就是驾驶体验。古宇利岛又有“恋岛/神之岛”的传说，北岸 Heart Rock 让自然地貌、爱情故事与社交媒体打卡完美合流。</p></div></div>
+                        <div class="v10-place-card"><div class="v10-place-img" style="background-image:url(&quot;assets/images/d5/bise-fukugi-1.JPG&quot;)"></div><div class="v10-place-body"><h4>备濑福木林 (D5) · 300年的绿色时光隧道</h4><p>防风林不是人工打造的景观装置，而是传统聚落与台风共存的生活智慧。树影、石墙、低矮屋舍与海边，把“琉球慢生活”从口号变成真正可以走进去的空间。</p></div></div>
+                        <div class="v10-place-card"><div class="v10-place-img" style="background-image:url(&quot;assets/images/overview/american-village-3.JPG&quot;)"></div><div class="v10-place-body"><h4>美国村 / Rycom / PARCO · 战后冲绳的另一张脸</h4><p>美式建筑、汉堡、霓虹与商业文化并不是与“传统冲绳”无关的东西，它们恰恰来自战后历史。美国村最值得看的，是 Sunset 到 Blue Hour 这段从海滨度假区变成霓虹街区的变化。</p></div></div>
+                        <div class="v10-place-card"><div class="v10-place-img" style="background-image:url(&quot;assets/images/d4/orion-happy-park-4.png&quot;)"></div><div class="v10-place-body"><h4>Orion Happy Park (D4) · 一杯啤酒的冲绳身份</h4><p>名护是 Orion 的生产基地。工厂参观把便利店里随手买到的一罐啤酒，接回战后冲绳工业、品牌文化和日常生活。导览约 1 小时，司机不能试饮酒精，但有无酒精选择。</p></div></div>
+                    </div>
+                </div>
+
+                <div class="v10-section">
+                    <h3 class="v10-section-title">🎥 Watch Okinawa：4 条主题视觉短片</h3>
+                    <p class="v10-subtitle">不是抽象渐层，而是真实景物照片串成的“小电影”。点击后在页面内播放照片蒙太奇，并配合 YouTube 官方音乐播放器。</p>
+                    <div class="v10-film-grid">
+                        <div class="v10-film-card" style="background-image:url(&quot;assets/images/overview/nago-kouri-bridge-3.jpg&quot;)" onclick="openV10Film('blue')"><div class="v10-film-body"><b>01 · 琉球蓝</b><small>濑长岛、万座毛、古宇利、福木林。看完基本知道为什么大家会说 Okinawa Blue。</small><span class="v10-play">▶ PLAY PHOTO FILM</span></div></div>
+                        <div class="v10-film-card" style="background-image:url(&quot;assets/images/overview/naha-shuri-castle-1.jpg&quot;)" onclick="openV10Film('memory')"><div class="v10-film-body"><b>02 · 王国与记忆</b><small>首里城、波上宫、玉泉洞、和平祈念、姬百合、战后美国文化。</small><span class="v10-play">▶ PLAY PHOTO FILM</span></div></div>
+                        <div class="v10-film-card" style="background-image:url(&quot;assets/images/overview/american-village-3.JPG&quot;)" onclick="openV10Film('road')"><div class="v10-film-body"><b>03 · Road Trip Okinawa</b><small>古宇利大桥、Orion、福木林、美国村 Sunset → Neon。</small><span class="v10-play">▶ PLAY PHOTO FILM</span></div></div>
+                        <div class="v10-film-card" style="background-image:url(&quot;assets/images/okinawa images gallery/Sam’s By-the-sea 1.jpg&quot;)" onclick="openV10Film('taste')"><div class="v10-film-body"><b>04 · Taste Okinawa</b><small>Okinawa Soba、Taco Rice、Orion，再接回和牛、Agu、海鲜与寿喜烧。</small><span class="v10-play">▶ PLAY PHOTO FILM</span></div></div>
+                    </div>
+                </div>
+
+                <div class="v10-section">
+                    <h3 class="v10-section-title">🥩 舌尖上的冲绳：一场关于和牛、海鲜与烟火气的味蕾盛宴</h3>
+<div class="v104-food-showcase">
+<div class="v104-food-card" style="background-image:url('assets/images/okinawa images gallery/Sam’s By-the-sea 1.jpg')">
+    <div class="v104-food-day">D5</div>
+    <div class="v104-food-copy">
+        <b>🥩 Sam’s By-the-sea · 龙虾牛排</b>
+        <span>Sam’s By-the-sea 1.jpg</span>
+    </div>
+</div><div class="v104-food-card" style="background-image:url('assets/images/okinawa images gallery/冲绳中部重击汉堡1.jpg')">
+    <div class="v104-food-day">D5</div>
+    <div class="v104-food-copy">
+        <b>🍔 冲绳中部重击汉堡</b>
+        <span>冲绳中部重击汉堡1.jpg</span>
+    </div>
+</div><div class="v104-food-card" style="background-image:url('assets/images/okinawa images gallery/和牛2.JPEG')">
+    <div class="v104-food-day">D3/D4</div>
+    <div class="v104-food-copy">
+        <b>🥩 冲绳和牛 / 本部牛</b>
+        <span>和牛2.JPEG</span>
+    </div>
+</div><div class="v104-food-card" style="background-image:url('assets/images/okinawa images gallery/寿司1.JPG')">
+    <div class="v104-food-day">D7</div>
+    <div class="v104-food-copy">
+        <b>🍣 寿司 · Sushi</b>
+        <span>寿司1.JPG</span>
+    </div>
+</div><div class="v104-food-card" style="background-image:url('assets/images/okinawa images gallery/刺身1.PNG')">
+    <div class="v104-food-day">D7</div>
+    <div class="v104-food-copy">
+        <b>🐟 刺身 · Sashimi</b>
+        <span>刺身1.PNG</span>
+    </div>
+</div>
+</div>
+<p class="v104-food-note">主视觉已取消 Okinawa Soba × Orion 与 Taco Rice，改用和牛、寿司、刺身、牛排与汉堡等更具食欲和视觉冲击的餐点。</p>
+                    <div class="v10-food-grid">
+                        <div class="v10-food-card" style="background-image:url(&quot;assets/images/okinawa images gallery/Sam’s By-the-sea 1.jpg&quot;)"><div class="v10-food-body"><b>Okinawa Soba × Orion</b><p>冲绳最日常的组合之一。Soba 是“岛的家常味”，Orion 则是战后成长起来的本地品牌。</p></div></div>
+                        <div class="v10-food-card" style="background-image:url(&quot;assets/images/okinawa images gallery/冲绳中部重击汉堡1.jpg&quot;)"><div class="v10-food-body"><b>Taco Rice · 战后混血料理</b><p>美式 Taco 元素落在日本米饭上，是最能说明战后冲绳如何把外来文化“变成自己的”一道菜。</p></div></div>
+                        <div class="v10-food-card" style="background-image:url(&quot;assets/images/d4/orion-factory-2.jpg&quot;)"><div class="v10-food-body"><b>Orion · 名护制造</b><p>D4 工厂见学让品牌从“喝一罐”变成真正理解冲绳工业与生活文化的一站。</p></div></div>
+                    </div>
+                    <div class="v10-story-copy" style="padding:14px 2px 0;">
+                        <ul>
+                            <li><b>深夜宵夜与久茂地烧肉 (D1/D2)</b>：首夜 Sanukiya 热腾腾的天妇罗乌冬暖胃；D2 直奔炭火烧肉 ぶち (Buchi)，厚切牛舌与内脏拼盘作为城市夜晚的重口味开场。</li>
+                            <li><b>恩纳琉球の牛与名护本部牛 (D3/D4)</b>：D3 琉球の牛；D4 本部牧场。把“冲绳和牛”安排在最适合北部自驾的两个晚上。</li>
+                            <li><b>海滨美式重击与阿古猪 (D5)</b>：PARCO、美国村汉堡、Ocean Boo 阿古猪涮涮锅，一天把战后美式与传统冲绳猪肉文化放在一起。</li>
+                            <li><b>鲜海产 Brunch 与极品寿喜烧 (D7)</b>：糸满鱼市场现场挑海鲜；晚上还车后以 Oniku no Isshin 寿喜烧收尾。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="v10-section">
+                    <h3 class="v10-section-title">🚗 路线节点概览：8 天不是清单，是一条叙事线</h3>
+                    <div class="v10-route-strip">
+                        <span class="v10-route-node">D1 那霸落地</span><span class="v10-route-arrow">➜</span>
+                        <span class="v10-route-node">D2 波上宫 / 濑长岛</span><span class="v10-route-arrow">➜</span>
+                        <span class="v10-route-node">D3 玉泉洞 / 万座毛 / 恩纳</span><span class="v10-route-arrow">➜</span>
+                        <span class="v10-route-node">D4 古宇利 / Orion / 名护</span><span class="v10-route-arrow">➜</span>
+                        <span class="v10-route-node">D5 福木林 / 美国村</span><span class="v10-route-arrow">➜</span>
+                        <span class="v10-route-node">D6 Shopping / Easy Day</span><span class="v10-route-arrow">➜</span>
+                        <span class="v10-route-node">D7 糸满 / 最后一夜</span><span class="v10-route-arrow">➜</span>
+                        <span class="v10-route-node">D8 返港</span>
+                    </div>
+                    <p style="font-size:11px;line-height:1.7;color:#64748b;margin-top:9px;">住宿节点仍是：那霸 La'gent (D1–D2) ➜ 恩纳 Kariyushi (D3–D4) ➜ 那霸 La'gent (D5–D7) ➜ 返港 (D8)。</p>
+                </div>
+
+                <div class="v10-credits"><b>📷 影像来源与许可：</b>V10.1 实景照片已改为本 Trip 自托管 assets，不再依赖 Wikimedia 外链或第三方图片权限。主要照片包括 Shuri Castle (CEphoto/Uwe Aranas)、Kouri Bridge (kanegen)、Manzamo (Jackvista2007)、American Village (Lee Geonju)、Peace Memorial Park (吉田有岐)、Himeyuri (663highland)、Naminoue-gu (Bakkai)、Umikaji Terrace (Kugel)、Fukugi at Bise (Mokkie)、Gyokusendo (Public Domain)、Okinawa Soba & Orion (Blue Lotus)、Taco Rice (Nelo Hotsuma) 等。原始来源、作者及许可资料应保存在 assets/credits；正式网页仅从本 Trip 的 assets/images 读取。商业歌曲不复制到 GitHub；视觉短片只通过 YouTube 官方播放器提供音乐。</div>
+            </div>
+
             <div class="card">
                 <div class="card-title">⚠️ 免费取消重要警示表</div>
                 <table class="kuse-table">
-                    <thead>
-                        <tr>
-                            <th>预订段落</th>
-                            <th>入住酒店</th>
-                            <th>最晚免费取消截止日</th>
-                            <th>扣款提醒</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>预订段落</th><th>入住酒店</th><th>最晚免费取消截止日</th><th>扣款提醒</th></tr></thead>
                     <tbody>
-                        <tr style="background: #fff1f2;">
-                            <td>第 1 段 (2晚)</td>
-                            <td>冲绳那霸柔婕阁酒店 (La'gent)</td>
-                            <td><b>2026年10月8日 23:59 前</b></td>
-                            <td>10/8 自动扣 HK$ 2,482.84</td>
-                        </tr>
-                        <tr style="background: #fff1f2;">
-                            <td>第 2 段 (2晚)</td>
-                            <td>恩纳嘉利吉度假酒店 (Kariyushi)</td>
-                            <td><b>2026年10月7日 23:59 前</b></td>
-                            <td>10/8 自动扣 USD 363.38</td>
-                        </tr>
-                        <tr style="background: #fff1f2;">
-                            <td>第 3 段 (3晚)</td>
-                            <td>冲绳那霸柔婕阁酒店 (La'gent)</td>
-                            <td><b>2026年10月14日 23:59 前</b></td>
-                            <td>10/13 扣款 HK$ 4,618.34</td>
-                        </tr>
+                        <tr style="background:#fff1f2"><td>第 1 段 (2晚)</td><td>冲绳那霸柔婕阁酒店 (La'gent)</td><td><b>2026年10月8日 23:59 前</b></td><td>10/8 自动扣 HK$ 2,482.84</td></tr>
+                        <tr style="background:#fff1f2"><td>第 2 段 (2晚)</td><td>恩纳嘉利吉度假酒店 (Kariyushi)</td><td><b>2026年10月7日 23:59 前</b></td><td>10/8 自动扣 USD 363.38</td></tr>
+                        <tr style="background:#fff1f2"><td>第 3 段 (3晚)</td><td>冲绳那霸柔婕阁酒店 (La'gent)</td><td><b>2026年10月14日 23:59 前</b></td><td>10/13 扣款 HK$ 4,618.34</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -744,7 +1206,7 @@
                     </div>
                     <span class="hotel-tag">宿：那霸 La'gent 酒店</span>
                 </div>
-                <div class="day-detail">
+                <div class="day-detail"><div class="day-opening-card"><div class="day-v10-photo" style="background-image:url(&quot;assets/images/d2/naha-umikaji-terrace-2.jpg&quot;)"><div class="day-photo-day-badge">D1</div><div class="day-photo-place-label"><b>那霸抵达 · Naha Arrival</b><span>那霸 / Arrival</span></div><div class="day-photo-index-strip"><span class="tag">✈️ FIRST LOOK</span><span class="tag">OKINAWA 2026</span></div><span>D1 · 飞机下降与那霸海风</span></div><h4>ARRIVAL · FIRST BREATH</h4><div class="day-opening-meta"><div>🌊 今日颜色：琉球夜蓝</div><div>🎧 今日声音：机场落地后的第一阵海风</div><div>📸 Must Shot：飞机下降前琉球蓝</div></div><div class="day-opening-quote">“第一晚不用证明自己很会旅行。先到酒店、吃一碗热乌冬，岛会慢慢打开。”</div></div>
                     <div class="time-item">
                         <div class="time-text">19:30 - 20:30</div>
                         <div class="event-name">🛬 抵达那霸机场 (UO824) ➔ 搭乘单轨/出租车前往酒店 
@@ -781,7 +1243,7 @@
                     </div>
                     <span class="hotel-tag">宿：那霸 La'gent 酒店</span>
                 </div>
-                <div class="day-detail">
+                <div class="day-detail"><div class="day-opening-card"><div class="day-v10-photo" style="background-image:url(&quot;assets/images/d2/naha-naminoue-1.jpg&quot;)"><div class="day-photo-day-badge">D2</div><div class="day-photo-place-label"><b>波上宫 · Naminoue-gu</b><span>那霸 · 琉球八社</span></div><div class="day-photo-index-strip"><span class="tag">⛩️ RED ROOF</span><span class="tag">OKINAWA 2026</span></div><span>D2 · 波上宫与那霸红瓦</span></div><h4>NAHA · RED ROOF & SUNSET</h4><div class="day-opening-meta"><div>⛩️ 今日文化：波上宫 / Shisa</div><div>🎧 今日音乐：BEGIN《島人ぬ宝》</div><div>📸 Must Shot：濑长岛 Sunset × Aircraft</div></div><div class="day-opening-quote">“从那霸红瓦开始，到海边白色露台结束。今天把“冲绳”从地图变成感觉。”</div></div>
                     <div class="time-item">
                         <div class="time-text">09:00</div>
                         <div class="event-name">🚘 Times 租车美荣桥站前店取车 (确认号: 202601763663) 
@@ -850,7 +1312,7 @@
                     </div>
                     <span class="hotel-tag">宿：恩纳嘉利吉度假酒店</span>
                 </div>
-                <div class="day-detail">
+                <div class="day-detail"><div class="day-opening-card"><div class="day-v10-photo" style="background-image:url(&quot;assets/images/overview/onna-manzamo-2.jpg&quot;)"><div class="day-photo-day-badge">D3</div><div class="day-photo-place-label"><b>万座毛 · Cape Manzamo</b><span>恩纳村 · 海崖</span></div><div class="day-photo-index-strip"><span class="tag">🌊 CLIFF</span><span class="tag">OKINAWA 2026</span></div><span>D3 · 万座毛的海崖</span></div><h4>CAVE · EISA · CLIFF</h4><div class="day-opening-meta"><div>🥁 今日文化：Eisa 太鼓</div><div>🎧 今日音乐：THE BOOM《島唄》</div><div>📸 Must Shot：万座毛 / 残波岬</div></div><div class="day-opening-quote">“从三十万年的地底走到断崖海风，晚上用和牛收尾。”</div></div>
                     <div class="time-item">
                         <div class="time-text">09:30 - 10:00</div>
                         <div class="event-name">🏨 Check-Out 退房：那霸 La'gent 酒店退房，行李全部 Load 上车</div>
@@ -915,13 +1377,13 @@
                 <div class="day-header">
                     <div class="day-title-group">
                         <span class="day-num">D4</span>
-                        <strong style="font-size:14px;">10/21 (三) 21世纪之森/星巴克 ➔ 古宇利大桥/虾饭 ➔ 凤梨园 ➔ 唐吉诃德 ➔ 烧肉本部牧场</strong>
+                        <strong style="font-size:14px;">10/21 (三) 21世纪之森 ➔ 古宇利蓝/虾饭 ➔ 凤梨园 ➔ Orion Happy Park ➔ 唐吉诃德 ➔ 本部牛</strong>
                     </div>
                     <span class="hotel-tag">宿：恩纳嘉利吉度假酒店</span>
                 </div>
-                <div class="day-detail">
+                <div class="day-detail"><div class="day-opening-card"><div class="day-v10-photo" style="background-image:url(&quot;assets/images/overview/nago-kouri-bridge-3.jpg&quot;)"><div class="day-photo-day-badge">D4</div><div class="day-photo-place-label"><b>古宇利大桥 · Kouri Bridge</b><span>今归仁 · 古宇利蓝</span></div><div class="day-photo-index-strip"><span class="tag">🌉 HERO SHOT</span><span class="tag">OKINAWA 2026</span></div><span>D4 · 古宇利蓝</span></div><h4>LOVE ISLAND · ORION DAY</h4><div class="day-opening-meta"><div>🌉 今日颜色：Kouri Blue</div><div>🎧 今日音乐：夏川りみ《涙そうそう》</div><div>🍺 Okinawa Moment：Orion Happy Park</div></div><div class="day-opening-quote">“今天不是赶景点，是把车开进明信片，再走进名护最有辨识度的一杯啤酒。”</div></div>
                     <div class="time-item">
-                        <div class="time-text">09:30 - 11:00</div>
+                        <div class="time-text">09:30 - 10:30</div>
                         <div class="event-name">☕ 21世纪之森公园 & 海景 Starbucks 
                             <a href="https://maps.google.com/?q=21st+Century+Forest+Park+Nago" target="_blank" class="map-link">📍 Google</a>
                             <a href="https://waze.com/ul?ll=26.5962,127.9730&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
@@ -929,7 +1391,7 @@
                         <div class="event-desc">2026翻新升级新地标「あけみおてらす」，打卡绝美海景星巴克与大型鲸鲨游具！MAPCODE: 206 626 472*34。</div>
                     </div>
                     <div class="time-item">
-                        <div class="time-text">11:30 - 13:30</div>
+                        <div class="time-text">11:00 - 13:15</div>
                         <div class="event-name">🌉 古宇利岛、古宇利大桥 & 心形岩 
                             <a href="https://maps.google.com/?q=Kouri+Island" target="_blank" class="map-link">📍 Google</a>
                             <a href="https://waze.com/ul?ll=26.7022,127.9702&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
@@ -948,7 +1410,7 @@
                         <div class="event-desc">古宇利岛超人气招牌大虾饭！无需预订，现场机器点餐排队取餐，二楼露台看海景色极佳。(建议用餐时间: 1小时)</div>
                     </div>
                     <div class="time-item">
-                        <div class="time-text">14:00 - 16:00</div>
+                        <div class="time-text">13:45 - 15:00</div>
                         <div class="event-name">🍍 名护凤梨园 
                             <a href="https://maps.google.com/?q=Nago+Pineapple+Park" target="_blank" class="map-link">📍 Google</a>
                             <a href="https://waze.com/ul?ll=26.6217,127.9653&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
@@ -956,7 +1418,17 @@
                         <div class="event-desc">零步行负担！全程乘坐无人驾驶自动凤梨造型游览车。</div>
                     </div>
                     <div class="time-item">
-                        <div class="time-text">16:30 - 18:00</div>
+                        <div class="time-text">15:30 - 16:30</div>
+                        <div class="event-name">🍺 Orion Happy Park · 名护啤酒工厂见学
+                            <a href="https://www.google.com/maps/search/?api=1&query=Orion+Happy+Park+2-2-1+Agarie+Nago+Okinawa" target="_blank" class="map-link">📍 Google</a>
+                            <a href="https://waze.com/ul?q=Orion%20Happy%20Park%202-2-1%20Agarie%20Nago&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
+                            <a href="https://happypark.orionbeer.co.jp/?lng=zh-TW" target="_blank" class="reserve-link">📅 官方预约</a>
+                        </div>
+                        <div class="event-desc">Orion 名护工厂导览约 60 分钟，成人 ¥1,000，须事前预约；预约通常于参观日前一个月开放。</div>
+                        <div class="orion-highlight"><b>🍺 Okinawa Moment：</b>参观生产流程、品牌历史与试饮。司机不可饮酒，可选无酒精啤酒/软饮。现行休馆日为周日、周一；D4 为周三，但 2026/10/21 最终开放与预约时段仍以官方预约页为准。地址：〒905-0021 沖縄県名護市東江2-2-1。</div>
+                    </div>
+                    <div class="time-item">
+                        <div class="time-text">16:45 - 17:45</div>
                         <div class="event-name">🛒 MEGA 唐吉诃德（名护店） 
                             <a href="https://maps.google.com/?q=MEGA+Don+Quijote+Nago" target="_blank" class="map-link">📍 Google</a>
                             <a href="https://waze.com/ul?q=MEGA+Don+Quijote+Nago&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
@@ -964,7 +1436,7 @@
                         <div class="event-desc">单层巨型平地卖场，停车免费，极好逛。</div>
                     </div>
                     <div class="time-item">
-                        <div class="time-text">18:30 - 20:30</div>
+                        <div class="time-text">18:15 - 20:15</div>
                         <div class="event-name">🥩 晚餐：烧肉本部牧场 名护店 (Yakiniku Motobu Bokujo) 
                             <a href="https://maps.google.com/?q=Yakiniku+Motobu+Bokujo+Nago" target="_blank" class="map-link">📍 Google</a>
                             <a href="https://waze.com/ul?q=Motobu+Bokujo+Nago&navigate=yes" target="_blank" class="waze-link">📍 Waze</a>
@@ -983,7 +1455,7 @@
                     </div>
                     <span class="hotel-tag">宿：那霸 La'gent 酒店</span>
                 </div>
-                <div class="day-detail">
+                <div class="day-detail"><div class="day-opening-card"><div class="day-v10-photo" style="background-image:url(&quot;assets/images/d5/bise-fukugi-1.JPG&quot;)"><div class="day-photo-day-badge">D5</div><div class="day-photo-place-label"><b>备濑福木林 · Bise Fukugi</b><span>本部 · 传统聚落</span></div><div class="day-photo-index-strip"><span class="tag">🌳 SLOW OKINAWA</span><span class="tag">OKINAWA 2026</span></div><span>D5 · 备濑福木林</span></div><h4>GREEN TUNNEL · AMERICAN SUNSET</h4><div class="day-opening-meta"><div>🌳 今日慢生活：备濑福木林</div><div>🎧 今日音乐：BEGIN《オジー自慢のオリオンビール》</div><div>📸 Must Shot：美国村 Sunset → Neon</div></div><div class="day-opening-quote">“上午三百年绿荫，傍晚美式霓虹，一天看见冲绳最安静和最喧闹的两面。”</div></div>
                     <div class="time-item">
                         <div class="time-text">09:00 - 09:30</div>
                         <div class="event-name">🏨 Check-Out 退房：恩纳嘉利吉度假酒店退房，行李全部装车</div>
@@ -1060,7 +1532,7 @@
                     </div>
                     <span class="hotel-tag">宿：那霸 La'gent 酒店</span>
                 </div>
-                <div class="day-detail">
+                <div class="day-detail"><div class="day-opening-card"><div class="day-v10-photo" style="background-image:url(&quot;assets/images/overview/american-village-3.JPG&quot;)"><div class="day-photo-day-badge">D6</div><div class="day-photo-place-label"><b>美国村 · American Village</b><span>北谷 · Sunset / Neon</span></div><div class="day-photo-index-strip"><span class="tag">🌇 POSTWAR OKINAWA</span><span class="tag">OKINAWA 2026</span></div><span>D6 · 海边商业与 Easy Day</span></div><h4>SHOP · SEA · EASY DAY</h4><div class="day-opening-meta"><div>🛍️ 今日节奏：室内购物 + 海边</div><div>🎧 今日声音：不赶路</div><div>📸 Must Shot：丰崎蓝天</div></div><div class="day-opening-quote">“留一点空白给购物、咖啡和临时发现。旅行不需要每小时都有成就。”</div></div>
                     <div class="time-item">
                         <div class="time-text">10:00 - 12:30</div>
                         <div class="event-name">Bowling Round 1 Stadium（宜野湾店） 
@@ -1105,7 +1577,7 @@
                     </div>
                     <span class="hotel-tag">宿：那霸 La'gent 酒店</span>
                 </div>
-                <div class="day-detail">
+                <div class="day-detail"><div class="day-opening-card"><div class="day-v10-photo" style="background-image:url(&quot;assets/images/okinawa images gallery/Sam’s By-the-sea 1.jpg&quot;)"><div class="day-photo-day-badge">D7</div><div class="day-photo-place-label"><b>冲绳味觉 · Okinawa Taste</b><span>那霸 / 糸满 · Food Day</span></div><div class="day-photo-index-strip"><span class="tag">🥩 TASTE</span><span class="tag">OKINAWA 2026</span></div><span>D7 · 最后一日的冲绳味道</span></div><h4>MARKET · LAST DRIVE · FINAL NIGHT</h4><div class="day-opening-meta"><div>🐟 今日味道：糸满海鲜</div><div>🎧 今日音乐：BEGIN《三線の花》</div><div>📸 Must Shot：国际通最后一夜</div></div><div class="day-opening-quote">“还车以后，Road Trip 变回步行。让熟悉起来的那霸自己做结尾。”</div></div>
                     <div class="time-item">
                         <div class="time-text">10:00 - 12:00</div>
                         <div class="event-name">🐟 糸满鱼市场 (道の駅いとまん / Itoman Fish Market) 
@@ -1167,7 +1639,7 @@
                     </div>
                     <span class="hotel-tag" style="background:#e2e8f0; color:#475569;">返程</span>
                 </div>
-                <div class="day-detail">
+                <div class="day-detail"><div class="day-opening-card"><div class="day-v10-photo" style="background-image:url(&quot;assets/images/history/Itoman-peace-memorial-1.jpg&quot;)"><div class="day-photo-day-badge">D8</div><div class="day-photo-place-label"><b>冲绳记忆 · Okinawa Memory</b><span>返港 · Closing Chapter</span></div><div class="day-photo-index-strip"><span class="tag">✈️ CLOSING</span><span class="tag">OKINAWA 2026</span></div><span>D8 · 带着整座岛的故事离开</span></div><h4>HOMEBOUND · ONE LAST LOOK</h4><div class="day-opening-meta"><div>✈️ 今日动作：返港</div><div>🎧 今日声音：机场广播</div><div>📸 Closing Shot：四个人选出全程最好的一张照片</div></div><div class="day-opening-quote">“离开不是结束。把攻略和实际照片留下，下一次它就从计划变成记忆。”</div></div>
                     <div class="time-item">
                         <div class="time-text">07:30 - 08:15</div>
                         <div class="event-name">🏨 Check-Out 退房出发：冲绳那霸柔婕阁酒店 (La'gent)</div>
@@ -1216,7 +1688,7 @@
                         </label>
                         <label class="map-checkbox-item">
                             <input type="checkbox" class="day-chk" data-day="D4" checked onchange="updateMapVisibility()">
-                            <span class="map-color-badge" style="background:#22c55e;"></span> D4 北部巡游/名护本部烧肉
+                            <span class="map-color-badge" style="background:#22c55e;"></span> D4 古宇利/Orion/名护本部牛
                         </label>
                         <label class="map-checkbox-item">
                             <input type="checkbox" class="day-chk" data-day="D5" checked onchange="updateMapVisibility()">
@@ -1698,123 +2170,186 @@
                 </div>
             </div>
         </div>
-
-        <!-- 10. ℹ️ 实用 Tab (V7: 恢复 V3/V4 并扩充) -->
+        <!-- 10. ℹ️ 实用 Tab (V10.6 Consolidated) -->
         <div id="info" class="tab-content">
             <div class="card">
-                <div class="card-title">ℹ️ 冲绳自驾与旅行实用资讯百宝箱</div>
-                
+                <div class="card-title">ℹ️ 冲绳自驾与日本旅行实用资讯 · 2026 Consolidated</div>
+
                 <div class="info-grid">
-                    <div class="info-card-item" style="border-left: 4px solid var(--accent-purple);">
-                        <h4>🚘 Times 美荣桥站前店与车种指南</h4>
+
+                    <div class="info-card-item" style="border-left:5px solid #dc2626;">
+                        <h4>🚦 日本红灯右转：红灯不能自行右转</h4>
                         <ul>
-                            <li><b>取还车优势</b>：美荣桥站前店紧邻单轨美荣桥站，离那霸 La'gent 酒店极近。10/19 09:00 取车，10/24 18:00 还车非常顺路（预订确认号: <b>202601763663</b>）。</li>
-                            <li><b>混能车型优势</b>：预订 Honda Freed / Sienta Hybrid 省油平稳，放置 4 个 28寸行李箱拉平三排座椅空间宽裕。</li>
+                            <li><b>🔴 红灯 = 停车</b>，汽车不能越过停止线，也不能因为准备右转就直接通过。</li>
+                            <li><b>➡️ 绿色右转箭头亮起</b>时，即使主灯是红灯，才可按箭头方向右转。</li>
+                            <li>已合法进入路口正在完成右转，之后信号变红，可安全完成，但必须注意行人及其他绿灯方向交通。</li>
+                        </ul>
+                        <div class="v106-alert"><b>P0 驾驶记忆：</b>Japan ≠ US “Right Turn on Red”。不要把北美驾驶习惯带进冲绳。</div>
+                    </div>
+
+                    <div class="info-card-item" style="border-left:5px solid #0ea5e9;">
+                        <h4>🛍️ Tax-Free · 本次2026年10月仍适用现行制度</h4>
+                        <ul>
+                            <li>合资格短期访日旅客在参加 Tax-Free 的商店购买时，仍按现行制度办理免税。</li>
+                            <li><b>一般物品：</b>同店同日税前合计 ¥5,000 或以上。</li>
+                            <li><b>消耗品：</b>同店同日税前 ¥5,000–¥500,000，按规定包装，勿在日本境内拆封/使用。</li>
+                            <li><b>2026/11/1 起</b>才切换为“先含税购买 → 出境确认携出 → 后续退款”的 Refund Method。本次10月冲绳尚未进入新制。</li>
+                            <li>2025/4/1 起，旅客自行以国际邮寄方式证明把免税品送出境的制度已经取消。</li>
+                        </ul>
+                        <a class="v106-app-link" href="https://www.mlit.go.jp/kankocho/tax-free/" target="_blank" rel="noopener">日本观光厅 Tax-Free</a>
+                        <a class="v106-app-link alt" href="https://www.vjw.digital.go.jp/" target="_blank" rel="noopener">Visit Japan Web</a>
+                    </div>
+
+                    <div class="info-card-item" style="border-left:5px solid #f59e0b;">
+                        <h4>🅿️ 停车 / ¥500 硬币</h4>
+                        <ul>
+                            <li>2021版双色新 ¥500 与旧版 ¥500 都是有效货币，但<b>机器是否识别取决于设备</b>。</li>
+                            <li>旧式停车精算机可能未升级识别某一版硬币，因此不要把“500円一枚走天下”当成策略。</li>
+                            <li><b>车内常备：</b>¥100 硬币 + ¥1,000 纸币，¥500 只是补充。</li>
+                            <li>入场前确认 <b>最大料金</b>、夜间收费、付款方式和精算机接受币种。</li>
                         </ul>
                     </div>
 
                     <div class="info-card-item">
-                        <h4>⚡ 电压与插头规格</h4>
+                        <h4>🚘 自驾核心</h4>
                         <ul>
-                            <li><b>电压规格</b>：日本标准电压为 <b>100V</b> (频率 50Hz/60Hz)。</li>
-                            <li><b>插头类型</b>：<b>A 型双平脚插头</b>（与香港三角扁头不同），手机/相机充电器若为双平头可直接插，三角头需带<b>转换插头</b>。</li>
+                            <li><b>靠左行驶 / 右舵</b>；转弯先看行人和自行车。</li>
+                            <li><b>斑马线行人优先</b>。</li>
+                            <li>限速以现场标志为准。</li>
+                            <li>还车前依租车公司要求加满油，并保留收据。</li>
+                            <li>只有实际租有 ETC 卡时才走 ETC 专用通道。</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card-item" style="grid-column:1/-1;">
+                        <h4>🚝 冲绳交通卡 / 信用卡感应 · 这个最容易搞混</h4>
+                        <table class="v106-card-table">
+                            <thead><tr><th>方式</th><th>Yui Rail 单轨</th><th>冲绳本岛路线巴士</th><th>建议</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Suica / PASMO / ICOCA 等全国互通IC</b></td>
+                                    <td>✅ 可用。Yui Rail 官方支持 Suica 及 Kitaca、PASMO、manaca、TOICA、PiTaPa、ICOCA、Hayakaken、nimoca、SUGOCA。</td>
+                                    <td>⚠️ <b>不要假设可用。</b>Yui Rail 的 Suica 互通并不等于所有冲绳路线巴士都接受。</td>
+                                    <td>如果你本来已有 Suica/ICOCA，坐 Yui Rail 最方便。</td>
+                                </tr>
+                                <tr>
+                                    <td><b>OKICA</b></td>
+                                    <td>✅ 可用</td>
+                                    <td>✅ 冲绳本岛路线巴士可用；定期观光巴士、Limousine Bus 等例外以营运商说明为准。</td>
+                                    <td>大量搭巴士才更值得考虑。</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Contactless Credit Card</b></td>
+                                    <td>✅ 全19站支持 Visa、Mastercard、JCB、Amex、Diners、Discover、银联等相应感应卡。</td>
+                                    <td>⚠️ 依巴士营运商/路线而异。</td>
+                                    <td>本次以自驾为主，Yui Rail 直接拍卡其实最省事。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="font-size:10px;color:#64748b;margin-top:7px;">Yui Rail 1日/2日 QR Pass 也可购买；是否值得用取决于当天搭乘次数。</p>
+                        <a class="v106-app-link" href="https://www.yui-rail.co.jp/ticketinfo-ticket/" target="_blank" rel="noopener">Yui Rail 票务</a>
+                        <a class="v106-app-link alt" href="https://www2025.yui-rail.co.jp/ticketinfo-ticket/ticketinfo/okica/" target="_blank" rel="noopener">OKICA</a>
+                    </div>
+
+                    <div class="info-card-item" style="grid-column:1/-1;border-left:5px solid #2563eb;">
+                        <h4>📱 日本常用 App / 网站 · 建议出发前装好</h4>
+                        <div class="v106-app-grid">
+
+                            <div class="v106-app-card">
+                                <h5>🗺️ Google Maps</h5>
+                                <p>基础导航、营业时间、停车场、餐厅和评论。日本公共交通资料也相当完整。本次冲绳仍是第一导航入口。</p>
+                                <a class="v106-app-link" href="https://maps.google.com/" target="_blank" rel="noopener">打开 Google Maps</a>
+                            </div>
+
+                            <div class="v106-app-card">
+                                <h5>🚗 Japan Travel by NAVITIME</h5>
+                                <p>面向访日旅客的日本导航 App/Web，支持公共交通、步行、驾车、实时交通及旅行计划；适合作为 Google Maps 的日本专用备援。</p>
+                                <a class="v106-app-link" href="https://japantravel.navitime.com/en/" target="_blank" rel="noopener">NAVITIME Japan Travel</a>
+                            </div>
+
+                            <div class="v106-app-card">
+                                <h5>🚕 GO Taxi</h5>
+                                <p>日本主流叫车 App，冲绳本岛已在服务范围内（部分地区除外）。国际信用卡及 Apple Pay 支持以官方最新说明为准。</p>
+                                <a class="v106-app-link" href="https://go.goinc.jp/en/" target="_blank" rel="noopener">GO Taxi</a>
+                            </div>
+
+                            <div class="v106-app-card">
+                                <h5>🍽️ Tabelog 食べログ</h5>
+                                <p>日本餐厅搜寻、照片、评价与预约的重要入口。现有多语言版，也可以直接筛 Okinawa 和 Online Reservation。</p>
+                                <a class="v106-app-link" href="https://tabelog.com/tw/" target="_blank" rel="noopener">Tabelog 繁中</a>
+                            </div>
+
+                            <div class="v106-app-card">
+                                <h5>🍣 TableCheck</h5>
+                                <p>大量日本餐厅直接使用的在线预约平台，尤其适合较正式餐厅、烧肉、寿司、铁板烧等。看到餐厅官网“Reserve”跳到 TableCheck 属正常。</p>
+                                <a class="v106-app-link" href="https://www.tablecheck.com/en/japan" target="_blank" rel="noopener">TableCheck Japan</a>
+                            </div>
+
+                            <div class="v106-app-card">
+                                <h5>🏪 餐厅官方网页 / Google Maps</h5>
+                                <p>冲绳不少本地店不一定出现在所有国际预约平台。优先查看餐厅官网、Google Maps 的“Reserve a table”，再看 Tabelog / TableCheck。</p>
+                            </div>
+
+                            <div class="v106-app-card">
+                                <h5>🛂 Visit Japan Web</h5>
+                                <p>入境、海关及支持门店的 Tax-Free QR 等官方数字服务。它是网页服务，不需要把来路不明的“Visit Japan”App 装进手机。</p>
+                                <a class="v106-app-link alt" href="https://www.vjw.digital.go.jp/" target="_blank" rel="noopener">Visit Japan Web</a>
+                            </div>
+
+                            <div class="v106-app-card">
+                                <h5>🌐 Google Translate / VoiceTra</h5>
+                                <p>菜单拍照、语音和现场沟通。Google Translate 最通用；VoiceTra 是日本开发的语音翻译工具，可作第二备援。</p>
+                                <a class="v106-app-link" href="https://translate.google.com/" target="_blank" rel="noopener">Google Translate</a>
+                                <a class="v106-app-link alt" href="https://voicetra.nict.go.jp/en/" target="_blank" rel="noopener">VoiceTra</a>
+                            </div>
+
+                            <div class="v106-app-card">
+                                <h5>⚠️ Safety Tips</h5>
+                                <p>日本官方面向访日旅客的灾害信息工具。冲绳有台风风险，天气转差时比社交媒体截图可靠。</p>
+                                <a class="v106-app-link dark" href="https://www.jnto.go.jp/safety-tips/eng/app.html" target="_blank" rel="noopener">Safety Tips</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="info-card-item">
+                        <h4>📶 网络 / 导航备援</h4>
+                        <ul>
+                            <li>至少两部手机有数据。</li>
+                            <li>Google Maps + NAVITIME / Waze 互相校验。</li>
+                            <li>酒店、租车点、重要餐厅地址提前截图。</li>
                         </ul>
                     </div>
 
                     <div class="info-card-item">
-                        <h4>⛽ 自驾加油与 ETC 指南</h4>
+                        <h4>🏥 紧急联络</h4>
                         <ul>
-                            <li><b>油品选择</b>：租车请认准红枪 <b>Regular (レギュラー) 无铅汽油</b>。</li>
-                            <li><b>还车规则</b>：10/24 18:00 前必须在美荣桥/那霸市区加油站将油箱<b>加满 (Full Tank)</b>，并<b>务必保留加油小票发票</b>。</li>
-                            <li><b>ETC 闸道</b>：行经冲绳自动车道（高速公路），上高速走 <b>ETC 专用通道</b>（限速 20km/h 识别）。</li>
+                            <li><b>警察 110</b></li>
+                            <li><b>火灾 / 救护车 119</b></li>
+                            <li>天气、台风、地震时优先查看官方交通和灾害信息。</li>
                         </ul>
                     </div>
 
-                    <div class="info-card-item">
-                        <h4>🚧 收费公路与道路封路查询</h4>
-                        <ul>
-                            <li><b>冲绳自动车道</b>：西原 JCT 至 许田 IC 收费约 ¥1,000 日元。</li>
-                            <li><b>实时路况/封路查询</b>：可访问日本道路交通情报中心 <a href="https://www.jartic.or.jp/" target="_blank" style="color:#2563eb;">JARTIC 官网 🌐</a> 查询是否有公路施工或临时封路。</li>
-                        </ul>
+                    <div class="info-card-item" style="grid-column:1/-1;border-left:5px solid #8b5cf6;">
+                        <h4>🗣️ 实用日语 · 🔊 点击播放</h4>
+                        <p style="font-size:11px;color:#64748b;margin:4px 0 10px;">使用浏览器内置日语语音，不离开攻略。Edge/Chrome 在 GitHub Pages (HTTPS) 通常比 file:// 本地预览更稳定；若设备没有日语 voice，文字仍可正常使用。</p>
+                        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px;">
+                            <div class="jp-phrase"><button type="button" data-jp="すみません" onclick="if(!window.speechSynthesis){alert('此浏览器/设备暂不支持语音播放。');return;}window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(this.dataset.jp);u.lang='ja-JP';u.rate=0.82;u.pitch=1;window.speechSynthesis.speak(u);">🔊</button><b>すみません</b><span>Sumimasen · 不好意思 / 劳驾</span></div>
+                            <div class="jp-phrase"><button type="button" data-jp="予約しています" onclick="if(!window.speechSynthesis){alert('此浏览器/设备暂不支持语音播放。');return;}window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(this.dataset.jp);u.lang='ja-JP';u.rate=0.82;u.pitch=1;window.speechSynthesis.speak(u);">🔊</button><b>予約しています</b><span>Yoyaku shiteimasu · 我有预约</span></div>
+                            <div class="jp-phrase"><button type="button" data-jp="駐車場はどこですか" onclick="if(!window.speechSynthesis){alert('此浏览器/设备暂不支持语音播放。');return;}window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(this.dataset.jp);u.lang='ja-JP';u.rate=0.82;u.pitch=1;window.speechSynthesis.speak(u);">🔊</button><b>駐車場はどこですか？</b><span>停车场在哪里？</span></div>
+                            <div class="jp-phrase"><button type="button" data-jp="レギュラー満タンお願いします" onclick="if(!window.speechSynthesis){alert('此浏览器/设备暂不支持语音播放。');return;}window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(this.dataset.jp);u.lang='ja-JP';u.rate=0.82;u.pitch=1;window.speechSynthesis.speak(u);">🔊</button><b>レギュラー満タンお願いします</b><span>Regular 加满，谢谢</span></div>
+                            <div class="jp-phrase"><button type="button" data-jp="領収書をお願いします" onclick="if(!window.speechSynthesis){alert('此浏览器/设备暂不支持语音播放。');return;}window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(this.dataset.jp);u.lang='ja-JP';u.rate=0.82;u.pitch=1;window.speechSynthesis.speak(u);">🔊</button><b>領収書をお願いします</b><span>请给我收据</span></div>
+                            <div class="jp-phrase"><button type="button" data-jp="カードは使えますか" onclick="if(!window.speechSynthesis){alert('此浏览器/设备暂不支持语音播放。');return;}window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(this.dataset.jp);u.lang='ja-JP';u.rate=0.82;u.pitch=1;window.speechSynthesis.speak(u);">🔊</button><b>カードは使えますか？</b><span>可以刷卡吗？</span></div>
+                            <div class="jp-phrase"><button type="button" data-jp="これは免税できますか" onclick="if(!window.speechSynthesis){alert('此浏览器/设备暂不支持语音播放。');return;}window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(this.dataset.jp);u.lang='ja-JP';u.rate=0.82;u.pitch=1;window.speechSynthesis.speak(u);">🔊</button><b>これは免税できますか？</b><span>这个可以免税吗？</span></div>
+                            <div class="jp-phrase"><button type="button" data-jp="英語のメニューはありますか" onclick="if(!window.speechSynthesis){alert('此浏览器/设备暂不支持语音播放。');return;}window.speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(this.dataset.jp);u.lang='ja-JP';u.rate=0.82;u.pitch=1;window.speechSynthesis.speak(u);">🔊</button><b>英語のメニューはありますか？</b><span>有英文菜单吗？</span></div>
+                        </div>
                     </div>
 
-                    <div class="info-card-item">
-                        <h4>🏥 紧急求助与当地医院</h4>
-                        <ul>
-                            <li><b>紧急报救</b>：警察局 <b>110</b> ｜ 火灾/救护车 <b>119</b>。</li>
-                            <li><b>中部医院</b>：冲绳县立中部医院 <a href="https://maps.google.com/?q=Okinawa+Prefectural+Chubu+Hospital" target="_blank" class="map-link">📍 Maps</a> (电话: +81 98-973-4111)</li>
-                            <li><b>那霸医院</b>：那霸市立医院 <a href="https://maps.google.com/?q=Naha+Municipal+Hospital" target="_blank" class="map-link">📍 Maps</a> (电话: +81 98-884-5111)</li>
-                        </ul>
-                    </div>
+                </div>
 
-                    <div class="info-card-item">
-                        <h4>🚗 冲绳自驾安全与交通法则</h4>
-                        <ul>
-                            <li><b>靠左行驶</b>：右舵左行，转弯谨记“小转转左，大转转右”。</li>
-                            <li><b>行人绝对优先</b>：无路灯斑马线遇到行人必须停下让行。</li>
-                            <li><b>限速提示</b>：一般国道限速 40-50 km/h，高速公路限速 80 km/h。</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card-item">
-                        <h4>♨️ 温泉与 Spa 入浴礼仪</h4>
-                        <ul>
-                            <li><b>先洗后泡</b>：进入温泉池前必须先在冲洗区彻底洗净身体。</li>
-                            <li><b>毛巾不可入水</b>：小毛巾可叠放在头上，切勿浸入泡汤池中。</li>
-                            <li><b>纹身提示</b>：若有纹身需提前向酒店或 Spa 确认是否需使用贴布遮盖。</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card-item">
-                        <h4>🛍️ 消费税、退税与机场接驳</h4>
-                        <ul>
-                            <li><b>日本消费税</b>：标准税率 <b>10%</b>（外带食品为 8%）。</li>
-                            <li><b>免税条件 (Tax-Free)</b>：在 PARCO CITY 或唐吉诃德同一店内消费满 <b>5,000 日元（不含税）</b> 即可凭护照退税。</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card-item">
-                        <h4>🎁 冲绳必买特色伴手礼</h4>
-                        <ul>
-                            <li><b>御菓子御殿</b>：红芋塔 (紫薯塔)、黑糖块。</li>
-                            <li><b>边银食堂</b>：石垣岛辣油 (拌面拌饭绝配)。</li>
-                            <li><b>南风堂/福砂屋</b>：雪盐金楚糕 (Chinsuko)、冲绳限定米果。</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card-item">
-                        <h4>📶 上网 / 导航 / 离线备援</h4>
-                        <ul>
-                            <li>建议至少两部手机有独立数据；Google Maps 与 Waze 互相备援。</li>
-                            <li>出发前把酒店、租车店、餐厅名称与地址截图或存在 Notes，网络不稳时仍可输入车机。</li>
-                            <li>每日开车前先确认手机电量与车充，避免导航开到一半手机开始表演绝食。</li>
-                        </ul>
-                    </div>
-                    <div class="info-card-item">
-                        <h4>💴 现金 / 信用卡 / 零钱</h4>
-                        <ul>
-                            <li>酒店、商场、租车通常可刷卡，小餐厅、停车机仍建议备日元现金。</li>
-                            <li>准备若干 ¥1,000 纸币及 ¥100 / ¥500 硬币，对停车和小店非常实用。</li>
-                            <li>信用卡不要全部放同一钱包，至少留一张备用。</li>
-                        </ul>
-                    </div>
-                    <div class="info-card-item">
-                        <h4>🅿️ 那霸停车实战</h4>
-                        <ul>
-                            <li>那霸市中心优先收费停车场，先看清「最大料金」适用时段。</li>
-                            <li>北部景点停车相对轻松，但古宇利/热门餐厅假日仍可能满位。</li>
-                            <li>不要在窄路临停搬行李；宁愿多走两分钟，也别把旅程变成跟日本交警认识彼此。</li>
-                        </ul>
-                    </div>
-                    <div class="info-card-item">
-                        <h4>🗣️ 四句最实用日语</h4>
-                        <ul>
-                            <li><b>レギュラー満タンお願いします</b>：Regular 加满，谢谢。</li>
-                            <li><b>駐車場はどこですか？</b>：停车场在哪里？</li>
-                            <li><b>予約しています</b>：我有预约。</li>
-                            <li><b>領収書をお願いします</b>：请给我收据。</li>
-                        </ul>
-                    </div>
+                <div style="margin-top:14px;padding-top:10px;border-top:1px dashed #cbd5e1;font-size:9.5px;line-height:1.6;color:#64748b;">
+                    <b>2026资料复核：</b>
+                    日本观光厅 Tax-Free、JAF 交通规则、Yui Rail/OKICA/Suica 官方资料、JNTO Useful Apps、GO Taxi、Tabelog、TableCheck。实际营业、服务地区及支付方式仍以出发当日官方页面为准。
                 </div>
             </div>
         </div>
@@ -2513,18 +3048,19 @@
                     waypoints: [[127.6820, 26.2185], [127.7504, 26.1398], [127.8502, 26.5048], [127.7145, 26.4410], [127.7980, 26.4485], [127.9250, 26.5265]]
                 },
                 {
-                    day: "D4", name: "D4 北部巡游/名护本部烧肉", color: "#22c55e", labelCoord: [26.6600, 127.9500],
+                    day: "D4", name: "D4 古宇利/Orion/名护本部牛", color: "#22c55e", labelCoord: [26.6600, 127.9500],
                     points: [
                         { name: "21世纪之森公园 & 海景星巴克", time: "09:30 - 11:00", lat: 26.5962, lng: 127.9730, gmap: "21st+Century+Forest+Park+Nago" },
                         { name: "古宇利大桥 (南端入口)", time: "11:30 - 11:45", lat: 26.6908, lng: 127.9902, gmap: "Kouri+Bridge" },
                         { name: "古宇利岛心形岩沙滩", time: "11:45 - 13:30", lat: 26.7118, lng: 127.9712, gmap: "Kouri+Island" },
                         { name: "Kouri Shrimp 蒜香大虾饭", time: "12:00 - 13:00", lat: 26.7022, lng: 127.9702, gmap: "Kouri+Shrimp" },
-                        { name: "名护凤梨园", time: "14:00 - 16:00", lat: 26.6217, lng: 127.9653, gmap: "Nago+Pineapple+Park" },
-                        { name: "MEGA 唐吉诃德 (名护店)", time: "16:30 - 18:00", lat: 26.5850, lng: 127.9800, gmap: "MEGA+Don+Quijote+Nago" },
-                        { name: "烧肉本部牧场 (名护店)", time: "18:30 - 20:30", lat: 26.5910, lng: 127.9770, gmap: "Yakiniku+Motobu+Bokujo+Nago" }
+                        { name: "名护凤梨园", time: "13:45 - 15:00", lat: 26.6217, lng: 127.9653, gmap: "Nago+Pineapple+Park" },
+                        { name: "Orion Happy Park 名护啤酒工厂", time: "15:30 - 16:30", lat: 26.5886, lng: 127.9860, gmap: "Orion+Happy+Park+Nago" },
+                        { name: "MEGA 唐吉诃德 (名护店)", time: "16:45 - 17:45", lat: 26.5850, lng: 127.9800, gmap: "MEGA+Don+Quijote+Nago" },
+                        { name: "烧肉本部牧场 (名护店)", time: "18:15 - 20:15", lat: 26.5910, lng: 127.9770, gmap: "Yakiniku+Motobu+Bokujo+Nago" }
                     ],
                     // 纠错：确保路线穿过古宇利大桥 (经由 127.9942, 26.6965 桥身) 到达古宇利岛
-                    waypoints: [[127.9250, 26.5265], [127.9730, 26.5962], [127.9902, 26.6908], [127.9942, 26.6965], [127.9712, 26.7118], [127.9653, 26.6217], [127.9770, 26.5910], [127.9250, 26.5265]]
+                    waypoints: [[127.9250, 26.5265], [127.9730, 26.5962], [127.9902, 26.6908], [127.9942, 26.6965], [127.9712, 26.7118], [127.9653, 26.6217], [127.9860, 26.5886], [127.9800, 26.5850], [127.9770, 26.5910], [127.9250, 26.5265]]
                 },
                 {
                     day: "D5", name: "D5 PARCO/美国村/OceanBoo", color: "#3b82f6", labelCoord: [26.5000, 127.8100],
@@ -3626,6 +4162,127 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
             renderExpenseManager();
             refreshOnlineFx(false);
         });
-    </script>
+    
+
+        // ===== V10 Cinematic Storytelling =====
+        let v10HeroIndex=0,v10HeroTimer=null;
+        function v10GoodHeroSlides(){
+            return [...document.querySelectorAll("#v10-hero .v10-hero-slide")].filter(s=>!s.classList.contains("v10-broken"));
+        }
+        function setV10Hero(i){
+            const all=[...document.querySelectorAll("#v10-hero .v10-hero-slide")];
+            const dots=[...document.querySelectorAll("#v10-hero .v10-dot")];
+            const good=v10GoodHeroSlides();
+            if(!good.length)return;
+            v10HeroIndex=(i+good.length)%good.length;
+            const active=good[v10HeroIndex];
+            all.forEach(s=>s.classList.toggle("active",s===active));
+            dots.forEach((d,n)=>{
+                const slide=all[n];
+                d.style.display=(slide&&slide.classList.contains("v10-broken"))?"none":"";
+                d.classList.toggle("active",slide===active);
+            });
+        }
+        function validateV10HeroSlides(){
+            const slides=[...document.querySelectorAll("#v10-hero .v10-hero-slide")];
+            slides.forEach(slide=>{
+                const src=slide.dataset.img;
+                if(!src)return;
+                const probe=new Image();
+                probe.onload=()=>{};
+                probe.onerror=()=>{
+                    slide.classList.add("v10-broken");
+                    if(slide.classList.contains("active"))setV10Hero(0);
+                };
+                probe.src=src;
+            });
+        }
+        function startV10Hero(){
+            clearInterval(v10HeroTimer);
+            v10HeroTimer=setInterval(()=>{
+                const good=v10GoodHeroSlides();
+                if(good.length>1)setV10Hero(v10HeroIndex+1);
+            },7000);
+        }
+        const v10Films={"blue": {"title": "01 · 琉球蓝 / OKINAWA BLUE", "musicLabel": "🎧 BEGIN《島人ぬ宝》 · YouTube 官方 MV", "youtube": "E2LLhc7JJsY", "images": ["assets/images/d2/naha-umikaji-terrace-2.jpg", "assets/images/overview/onna-manzamo-2.jpg", "assets/images/overview/nago-kouri-bridge-3.jpg", "assets/images/d5/bise-fukugi-1.JPG"], "captions": ["濑长岛：机场、海面与落日先告诉你冲绳不是普通日本城市。", "万座毛：珊瑚礁海崖把“蓝”推到更有力量的一面。", "古宇利大桥：Road Trip 最像把车开进海里的瞬间。", "备濑福木林：蓝海之外，冲绳也有三百年绿色生活史。"]}, "memory": {"title": "02 · 王国与记忆 / KINGDOM & MEMORY", "musicLabel": "🎧 BEGIN《三線の花》 · YouTube", "youtube": "76-U4b5MKHg", "images": ["assets/images/overview/naha-shuri-castle-1.jpg", "assets/images/d2/naha-naminoue-1.jpg", "assets/images/d3/nanjo-gyokusendo-2.jpg", "assets/images/history/Itoman-peace-memorial-1.jpg", "assets/images/history/himeyuri-2.jpg", "assets/images/overview/american-village-3.JPG"], "captions": ["首里城：琉球王国约四百五十年的政治、外交与文化中心。", "波上宫：海上信仰、红瓦与那霸港口世界。", "玉泉洞与传统聚落：地质时间与琉球生活史重叠。", "和平祈念公园：1945 的伤痕成为今天冲绳最重要的公共记忆之一。", "姬百合：战争不是抽象数字，而是落在年轻学生与家庭身上的真实命运。", "美国村：战后美国统治与基地经济，又塑造出另一层 Okinawa。"]}, "road": {"title": "03 · ROAD TRIP OKINAWA", "musicLabel": "🎧 BEGIN《島人ぬ宝》 · YouTube 官方 MV", "youtube": "E2LLhc7JJsY", "images": ["assets/images/overview/onna-manzamo-2.jpg", "assets/images/overview/nago-kouri-bridge-3.jpg", "assets/images/d4/orion-happy-park-4.png", "assets/images/d5/bise-fukugi-1.JPG", "assets/images/overview/american-village-3.JPG", "assets/images/d2/naha-umikaji-terrace-2.jpg"], "captions": ["58号公路的想象：海岸、断崖与不赶路的驾驶节奏。", "古宇利蓝：D4 的 Hero Shot，也是整趟自驾最典型的画面。", "Orion Happy Park：把名护从一个地名变成有味道的城市。", "福木林：在绿色隧道里把速度降下来。", "美国村：Sunset 后再等二十分钟，霓虹才真正亮起来。", "回到南部：飞机、海风与城市，又把故事拉回那霸。"]}, "taste": {"title": "04 · TASTE OKINAWA", "musicLabel": "🎧 BEGIN《三線の花》 · YouTube", "youtube": "76-U4b5MKHg", "images": ["assets/images/okinawa images gallery/Sam’s By-the-sea 1.jpg", "assets/images/okinawa images gallery/冲绳中部重击汉堡1.jpg", "assets/images/d4/orion-factory-2.jpg", "assets/images/overview/american-village-3.JPG"], "captions": ["Okinawa Soba × Orion：最像“岛上日常”的组合。", "Taco Rice：美式 Taco 与日本米饭结合，战后混血文化吃进一碗。", "Orion 名护工厂：地方品牌也可以成为旅行文化入口。", "美国村的汉堡与夜色：再接回本行程的和牛、Agu、海鲜与寿喜烧。"]}};
+        let v10FilmTimer=null,v10FilmIndex=0;
+        function openV10Film(key){
+            const cfg=v10Films[key];if(!cfg)return;
+            const modal=document.getElementById("v10-film-modal"),stage=document.getElementById("v10-film-stage"),title=document.getElementById("v10-film-title"),music=document.getElementById("v10-film-music-label"),yt=document.getElementById("v10-film-youtube"),progress=document.getElementById("v10-film-progress");
+            title.textContent=cfg.title;music.textContent=cfg.musicLabel;
+            stage.innerHTML=cfg.images.map((img,i)=>`<div class="v10-film-slide ${i===0?"active":""}" style="background-image:url('${img}')"><div class="v10-film-caption"><b>${cfg.title}</b><p>${cfg.captions[i]||""}</p></div></div>`).join("");
+            yt.src=`https://www.youtube-nocookie.com/embed/${cfg.youtube}?autoplay=1&rel=0`;modal.classList.add("open");v10FilmIndex=0;clearInterval(v10FilmTimer);
+            if(progress){progress.style.transition="none";progress.style.width="0";requestAnimationFrame(()=>{progress.style.transition=`width ${cfg.images.length*6}s linear`;progress.style.width="100%";});}
+            v10FilmTimer=setInterval(()=>{const slides=[...stage.querySelectorAll(".v10-film-slide")];v10FilmIndex++;if(v10FilmIndex>=slides.length){clearInterval(v10FilmTimer);return;}slides.forEach((s,n)=>s.classList.toggle("active",n===v10FilmIndex));},6000);
+        }
+        function closeV10Film(){const modal=document.getElementById("v10-film-modal"),yt=document.getElementById("v10-film-youtube");if(modal)modal.classList.remove("open");if(yt)yt.src="";clearInterval(v10FilmTimer);}
+        document.addEventListener("DOMContentLoaded",()=>{validateV10HeroSlides();setV10Hero(0);startV10Hero();});
+        document.addEventListener("keydown",e=>{if(e.key==="Escape")closeV10Film();});
+
+
+        // V10.1 self-hosted media fallback.
+        document.addEventListener("DOMContentLoaded",()=>{
+            document.querySelectorAll("[style*='background-image']").forEach(el=>{
+                const bg=el.style.backgroundImage || "";
+                const match=bg.match(/url\(["']?([^"')]+)["']?\)/);
+                if(!match)return;
+                const url=match[1];
+                if(!url.startsWith("assets/"))return;
+                const img=new Image();
+                img.onerror=()=>{
+                    el.style.backgroundImage="linear-gradient(135deg,#0f172a,#0e7490)";
+                    el.setAttribute("data-media-missing",url);
+                };
+                img.src=url;
+            });
+        });
+
+
+        function speakJapanese(text){
+            if(!("speechSynthesis" in window)){
+                alert("此浏览器/设备暂不支持语音播放。");
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const u=new SpeechSynthesisUtterance(text);
+            u.lang="ja-JP";
+            u.rate=0.82;
+            const voices=window.speechSynthesis.getVoices();
+            const ja=voices.find(v => (v.lang||"").toLowerCase().startsWith("ja"));
+            if(ja)u.voice=ja;
+            window.speechSynthesis.speak(u);
+        }
+
+        document.addEventListener("click",function(e){
+            const btn=e.target.closest(".jp-phrase button[data-jp]");
+            if(!btn || btn.dataset.jpBound==="1") return;
+            if(!window.speechSynthesis){
+                alert("此浏览器/设备暂不支持语音播放。");
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const u=new SpeechSynthesisUtterance(btn.dataset.jp);
+            u.lang="ja-JP";
+            u.rate=0.82;
+            u.pitch=1;
+            const voices=window.speechSynthesis.getVoices();
+            const ja=voices.find(v => (v.lang||"").toLowerCase().startsWith("ja"));
+            if(ja)u.voice=ja;
+            window.speechSynthesis.speak(u);
+        },false);
+</script>
+
+
+    <div class="media-backdrop" id="v10-film-modal" onclick="if(event.target===this) closeV10Film()">
+        <div class="media-box">
+            <div class="media-head"><span id="v10-film-title">Okinawa Photo Film</span><button class="media-close" onclick="closeV10Film()">✕ 关闭</button></div>
+            <div class="v10-film-stage" id="v10-film-stage"></div>
+            <div class="v10-film-progress" id="v10-film-progress"></div>
+            <div class="v10-audio-dock"><b id="v10-film-music-label">🎧 Soundtrack</b><div>音乐通过 YouTube 官方播放器播放；照片蒙太奇与商业歌曲没有重新打包成自有影片。</div><iframe id="v10-film-youtube" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        </div>
+    </div>
+
 </body>
 </html>
+
+
