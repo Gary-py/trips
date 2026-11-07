@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🌺 冲绳自驾自由行 2026 | 8天7夜完整行程规划</title>
-    <!-- Trip Guide Version: V10.13.1 | Trip.com/Clover Toyota Noah rental replaces legacy Times booking; Expense schema remains V8.3 with seeded-car migration -->
+    <!-- Trip Guide Version: V10.14 | Trip.com/Clover Toyota Noah rental replaces legacy Times booking; Expense schema remains V8.3 with seeded-car migration -->
     
     <!-- Leaflet.js 动态地图 CSS & JS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -2098,6 +2098,12 @@
                     <div class="expense-summary-card"><label>📈 Projected vs Budget</label><strong id="expense-budget-variance">HK$ 0.00</strong></div>
                 </div>
 
+                <div class="expense-section" id="trip-2026-actual-reconciliation">
+                    <h4>📌 2026 冲绳旅行 · 最终实付费用核对</h4>
+                    <div class="inline-note">原始记录已逐项核对：10/18–10/25 共49笔日圆支出；另外包含4笔酒店/租车港币付款及原有4人机票。日圆港币折算为参考值，准确兑换成本须填实际汇率。</div>
+                    <div id="trip-2026-final-actuals"></div>
+                </div>
+
                 <div class="expense-section">
                     <h4>🎯 可修改预算</h4>
                     <div class="inline-note">
@@ -3581,6 +3587,10 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
           ];
         }
 
+        // Reconciled 18–25 October 2026 cash-pool expenses: 49 transactions / JPY 284,100.
+        // The payer is deliberately unassigned until the ¥400,000 cash-pool ownership is confirmed.
+        const TRIP_2026_ACTUAL_ITEMS=[{"id":"actual-okinawa26-1018-01","date":"2026-10-18","item":"晚餐","category":"🍴 餐饮","amount":20868,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"dinner","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1018-02","date":"2026-10-18","item":"超市","category":"🥤 零食/便利店","amount":2125,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"snacks","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-01","date":"2026-10-19","item":"停车场","category":"🅿️ 停车","amount":1200,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-02","date":"2026-10-19","item":"早餐","category":"🍴 餐饮","amount":1230,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"breakfast","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-03","date":"2026-10-19","item":"停车场","category":"🅿️ 停车","amount":100,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-04","date":"2026-10-19","item":"水果","category":"🥤 零食/便利店","amount":3092,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"snacks","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-05","date":"2026-10-19","item":"午餐","category":"🍴 餐饮","amount":10858,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"lunch","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-06","date":"2026-10-19","item":"下午茶","category":"☕ 下午茶","amount":6130,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"tea","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-07","date":"2026-10-19","item":"晚餐","category":"🍴 餐饮","amount":17690,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"dinner","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-08","date":"2026-10-19","item":"停车场","category":"🅿️ 停车","amount":1000,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-09","date":"2026-10-19","item":"激安番薯","category":"🥤 零食/便利店","amount":470,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"snacks","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-10","date":"2026-10-19","item":"停车场","category":"🅿️ 停车","amount":300,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1019-11","date":"2026-10-19","item":"7-11","category":"🥤 零食/便利店","amount":1794,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"snacks","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-01","date":"2026-10-20","item":"停车场","category":"🅿️ 停车","amount":1200,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-02","date":"2026-10-20","item":"早餐","category":"🍴 餐饮","amount":1674,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"breakfast","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-03","date":"2026-10-20","item":"午餐","category":"🍴 餐饮","amount":6450,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"lunch","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-04","date":"2026-10-20","item":"高速桥费","category":"🛣️ Toll","amount":930,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"toll","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-05","date":"2026-10-20","item":"玉泉洞门票","category":"🎫 门票","amount":6000,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"tickets","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-06","date":"2026-10-20","item":"象鼻门票","category":"🎫 门票","amount":400,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"tickets","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-07","date":"2026-10-20","item":"晚餐","category":"🍴 餐饮","amount":20350,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"dinner","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-08","date":"2026-10-20","item":"酒店停车场","category":"🅿️ 停车","amount":1000,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-09","date":"2026-10-20","item":"一兰拉面（额外用餐）","category":"🍴 餐饮","amount":3980,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"dinner","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1020-10","date":"2026-10-20","item":"激安超市","category":"🥤 零食/便利店","amount":1159,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"snacks","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1021-01","date":"2026-10-21","item":"午餐","category":"🍴 餐饮","amount":11750,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"lunch","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1021-02","date":"2026-10-21","item":"加油","category":"⛽ 油费","amount":6006,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"fuel","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1021-03","date":"2026-10-21","item":"超市","category":"🥤 零食/便利店","amount":7993,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"snacks","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1021-04","date":"2026-10-21","item":"晚餐","category":"🍴 餐饮","amount":12550,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"dinner","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1022-01","date":"2026-10-22","item":"午餐","category":"🍴 餐饮","amount":5840,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"lunch","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1022-02","date":"2026-10-22","item":"桥费","category":"🛣️ Toll","amount":1880,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"toll","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1022-03","date":"2026-10-22","item":"晚餐","category":"🍴 餐饮","amount":25542,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"dinner","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1023-01","date":"2026-10-23","item":"早餐","category":"🍴 餐饮","amount":3245,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"breakfast","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1023-02","date":"2026-10-23","item":"停车场","category":"🅿️ 停车","amount":1400,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1023-03","date":"2026-10-23","item":"鱼生午餐","category":"🍴 餐饮","amount":32000,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"lunch","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1023-04","date":"2026-10-23","item":"鱼生下午茶","category":"☕ 下午茶","amount":10550,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"tea","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1023-05","date":"2026-10-23","item":"超市","category":"🥤 零食/便利店","amount":2157,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"snacks","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1023-06","date":"2026-10-23","item":"晚餐","category":"🍴 餐饮","amount":8610,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"dinner","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1023-07","date":"2026-10-23","item":"停车场","category":"🅿️ 停车","amount":1100,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1024-01","date":"2026-10-24","item":"早餐","category":"🍴 餐饮","amount":3300,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"breakfast","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1024-02","date":"2026-10-24","item":"停车场","category":"🅿️ 停车","amount":1200,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1024-03","date":"2026-10-24","item":"桥费","category":"🛣️ Toll","amount":500,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"toll","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1024-04","date":"2026-10-24","item":"午餐","category":"🍴 餐饮","amount":8668,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"lunch","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1024-05","date":"2026-10-24","item":"桥费","category":"🛣️ Toll","amount":500,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"toll","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1024-06","date":"2026-10-24","item":"晚餐","category":"🍴 餐饮","amount":15030,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"dinner","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1024-07","date":"2026-10-24","item":"停车场","category":"🅿️ 停车","amount":1000,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1024-08","date":"2026-10-24","item":"油费","category":"⛽ 油费","amount":5037,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"fuel","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1024-09","date":"2026-10-24","item":"7-11","category":"🥤 零食/便利店","amount":2029,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"snacks","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1025-01","date":"2026-10-25","item":"早餐","category":"🍴 餐饮","amount":1213,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"breakfast","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1025-02","date":"2026-10-25","item":"停车场","category":"🅿️ 停车","amount":1600,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"parking","budgetUnitsConsumed":0,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"},{"id":"actual-okinawa26-1025-03","date":"2026-10-25","item":"午餐","category":"🍴 餐饮","amount":3400,"currency":"JPY","status":"settled","fxRateHKD":null,"payers":{},"shares":{"garyanna":2,"carrie":1,"rosa":1},"budgetBucketId":"lunch","budgetUnitsConsumed":1,"note":"2026冲绳实付现金池记录；付款者/现金池出资比例未核实。"}];
+
         function defaultExpenseState(){
           return{
             version:"8.3",
@@ -3592,9 +3602,10 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
             expenses:[
               {id:"seed-flight",date:"2026-10-18",item:"HK Express 往返机票（4人）",category:"✈️ 机票",amount:4756,currency:"HKD",status:"settled",fxRateHKD:null,payers:{garyanna:4756},shares:{garyanna:2,carrie:1,rosa:1},budgetBucketId:null,budgetUnitsConsumed:0,note:"已全额结清。"},
               {id:"seed-hotel-1",date:"2026-10-08",item:"La'gent 那霸酒店段1（2房×2晚）",category:"🏨 住宿",amount:2482.84,currency:"HKD",status:"settled",fxRateHKD:null,payers:{garyanna:2482.84},shares:{garyanna:2,carrie:1,rosa:1},budgetBucketId:null,budgetUnitsConsumed:0,note:"预计10/8扣款。"},
-              {id:"seed-hotel-2",date:"2026-10-08",item:"Kariyushi 恩纳酒店（2房×2晚）",category:"🏨 住宿",amount:363.38,currency:"USD",status:"settled",fxRateHKD:null,payers:{garyanna:363.38},shares:{garyanna:2,carrie:1,rosa:1},budgetBucketId:null,budgetUnitsConsumed:0,note:"预计10/8扣款 USD 363.38。"},
+              {id:"seed-hotel-2",date:"2026-10-08",item:"Kariyushi 恩纳酒店（2房×2晚）",category:"🏨 住宿",amount:2994.43,currency:"HKD",status:"settled",fxRateHKD:null,payers:{garyanna:2994.43},shares:{garyanna:2,carrie:1,rosa:1},budgetBucketId:null,budgetUnitsConsumed:0,note:"Agoda 实际信用卡入账 HK$2,994.43（替代原 USD363.38 预算参考）。"},
               {id:"seed-hotel-3",date:"2026-10-13",item:"La'gent 那霸酒店段2（2房×3晚）",category:"🏨 住宿",amount:4618.34,currency:"HKD",status:"settled",fxRateHKD:null,payers:{garyanna:4618.34},shares:{garyanna:2,carrie:1,rosa:1},budgetBucketId:null,budgetUnitsConsumed:0,note:"预计10/13扣款。"},
               {id:"seed-car",date:"2026-10-18",item:"Trip.com / Clover Toyota Noah 租车（7天，含TripCover）",category:"🚘 租车",amount:3076.28,currency:"HKD",status:"settled",fxRateHKD:null,payers:{garyanna:3076.28},shares:{garyanna:2,carrie:1,rosa:1},budgetBucketId:null,budgetUnitsConsumed:0,note:"Trip.com订单1359048373556369；已网上预付HK$3,076.28；ETC卡×1；10/18 21:00取车，10/25 09:30还车。"},
+              ...TRIP_2026_ACTUAL_ITEMS,
               {id:"seed-tickets",date:"2026-10-20",item:"景点门票预算",category:"🎫 门票",amount:13200,currency:"JPY",status:"planned",fxRateHKD:null,payers:{},shares:{garyanna:2,carrie:1,rosa:1},budgetBucketId:"tickets",budgetUnitsConsumed:0,note:"预算项目；实际购买后可拆成逐项费用。"}
             ],
             settlements:[]
@@ -3699,6 +3710,33 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
             }else{
               state.expenses.push({...def});
             }
+          });
+
+
+          // V10.14: update only the old unedited Agoda seed to the user's actual HKD charge.
+          const agoda=state.expenses.find(e=>e.id==="seed-hotel-2");
+          if(agoda && agoda.currency==="USD" && Math.abs(Number(agoda.amount)-363.38)<0.001){
+            agoda.amount=2994.43;
+            agoda.currency="HKD";
+            agoda.fxRateHKD=null;
+            agoda.payers={garyanna:2994.43};
+            agoda.note="Agoda 实际信用卡入账 HK$2,994.43（替代原 USD363.38 预算参考）。";
+          }
+
+          // Idempotent merge: preserve existing localStorage, manually entered expenses and settlements.
+          // Avoid duplicating user-entered matching expenses by date/amount/currency/category.
+          const tripIds=new Set(state.expenses.map(e=>e.id));
+          const manualCandidates=state.expenses.filter(e=>!String(e.id||"").startsWith("actual-okinawa26-")
+            && !String(e.id||"").startsWith("seed-") && (e.status==="paid"||e.status==="settled") && e.currency==="JPY");
+          const matchedManualIds=new Set();
+          TRIP_2026_ACTUAL_ITEMS.forEach(entry=>{
+            if(tripIds.has(entry.id))return;
+            const match=manualCandidates.find(e=>!matchedManualIds.has(e.id)
+              && e.date===entry.date && Math.abs(Number(e.amount)-entry.amount)<0.001
+              && (e.category===entry.category || String(e.item||"").includes(entry.item) || entry.item.includes(String(e.item||"").trim())));
+            if(match){matchedManualIds.add(match.id);return;}
+            state.expenses.push({...entry,payers:{},shares:{...entry.shares}});
+            tripIds.add(entry.id);
           });
 
           // Any actual fixed-cost category must not be linked to future Budget.
@@ -4076,6 +4114,338 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
           const el=document.getElementById("expense-settlement-history");if(!el)return;
           if(!expenseState.settlements.length){el.innerHTML=`<div class="inline-note">尚未记录任何内部转账。</div>`;return;}
           el.innerHTML=expenseState.settlements.slice().reverse().map(s=>`<div class="transfer-row"><div>${s.date} · <b>${memberName(s.from)}</b> → <b>${memberName(s.to)}</b></div><div class="balance-positive">${moneyHKD(s.amountHKD)}</div><button class="expense-mini-btn delete" onclick="deleteSettlement('${s.id}')">撤销</button></div>`).join("");
+        }
+
+
+        function renderTrip2026ActualReconciliation(){
+          const el=document.getElementById("trip-2026-final-actuals");if(!el)return;
+          const jpy=TRIP_2026_ACTUAL_ITEMS.reduce((sum,e)=>sum+e.amount,0);
+          const fixedHKD=4756+2482.84+2994.43+4618.34+3076.28;
+          const fx=Number(effectiveRates().JPY);
+          const approx=fixedHKD+jpy*fx;
+          const cashPool=400000;
+          const dayMap=new Map(),bucketMap=new Map();
+          TRIP_2026_ACTUAL_ITEMS.forEach(e=>{
+            dayMap.set(e.date,(dayMap.get(e.date)||0)+e.amount);
+            bucketMap.set(e.budgetBucketId,(bucketMap.get(e.budgetBucketId)||0)+e.amount);
+          });
+          const names={breakfast:"早餐",lunch:"午餐",tea:"下午茶",dinner:"晚餐/宵夜",snacks:"超市/便利店/水果",fuel:"油费",toll:"高速/桥费",parking:"停车费",tickets:"门票"};
+          const categories=["breakfast","lunch","tea","dinner","snacks","fuel","toll","parking","tickets"];
+          const dailyRows=[...dayMap].map(([day,amount])=>'<tr><td>'+day.slice(5)+'</td><td style="text-align:right">¥'+formatNumber(amount)+'</td></tr>').join("");
+          const catRows=categories.map(key=>'<tr><td>'+names[key]+'</td><td style="text-align:right">¥'+formatNumber(bucketMap.get(key)||0)+'</td></tr>').join("");
+          el.innerHTML='<div class="expense-summary-grid">'+
+            '<div class="expense-summary-card"><label>💴 8天实际日圆支出</label><strong>¥'+formatNumber(jpy)+'</strong></div>'+
+            '<div class="expense-summary-card"><label>💵 已确认港币固定费用（含机票）</label><strong>'+moneyHKD(fixedHKD)+'</strong></div>'+
+            '<div class="expense-summary-card"><label>🧾 旅行总费用（按当前参考汇率折算）</label><strong>'+moneyHKD(approx)+'</strong></div>'+
+            '<div class="expense-summary-card"><label>💰 ¥400,000现金池剩余</label><strong>¥'+formatNumber(cashPool-jpy)+'</strong></div></div>'+
+            '<div class="inline-note" style="margin:10px 0">精确原币种合计：HK$17,927.89 + ¥284,100；当前日圆参考折算 1 JPY = HK
+          if(!expenseState)loadExpenseState();
+          const rates=effectiveRates();
+          const summary=ExpenseEngine.computeLedger(expenseState.expenses,expenseMembers,rates,expenseState.settlements);
+          const projection=BudgetEngine.projectedBudgetByBucket(expenseState.budgetBuckets,expenseMembers,expenseState.expenses,rates,ExpenseEngine.expenseToHKD);
+          const shares=BudgetEngine.memberBudgetShares(expenseState.budgetBuckets,expenseMembers,projection);
+
+          // Fixed actuals outside Budget buckets are part of both the current baseline and Projected.
+          expenseMembers.forEach(m=>{
+            const fixedActualShare=expenseState.expenses
+              .filter(e=>(e.status==="paid"||e.status==="settled") && !e.budgetBucketId)
+              .reduce((sum,e)=>{
+                try{
+                  const amountHKD=ExpenseEngine.expenseToHKD(e,rates);
+                  const memberShares=e.shares||{};
+                  const totalShare=expenseMembers.reduce((s,x)=>s+(Number(memberShares[x.id])||0),0);
+                  return totalShare>0 ? sum + amountHKD*((Number(memberShares[m.id])||0)/totalShare) : sum;
+                }catch(_){return sum;}
+              },0);
+
+            shares.budget[m.id]+=fixedActualShare;
+            shares.projected[m.id]+=fixedActualShare;
+          });
+
+          const budgetOnlyTotal=Object.values(projection).reduce((s,x)=>s+x.budgetTotal,0);
+          const bucketProjectedTotal=Object.values(projection).reduce((s,x)=>s+x.projectedHKD,0);
+
+          // Actual items not linked to a budget bucket (flight/hotel/car actuals) are fixed actual costs.
+          const actualOutsideBudget=expenseState.expenses
+            .filter(e=>(e.status==="paid"||e.status==="settled") && !e.budgetBucketId)
+            .reduce((s,e)=>{
+              try{return s+ExpenseEngine.expenseToHKD(e,rates);}catch(_){return s;}
+            },0);
+
+          const budgetTotal=actualOutsideBudget + budgetOnlyTotal;
+          const projectedTotal=actualOutsideBudget + bucketProjectedTotal;
+          const variance=projectedTotal-budgetTotal;
+
+          const setText=(id,t)=>{const el=document.getElementById(id);if(el)el.textContent=t;};
+          setText("expense-actual-total",moneyHKD(summary.actualSpend));
+          setText("expense-projected-total",moneyHKD(projectedTotal));
+          setText("expense-budget-total",moneyHKD(budgetTotal));
+
+          const varEl=document.getElementById("expense-budget-variance");
+          if(varEl){
+            varEl.textContent=(variance>0?"+":"")+moneyHKD(variance);
+            varEl.style.color=variance>.005?"#dc2626":variance<-.005?"#059669":"#0f172a";
+          }
+
+          renderTrip2026ActualReconciliation();
+          renderBudgetSettings();
+          renderBudgetBucketSummary(projection);
+          renderExpenseFx();
+          renderExpenseLedger();
+          renderExpenseCategories(summary);
+          renderExpenseMembers(summary,shares);
+          renderExpenseTransfers(summary);
+          renderSettlementHistory();
+        }
+
+        function populateExpenseCategorySelect(selected){
+          const s=document.getElementById("expense-category");if(s)s.innerHTML=categoryOptions(selected||"🍴 餐饮");
+        }
+        function populateBudgetBucketSelect(selected){
+          const s=document.getElementById("expense-budget-bucket");if(s)s.innerHTML=budgetBucketOptions(selected||"");
+        }
+        function updateBudgetUnitVisibility(){
+          const id=document.getElementById("expense-budget-bucket").value;
+          const b=budgetBucketById(id);
+          const wrap=document.getElementById("expense-budget-units-wrap");
+          if(wrap)wrap.style.display=b&&b.mode==="meal"?"block":"none";
+        }
+
+        function openExpenseModal(expense=null,proposedStatus=null){
+          document.getElementById("expense-form-error").style.display="none";
+          document.getElementById("expense-modal-title").textContent=expense?"编辑费用":"新增费用";
+          document.getElementById("expense-edit-id").value=expense?expense.id:"";
+          document.getElementById("expense-date").value=expense?expense.date:new Date().toISOString().slice(0,10);
+          document.getElementById("expense-item").value=expense?expense.item:"";
+          populateExpenseCategorySelect(expense?expense.category:"🍴 餐饮");
+          document.getElementById("expense-amount").value=expense?expense.amount:"";
+          document.getElementById("expense-currency").value=expense?expense.currency:"JPY";
+          document.getElementById("expense-status").value=proposedStatus||(expense?expense.status:"paid");
+          document.getElementById("expense-actual-fx").value=expense&&Number(expense.fxRateHKD)>0?expense.fxRateHKD:"";
+          populateBudgetBucketSelect(expense?expense.budgetBucketId:"");
+          document.getElementById("expense-budget-units").value=expense&&Number(expense.budgetUnitsConsumed)>0?expense.budgetUnitsConsumed:1;
+          document.getElementById("expense-note").value=expense?(expense.note||""):"";
+          expenseMembers.forEach(m=>{
+            document.getElementById(`payer-${m.id}`).value=expense?((expense.payers||{})[m.id]||""):"";
+            document.getElementById(`share-${m.id}`).value=expense?((expense.shares||{})[m.id]??m.defaultWeight):m.defaultWeight;
+          });
+          updateExpenseModalState();updateBudgetUnitVisibility();
+          document.getElementById("expense-modal-backdrop").classList.add("open");
+        }
+
+        function closeExpenseModal(){document.getElementById("expense-modal-backdrop").classList.remove("open");}
+        function updateExpenseModalState(){
+          const planned=document.getElementById("expense-status").value==="planned";
+          expenseMembers.forEach(m=>{const i=document.getElementById(`payer-${m.id}`);i.disabled=planned;if(planned)i.value="";});
+        }
+        function showExpenseFormError(msg){const e=document.getElementById("expense-form-error");e.textContent=msg;e.style.display="block";}
+
+        function saveExpenseFromModal(){
+          const id=document.getElementById("expense-edit-id").value||`e-${Date.now()}`;
+          const item=document.getElementById("expense-item").value.trim();
+          const amount=Number(document.getElementById("expense-amount").value);
+          const currency=document.getElementById("expense-currency").value;
+          const status=document.getElementById("expense-status").value;
+          const fxRaw=document.getElementById("expense-actual-fx").value.trim();
+          const fxRateHKD=fxRaw===""?null:Number(fxRaw);
+          const bucketId=document.getElementById("expense-budget-bucket").value||null;
+          const bucket=budgetBucketById(bucketId);
+          const units=bucket&&bucket.mode==="meal"?Math.max(0,Number(document.getElementById("expense-budget-units").value)||0):0;
+
+          const payers={},shares={};
+          expenseMembers.forEach(m=>{
+            payers[m.id]=Number(document.getElementById(`payer-${m.id}`).value)||0;
+            shares[m.id]=Math.max(0,Number(document.getElementById(`share-${m.id}`).value)||0);
+          });
+
+          if(!item)return showExpenseFormError("请输入费用项目名称。");
+          if(!Number.isFinite(amount)||amount<=0)return showExpenseFormError("金额必须大于0。");
+          if(currency!=="HKD"&&fxRateHKD!==null&&(!Number.isFinite(fxRateHKD)||fxRateHKD<=0))return showExpenseFormError("实际汇率必须大于0，或留空使用 Online 参考汇率。");
+          if(Object.values(shares).reduce((a,b)=>a+b,0)<=0)return showExpenseFormError("至少一名成员必须参与分摊。");
+          if(status==="paid"||status==="settled"){
+            const paidSum=Object.values(payers).reduce((a,b)=>a+b,0);
+            if(Math.abs(paidSum-amount)>Math.max(.02,amount*.0001))return showExpenseFormError(`付款人金额合计 ${paidSum.toFixed(2)} ${currency}，必须等于费用总额 ${amount.toFixed(2)} ${currency}。`);
+          }
+
+          const obj={
+            id,date:document.getElementById("expense-date").value,item,
+            category:document.getElementById("expense-category").value,amount,currency,status,
+            fxRateHKD:currency==="HKD"?null:fxRateHKD,
+            payers:(status==="paid"||status==="settled")?payers:{},
+            shares,budgetBucketId:bucketId,budgetUnitsConsumed:units,
+            note:document.getElementById("expense-note").value.trim()
+          };
+
+          const idx=expenseState.expenses.findIndex(e=>e.id===id);
+          if(idx>=0)expenseState.expenses[idx]=obj;else expenseState.expenses.push(obj);
+          saveExpenseState();closeExpenseModal();
+        }
+
+        function editExpense(id){const e=expenseState.expenses.find(x=>x.id===id);if(e)openExpenseModal(e);}
+        function deleteExpense(id){const e=expenseState.expenses.find(x=>x.id===id);if(!e||!confirm(`删除费用「${e.item}」？`))return;expenseState.expenses=expenseState.expenses.filter(x=>x.id!==id);saveExpenseState();}
+        function markExpenseTransferPaid(from,to,amount){if(!confirm(`确认已支付：${memberName(from)} → ${memberName(to)} ${moneyHKD(amount)}？`))return;expenseState.settlements.push({id:`s-${Date.now()}`,from,to,amountHKD:Number(amount),date:new Date().toISOString().slice(0,10)});saveExpenseState();}
+        function deleteSettlement(id){if(!confirm("撤销这笔内部结算记录？"))return;expenseState.settlements=expenseState.settlements.filter(s=>s.id!==id);saveExpenseState();}
+
+        function exportExpenseLedger(){
+          const payload={exportedAt:new Date().toISOString(),trip:"okinawa-2026",data:expenseState};
+          const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+          const url=URL.createObjectURL(blob),a=document.createElement("a");
+          a.href=url;a.download=`okinawa-2026-expenses-v8.3-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(url);
+        }
+        function importExpenseLedger(event){
+          const file=event.target.files&&event.target.files[0];if(!file)return;
+          const reader=new FileReader();
+          reader.onload=()=>{
+            try{
+              const parsed=JSON.parse(reader.result),incoming=parsed.data||parsed;
+              if(!incoming||!Array.isArray(incoming.expenses))throw new Error("invalid");
+              if(!confirm("导入会覆盖本浏览器目前账本。继续？"))return;
+              expenseState=incoming.version==="8.3"?sanitizeV83State(incoming):sanitizeV83State(migrateLegacyState(incoming));saveExpenseState();
+            }catch(_){alert("无法导入：JSON 格式或账本结构不正确。");}
+            finally{event.target.value="";}
+          };
+          reader.readAsText(file);
+        }
+        function resetExpenseLedger(){
+          if(!confirm("确定重置 V8 预算及费用账本？建议先导出 JSON。"))return;
+          expenseState=defaultExpenseState();saveExpenseState();refreshOnlineFx(true);
+        }
+
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadExpenseState();
+            renderExpenseManager();
+            refreshOnlineFx(false);
+        });
+    
+
+        // ===== V10 Cinematic Storytelling =====
+        let v10HeroIndex=0,v10HeroTimer=null;
+        function v10GoodHeroSlides(){
+            return [...document.querySelectorAll("#v10-hero .v10-hero-slide")].filter(s=>!s.classList.contains("v10-broken"));
+        }
+        function setV10Hero(i){
+            const all=[...document.querySelectorAll("#v10-hero .v10-hero-slide")];
+            const dots=[...document.querySelectorAll("#v10-hero .v10-dot")];
+            const good=v10GoodHeroSlides();
+            if(!good.length)return;
+            v10HeroIndex=(i+good.length)%good.length;
+            const active=good[v10HeroIndex];
+            all.forEach(s=>s.classList.toggle("active",s===active));
+            dots.forEach((d,n)=>{
+                const slide=all[n];
+                d.style.display=(slide&&slide.classList.contains("v10-broken"))?"none":"";
+                d.classList.toggle("active",slide===active);
+            });
+        }
+        function validateV10HeroSlides(){
+            const slides=[...document.querySelectorAll("#v10-hero .v10-hero-slide")];
+            slides.forEach(slide=>{
+                const src=slide.dataset.img;
+                if(!src)return;
+                const probe=new Image();
+                probe.onload=()=>{};
+                probe.onerror=()=>{
+                    slide.classList.add("v10-broken");
+                    if(slide.classList.contains("active"))setV10Hero(0);
+                };
+                probe.src=src;
+            });
+        }
+        function startV10Hero(){
+            clearInterval(v10HeroTimer);
+            v10HeroTimer=setInterval(()=>{
+                const good=v10GoodHeroSlides();
+                if(good.length>1)setV10Hero(v10HeroIndex+1);
+            },7000);
+        }
+        const v10Films={"blue": {"title": "01 · 琉球蓝 / OKINAWA BLUE", "musicLabel": "🎧 BEGIN《島人ぬ宝》 · YouTube 官方 MV", "youtube": "E2LLhc7JJsY", "images": ["assets/images/d2/naha-umikaji-terrace-2.jpg", "assets/images/overview/onna-manzamo-2.jpg", "assets/images/overview/nago-kouri-bridge-3.jpg", "assets/images/d5/bise-fukugi-1.JPG"], "captions": ["濑长岛：机场、海面与落日先告诉你冲绳不是普通日本城市。", "万座毛：珊瑚礁海崖把“蓝”推到更有力量的一面。", "古宇利大桥：Road Trip 最像把车开进海里的瞬间。", "备濑福木林：蓝海之外，冲绳也有三百年绿色生活史。"]}, "memory": {"title": "02 · 王国与记忆 / KINGDOM & MEMORY", "musicLabel": "🎧 BEGIN《三線の花》 · YouTube", "youtube": "76-U4b5MKHg", "images": ["assets/images/overview/naha-shuri-castle-1.jpg", "assets/images/d2/naha-naminoue-1.jpg", "assets/images/d3/nanjo-gyokusendo-2.jpg", "assets/images/history/Itoman-peace-memorial-1.jpg", "assets/images/history/himeyuri-2.jpg", "assets/images/overview/american-village-3.JPG"], "captions": ["首里城：琉球王国约四百五十年的政治、外交与文化中心。", "波上宫：海上信仰、红瓦与那霸港口世界。", "玉泉洞与传统聚落：地质时间与琉球生活史重叠。", "和平祈念公园：1945 的伤痕成为今天冲绳最重要的公共记忆之一。", "姬百合：战争不是抽象数字，而是落在年轻学生与家庭身上的真实命运。", "美国村：战后美国统治与基地经济，又塑造出另一层 Okinawa。"]}, "road": {"title": "03 · ROAD TRIP OKINAWA", "musicLabel": "🎧 BEGIN《島人ぬ宝》 · YouTube 官方 MV", "youtube": "E2LLhc7JJsY", "images": ["assets/images/overview/onna-manzamo-2.jpg", "assets/images/overview/nago-kouri-bridge-3.jpg", "assets/images/d4/orion-happy-park-4.png", "assets/images/d5/bise-fukugi-1.JPG", "assets/images/overview/american-village-3.JPG", "assets/images/d2/naha-umikaji-terrace-2.jpg"], "captions": ["58号公路的想象：海岸、断崖与不赶路的驾驶节奏。", "古宇利蓝：D4 的 Hero Shot，也是整趟自驾最典型的画面。", "Orion Happy Park：把名护从一个地名变成有味道的城市。", "福木林：在绿色隧道里把速度降下来。", "美国村：Sunset 后再等二十分钟，霓虹才真正亮起来。", "回到南部：飞机、海风与城市，又把故事拉回那霸。"]}, "taste": {"title": "04 · TASTE OKINAWA", "musicLabel": "🎧 BEGIN《三線の花》 · YouTube", "youtube": "76-U4b5MKHg", "images": ["assets/images/okinawa images gallery/Sam’s By-the-sea 1.jpg", "assets/images/okinawa images gallery/冲绳中部重击汉堡1.jpg", "assets/images/d4/orion-factory-2.jpg", "assets/images/overview/american-village-3.JPG"], "captions": ["Okinawa Soba × Orion：最像“岛上日常”的组合。", "Taco Rice：美式 Taco 与日本米饭结合，战后混血文化吃进一碗。", "Orion 名护工厂：地方品牌也可以成为旅行文化入口。", "美国村的汉堡与夜色：再接回本行程的和牛、Agu、海鲜与寿喜烧。"]}};
+        let v10FilmTimer=null,v10FilmIndex=0;
+        function openV10Film(key){
+            const cfg=v10Films[key];if(!cfg)return;
+            const modal=document.getElementById("v10-film-modal"),stage=document.getElementById("v10-film-stage"),title=document.getElementById("v10-film-title"),music=document.getElementById("v10-film-music-label"),yt=document.getElementById("v10-film-youtube"),progress=document.getElementById("v10-film-progress");
+            title.textContent=cfg.title;music.textContent=cfg.musicLabel;
+            stage.innerHTML=cfg.images.map((img,i)=>`<div class="v10-film-slide ${i===0?"active":""}" style="background-image:url('${img}')"><div class="v10-film-caption"><b>${cfg.title}</b><p>${cfg.captions[i]||""}</p></div></div>`).join("");
+            yt.src=`https://www.youtube-nocookie.com/embed/${cfg.youtube}?autoplay=1&rel=0`;modal.classList.add("open");v10FilmIndex=0;clearInterval(v10FilmTimer);
+            if(progress){progress.style.transition="none";progress.style.width="0";requestAnimationFrame(()=>{progress.style.transition=`width ${cfg.images.length*6}s linear`;progress.style.width="100%";});}
+            v10FilmTimer=setInterval(()=>{const slides=[...stage.querySelectorAll(".v10-film-slide")];v10FilmIndex++;if(v10FilmIndex>=slides.length){clearInterval(v10FilmTimer);return;}slides.forEach((s,n)=>s.classList.toggle("active",n===v10FilmIndex));},6000);
+        }
+        function closeV10Film(){const modal=document.getElementById("v10-film-modal"),yt=document.getElementById("v10-film-youtube");if(modal)modal.classList.remove("open");if(yt)yt.src="";clearInterval(v10FilmTimer);}
+        document.addEventListener("DOMContentLoaded",()=>{validateV10HeroSlides();setV10Hero(0);startV10Hero();});
+        document.addEventListener("keydown",e=>{if(e.key==="Escape")closeV10Film();});
+
+
+        // V10.1 self-hosted media fallback.
+        document.addEventListener("DOMContentLoaded",()=>{
+            document.querySelectorAll("[style*='background-image']").forEach(el=>{
+                const bg=el.style.backgroundImage || "";
+                const match=bg.match(/url\(["']?([^"')]+)["']?\)/);
+                if(!match)return;
+                const url=match[1];
+                if(!url.startsWith("assets/"))return;
+                const img=new Image();
+                img.onerror=()=>{
+                    el.style.backgroundImage="linear-gradient(135deg,#0f172a,#0e7490)";
+                    el.setAttribute("data-media-missing",url);
+                };
+                img.src=url;
+            });
+        });
+
+
+        function speakJapanese(text){
+            if(!("speechSynthesis" in window)){
+                alert("此浏览器/设备暂不支持语音播放。");
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const u=new SpeechSynthesisUtterance(text);
+            u.lang="ja-JP";
+            u.rate=0.82;
+            const voices=window.speechSynthesis.getVoices();
+            const ja=voices.find(v => (v.lang||"").toLowerCase().startsWith("ja"));
+            if(ja)u.voice=ja;
+            window.speechSynthesis.speak(u);
+        }
+
+        document.addEventListener("click",function(e){
+            const btn=e.target.closest(".jp-phrase button[data-jp]");
+            if(!btn || btn.dataset.jpBound==="1") return;
+            if(!window.speechSynthesis){
+                alert("此浏览器/设备暂不支持语音播放。");
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const u=new SpeechSynthesisUtterance(btn.dataset.jp);
+            u.lang="ja-JP";
+            u.rate=0.82;
+            u.pitch=1;
+            const voices=window.speechSynthesis.getVoices();
+            const ja=voices.find(v => (v.lang||"").toLowerCase().startsWith("ja"));
+            if(ja)u.voice=ja;
+            window.speechSynthesis.speak(u);
+        },false);
+</script>
+
+
+    <div class="media-backdrop" id="v10-film-modal" onclick="if(event.target===this) closeV10Film()">
+        <div class="media-box">
+            <div class="media-head"><span id="v10-film-title">Okinawa Photo Film</span><button class="media-close" onclick="closeV10Film()">✕ 关闭</button></div>
+            <div class="v10-film-stage" id="v10-film-stage"></div>
+            <div class="v10-film-progress" id="v10-film-progress"></div>
+            <div class="v10-audio-dock"><b id="v10-film-music-label">🎧 Soundtrack</b><div>音乐通过 YouTube 官方播放器播放；照片蒙太奇与商业歌曲没有重新打包成自有影片。</div><iframe id="v10-film-youtube" src="" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
++fx.toFixed(6)+'。若日圆为预先兑换现金，实际HKD成本以购汇纪录为准。机票已包含在港币固定费用内，勿重复相加。</div>'+
+            '<div class="inline-note" style="margin-bottom:10px;color:#b45309"><b>付款归属未核实：</b>¥400,000 现金池的出资人/代付人未提供，49笔日圆费用已标记为实际发生但不擅自指定付款人；“Who owes whom”会提示待分配。保留浏览器原有费用及结算纪录。</div>'+
+            '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px">'+
+            '<table class="kuse-table"><thead><tr><th>日期</th><th style="text-align:right">日圆支出</th></tr></thead><tbody>'+dailyRows+'<tr><th>总计</th><th style="text-align:right">¥'+formatNumber(jpy)+'</th></tr></tbody></table>'+
+            '<table class="kuse-table"><thead><tr><th>分类</th><th style="text-align:right">日圆支出</th></tr></thead><tbody>'+catRows+'<tr><th>总计</th><th style="text-align:right">¥'+formatNumber(jpy)+'</th></tr></tbody></table></div>';
         }
 
         function renderExpenseManager(){
