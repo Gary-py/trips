@@ -3733,7 +3733,7 @@ if (typeof module !== "undefined" && module.exports) module.exports = BudgetEngi
             if(tripIds.has(entry.id))return;
             const match=manualCandidates.find(e=>!matchedManualIds.has(e.id)
               && e.date===entry.date && Math.abs(Number(e.amount)-entry.amount)<0.001
-              && (e.category===entry.category || String(e.item||"").includes(entry.item) || entry.item.includes(String(e.item||"").trim())));
+              && (e.category===entry.category || String(e.item||"").includes(entry.item) || (String(e.item||"").trim().length>0 && entry.item.includes(String(e.item||"").trim()))));
             if(match){matchedManualIds.add(match.id);return;}
             state.expenses.push({...entry,payers:{},shares:{...entry.shares}});
             tripIds.add(entry.id);
